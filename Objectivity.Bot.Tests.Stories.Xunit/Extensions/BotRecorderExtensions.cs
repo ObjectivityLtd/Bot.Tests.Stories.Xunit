@@ -8,14 +8,17 @@
     {
         public static IStoryRecorder Confirms(this IBotRecorder recorder, string prompt)
         {
+            return recorder.GivesChoice(prompt, new[] { "Yes", "No" }); // todo: replace with prompt resources
+        }
+
+        public static IStoryRecorder GivesChoice(this IBotRecorder recorder, string prompt, string[] options)
+        {
             return recorder.SendsActivity(activity =>
                 activity.Attachments?
                     .FirstOrDefault(a => a.ContentType == HeroCard.ContentType)
                     ?.Content is HeroCard heroCard &&
                 heroCard.Text == prompt &&
-                heroCard.Buttons.Count == 2 &&
-                heroCard.Buttons[0].Title == "Yes" && // todo: replace with prompt resources
-                heroCard.Buttons[1].Title == "No");
+                heroCard.Buttons.Select(b => b.Title).SequenceEqual(options));
         }
     }
 }
