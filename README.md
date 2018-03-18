@@ -49,6 +49,32 @@ public class EchoDialogTests : DialogUnitTestBase<EchoDialog>
 }
 ```
 
+### Dialog with prompts
+
+You can use specialized method for dialogs with prompts:
+
+```cs
+public class PropmtDialogTests : DialogUnitTestBase<PropmtDialog>
+{
+    [Fact]
+    public async Task HelloTest()
+    {
+        var story = StoryRecorder
+            .Record()
+            .Bot.Confirms("Are you enjoying this conversation?")
+            .User.Says("Yes")
+            .Bot.GivesChoice(
+                "Who is a better conversationalist?",
+                new[] { "Bot", "Real person", "Rubber duck" })
+            .User.Says("Bot")
+            .Bot.Says("Thank you")
+            .Rewind();
+
+        await this.Play(story);
+    }
+}
+```
+
 ### Dialog finish scenarios
 
 You can also define various dialog finish scenarios.
@@ -149,7 +175,7 @@ To develop a unit test for a LUIS dialog (inheriting `LuisDialog<object>` class)
 Example:
 
 ```cs
-public class PizzaOrderDialogTests : LuisDialogUnitTestBase<EchoDialog>
+public class EchoDialogTests : LuisDialogUnitTestBase<EchoDialog>
 {
     [Fact]
     public async Task HelloTest()
