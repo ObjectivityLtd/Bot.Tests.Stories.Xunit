@@ -35,20 +35,36 @@
 
         private void TrySetOptions()
         {
-            if (this.MessageActivity.Attachments == null || this.MessageActivity.Attachments.Count != 1)
+            this.HandleAttachmentsWithoutContentType();
+            this.HandleHeroCardAttachment();
+        }
+
+        private void HandleHeroCardAttachment()
+        {
+            var firstHeroCardAttachment = this.MessageActivity
+                .Attachments?
+                .FirstOrDefault(f => f.ContentType == HeroCard.ContentType);
+
+            if (firstHeroCardAttachment?.Content is HeroCard heroCard)
             {
-                return;
+                this.Options = heroCard.Buttons.Select(b => b.Title).ToArray();
             }
+        }
 
-            var listJson = (JObject)this.MessageActivity.Attachments[0].Content;
-            var token = listJson.SelectToken(OptionsToken);
-
-            if (token == null)
+        private void HandleAttachmentsWithoutContentType()
             {
-                return;
-            }
+            var weirdAttachment = this.MessageActivity
+                .Attachments
+                .FirstOrDefault(att => string.IsNullOrEmpty(att.ContentType));
 
-            this.Options = token.Select(item => item[TokenValueKey].ToString()).ToArray();
+            if (weirdAttachment?.Content is JObject obj)
+            {
+                var token = obj.SelectToken(OptionsToken);
+                if (token != null)
+                {
+                    this.Options = token.Select(item => item[TokenValueKey].ToString()).ToArray();
+                }
+            }
         }
     }
 }

@@ -21,7 +21,7 @@
 
         public void EnqueueStartupStep(IMessageActivity messageActivity, Actor actor)
         {
-            var step = this.GetPerformanceStep(messageActivity, actor);
+            var step = GetPerformanceStep(messageActivity, actor);
 
             if (step != null)
             {
@@ -39,7 +39,7 @@
 
         public void AddStep(IMessageActivity messageActivity, Actor actor)
         {
-            var step = this.GetPerformanceStep(messageActivity, actor);
+            var step = GetPerformanceStep(messageActivity, actor);
 
             this.Steps.AddNotNullStep(step);
         }
@@ -61,7 +61,7 @@
             }
         }
 
-        private PerformanceStep GetPerformanceStep(IMessageActivity message, Actor actor)
+        private static PerformanceStep GetPerformanceStep(IMessageActivity message, Actor actor)
         {
             if (message.Type == TypingMessageType || message.Text == Consts.WrapperStartMessage)
             {

@@ -10,21 +10,21 @@
     {
         public Task StartAsync(IDialogContext context)
         {
-            context.Wait(this.ResumeAfterFirstMessage);
+            context.Wait(ResumeAfterFirstMessage);
 
             return Task.CompletedTask;
         }
 
-        private async Task ResumeAfterFirstMessage(IDialogContext context, IAwaitable<IMessageActivity> item)
+        private static async Task ResumeAfterFirstMessage(IDialogContext context, IAwaitable<IMessageActivity> item)
         {
             var message = await item;
 
             await context.PostAsync("You said: " + message.Text);
 
-            context.Wait(this.ResumeAfterLastMessage);
+            context.Wait(ResumeAfterLastMessage);
         }
 
-        private async Task ResumeAfterLastMessage(IDialogContext context, IAwaitable<IMessageActivity> item)
+        private static async Task ResumeAfterLastMessage(IDialogContext context, IAwaitable<IMessageActivity> item)
         {
             var message = await item;
 
