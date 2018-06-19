@@ -32,8 +32,9 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-// Only becasue we base on Microsoft's implementation where StateClient is obsolete we need to disabled warning
+// Only becasue we base on Microsoft's implementation where stateClient is obsolete we need to disabled warning
 
+#pragma warning disable 612
 #pragma warning disable 618
 namespace Objectivity.Bot.Tests.Stories.Xunit.Core
 {
@@ -62,33 +63,32 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
             SetField.NotNull(out this.botId, nameof(botId), botId);
         }
 
-        public static Mock<StateClient> MockIBots(MockConnectorFactory mockConnectorFactory)
+        public Mock<StateClient> MockIBots(MockConnectorFactory mockConnectorFactory)
         {
             var botsClient = new Mock<StateClient>(MockBehavior.Loose);
 
             botsClient.Setup(d => d.BotState.SetConversationDataWithHttpMessagesAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<BotData>(), It.IsAny<Dictionary<string, List<string>>>(), It.IsAny<CancellationToken>()))
                 .Returns<string, string, BotData, Dictionary<string, List<string>>, CancellationToken>(async (channelId, conversationId, data, headers, token)
-                => await mockConnectorFactory.UpsertData(channelId, null, conversationId, BotStoreType.BotConversationData, data));
+                    => await mockConnectorFactory.UpsertData(channelId, null, conversationId, BotStoreType.BotConversationData, data));
 
             botsClient.Setup(d => d.BotState.GetConversationDataWithHttpMessagesAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<Dictionary<string, List<string>>>(), It.IsAny<CancellationToken>()))
                 .Returns<string, string, Dictionary<string, List<string>>, CancellationToken>(async (channelId, conversationId, headers, token)
-                => await mockConnectorFactory.GetData(channelId, null, conversationId, BotStoreType.BotConversationData));
+                    => await mockConnectorFactory.GetData(channelId, null, conversationId, BotStoreType.BotConversationData));
 
             botsClient.Setup(d => d.BotState.SetUserDataWithHttpMessagesAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<BotData>(), It.IsAny<Dictionary<string, List<string>>>(), It.IsAny<CancellationToken>()))
-                .Returns<string, string, BotData, Dictionary<string, List<string>>, CancellationToken>(async (channelId, userId, data, headers, token)
-                => await mockConnectorFactory.UpsertData(channelId, userId, null, BotStoreType.BotUserData, data));
+              .Returns<string, string, BotData, Dictionary<string, List<string>>, CancellationToken>(async (channelId, userId, data, headers, token)
+                    => await mockConnectorFactory.UpsertData(channelId, userId, null, BotStoreType.BotUserData, data));
 
             botsClient.Setup(d => d.BotState.GetUserDataWithHttpMessagesAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<Dictionary<string, List<string>>>(), It.IsAny<CancellationToken>()))
                 .Returns<string, string, Dictionary<string, List<string>>, CancellationToken>(async (channelId, userId, headers, token)
-                => await mockConnectorFactory.GetData(channelId, userId, null, BotStoreType.BotUserData));
+                    => await mockConnectorFactory.GetData(channelId, userId, null, BotStoreType.BotUserData));
 
             botsClient.Setup(d => d.BotState.SetPrivateConversationDataWithHttpMessagesAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<BotData>(), It.IsAny<Dictionary<string, List<string>>>(), It.IsAny<CancellationToken>()))
-                .Returns<string, string, string, BotData, Dictionary<string, List<string>>, CancellationToken>(async (channelId, conversationId, userId, data, headers, token)
-                => await mockConnectorFactory.UpsertData(channelId, userId, conversationId, BotStoreType.BotPrivateConversationData, data));
+             .Returns<string, string, string, BotData, Dictionary<string, List<string>>, CancellationToken>(async (channelId, conversationId, userId, data, headers, token)
+                    => await mockConnectorFactory.UpsertData(channelId, userId, conversationId, BotStoreType.BotPrivateConversationData, data));
 
             botsClient.Setup(d => d.BotState.GetPrivateConversationDataWithHttpMessagesAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<Dictionary<string, List<string>>>(), It.IsAny<CancellationToken>()))
-                .Returns<string, string, string, Dictionary<string, List<string>>, CancellationToken>(async (channelId, conversationId, userId, headers, token)
-                => await mockConnectorFactory.GetData(channelId, userId, conversationId, BotStoreType.BotPrivateConversationData));
+             .Returns<string, string, string, Dictionary<string, List<string>>, CancellationToken>(async (channelId, conversationId, userId, headers, token) => await mockConnectorFactory.GetData(channelId, userId, conversationId, BotStoreType.BotPrivateConversationData));
 
             return botsClient;
         }
@@ -101,38 +101,34 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
 
         public IStateClient MakeStateClient()
         {
-            if (this.stateClient == null)
-            {
-                var mockStateClient = MockIBots(this);
-                this.stateClient = mockStateClient.Object;
-            }
+            return this.stateClient ?? (this.stateClient = this.MockIBots(this).Object);
+        }
 
-            return this.stateClient;
+        public IOAuthClient MakeOAuthClient()
+        {
+            throw new NotImplementedException();
         }
 
         protected IAddress AddressFrom(string channelId, string userId, string conversationId)
         {
-            var address = new Address(
+            return new Address(
                 this.botId,
                 channelId,
                 userId ?? "AllUsers",
                 conversationId ?? "AllConversations",
                 "InvalidServiceUrl");
-
-            return address;
         }
 
-        protected async Task<HttpOperationResponse<object>> UpsertData(string channelId, string userId, string conversationId, BotStoreType storeType, BotData data)
+        protected async Task<HttpOperationResponse<BotData>> UpsertData(string channelId, string userId, string conversationId, BotStoreType storeType, BotData data)
         {
-            var result = new HttpOperationResponse<object> { Request = new HttpRequestMessage() };
+            var result = new HttpOperationResponse<BotData> { Request = new HttpRequestMessage() };
             try
             {
                 var address = this.AddressFrom(channelId, userId, conversationId);
                 await this.memoryDataStore.SaveAsync(address, storeType, data, CancellationToken.None);
             }
-            catch (HttpException e)
+            catch (HttpException)
             {
-                result.Body = e.Data;
                 result.Response = new HttpResponseMessage { StatusCode = HttpStatusCode.PreconditionFailed };
                 return result;
             }
@@ -147,9 +143,9 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
             return result;
         }
 
-        protected async Task<HttpOperationResponse<object>> GetData(string channelId, string userId, string conversationId, BotStoreType storeType)
+        protected async Task<HttpOperationResponse<BotData>> GetData(string channelId, string userId, string conversationId, BotStoreType storeType)
         {
-            var result = new HttpOperationResponse<object> { Request = new HttpRequestMessage() };
+            var result = new HttpOperationResponse<BotData> { Request = new HttpRequestMessage() };
             var address = this.AddressFrom(channelId, userId, conversationId);
             var data = await this.memoryDataStore.LoadAsync(address, storeType, CancellationToken.None);
             result.Body = data;

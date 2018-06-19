@@ -1,5 +1,6 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.StoryPlayer
 {
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using Asserts;
@@ -8,6 +9,7 @@
     using Core;
     using Microsoft.Bot.Builder.Dialogs;
     using Microsoft.Bot.Builder.Dialogs.Internals;
+    using Microsoft.Bot.Connector;
     using Player;
     using StoryModel;
     using StoryPerformer;
@@ -35,7 +37,7 @@
 
                 var storyAsserts = container.Resolve<StoryAsserts>();
 
-                await storyAsserts.AssertStory(story, performanceSteps);
+                await storyAsserts.AssertStory(story, performanceSteps.Where(s => s.MessageActivity.Type != ActivityTypes.Trace).ToList());
             }
 
             return new StoryResult();

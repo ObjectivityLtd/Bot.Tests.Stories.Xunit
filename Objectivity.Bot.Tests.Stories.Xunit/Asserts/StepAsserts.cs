@@ -67,7 +67,7 @@
             }
         }
 
-        private static void AssertUserStepMessage(StoryStep storyStep, PerformanceStep performanceStep, string[] options = null)
+        private static void AssertUserStepMessage(StoryStep storyStep, PerformanceStep performanceStep, IReadOnlyList<string> options = null)
         {
             var frame = storyStep.StoryFrame;
 
@@ -89,7 +89,7 @@
             }
         }
 
-        private static void AssertUserFrameOption(IStoryFrame storyFrame, IMessageActivity message, string[] options)
+        private static void AssertUserFrameOption(IStoryFrame storyFrame, IMessageActivity message, IReadOnlyList<string> options)
         {
             Assert.NotEmpty(options);
 

@@ -44,7 +44,10 @@
             this.intentUtterances.Add(new IntentUtterance<TDialog>(utterance, intentAction));
         }
 
-        protected void RegisterUtterance(string utterance, Expression<Func<TDialog, Task>> intentAction, params EntityRecommendation[] entities)
+        protected void RegisterUtterance(
+            string utterance,
+            Expression<Func<TDialog, Task>> intentAction,
+            params EntityRecommendation[] entities)
         {
             this.intentUtterances.Add(new IntentUtterance<TDialog>(utterance, intentAction, entities));
         }
@@ -87,6 +90,8 @@
                     score,
                     intentUtterance.Entities.ToArray());
             }
+
+            luisServiceMock.Setup(lsm => lsm.LuisModel).Returns((ILuisModel)null);
 
             return luisServiceMock;
         }
