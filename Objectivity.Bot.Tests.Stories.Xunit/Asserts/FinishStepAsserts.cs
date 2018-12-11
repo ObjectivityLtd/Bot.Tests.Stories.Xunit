@@ -24,7 +24,8 @@
 
         public void AssertDialogFinishStep(StoryStep storyStep)
         {
-            if (!(storyStep.StoryFrame is DialogStoryFrame dialogStoryFrame))
+            var dialogStoryFrame = storyStep.StoryFrame as DialogStoryFrame;
+            if (dialogStoryFrame == null)
             {
                 return;
             }

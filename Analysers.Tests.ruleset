@@ -401,11 +401,19 @@
     <Rule Id="CS8094" Action="Error" />
   </Rules>
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+    <Rule Id="SA0001" Action="None" />
+    <Rule Id="SA1005" Action="None" />
+    <Rule Id="SA1118" Action="None" />
     <Rule Id="SA1200" Action="Error" />
     <Rule Id="SA1309" Action="None" />
+    <Rule Id="SA1413" Action="None" />
+    <Rule Id="SA1512" Action="None" />
+    <Rule Id="SA1515" Action="None" />
     <Rule Id="SA1600" Action="None" />
     <Rule Id="SA1601" Action="None" />
+    <Rule Id="SA1602" Action="None" />
     <Rule Id="SA1633" Action="None" />
     <Rule Id="SA1649" Action="None" />
-  </Rules> 
+    <Rule Id="SA1652" Action="None" />
+  </Rules>
 </RuleSet>

@@ -1,25 +1,12 @@
 version: 0.0.{build}
 configuration: Release
 image: Visual Studio 2017
-nuget:
-  account_feed: true
-  project_feed: true
-  disable_publish_on_pr: true
 init:
   - ps: >-
       if ($env:APPVEYOR_REPO_TAG -eq "true")
       {
         Update-AppveyorBuild -Version "$env:APPVEYOR_REPO_TAG_NAME"
       }
-before_build:
-- cmd: dotnet restore
-build:
-  verbosity: detailed
-  publish_nuget: true
-  publish_nuget_symbols: true
-test:
-  assemblies:
-    - '**\*.Tests.dll'
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
@@ -29,12 +16,25 @@ dotnet_csproj:
   file_version: '{version}'
   informational_version: '{version}'
 environment:
-  NugetApiKey:
-    secure: ZDpU+qPlLxIhcfhYnqYxazI6g9gwt6e086vlBogpXETSL9C7WTbLdaH6rPEOz3v7
+  namespace: Objectivity.Bot.Tests.Stories.Xunit
+  cc: opencover
+install:
+- ps: >-
+    choco install codecov
+build_script:
+- cmd: >-
+    dotnet build
+test_script:
+- cmd: >-
+    dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.xml
+
+    codecov -f %appveyor_build_folder%\%cc%\%namespace%.xml --flag unittests
+artifacts:
+- path: '**\*.nupkg'
 deploy:
-  - provider: NuGet
-    api_key: $(NugetApiKey)
-    artifact: /.*\.nupkg/
-    on:
-      appveyor_repo_tag: true
-    skip_symbols: false
+- provider: NuGet
+  api_key:
+    secure: ZDpU+qPlLxIhcfhYnqYxazI6g9gwt6e086vlBogpXETSL9C7WTbLdaH6rPEOz3v7
+  on:
+    appveyor_repo_tag: true
+  skip_symbols: false
