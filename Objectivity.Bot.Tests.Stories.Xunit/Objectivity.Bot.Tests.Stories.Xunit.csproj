@@ -17,11 +17,11 @@
     <Company>Objectivity Ltd</Company>
     <Description>Tests library for Bot Framework dialogs XUnit tests</Description>
     <Copyright></Copyright>
+    <IsPackable>true</IsPackable>
     <PackageTags>C#, bot.framework, xunit</PackageTags>
     <PackageProjectUrl>https://github.com/ObjectivityLtd/Bot.Tests.Stories.Xunit</PackageProjectUrl>
     <PackageIconUrl>https://github.com/ObjectivityLtd.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/ObjectivityLtd/Bot.Tests.Stories.Xunit</RepositoryUrl>
-    <PackageLicenseUrl>https://opensource.org/licenses/mit-license.php</PackageLicenseUrl>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
   </PropertyGroup>
 
