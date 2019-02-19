@@ -1,6 +1,6 @@
 # Bot.Tests.Stories.Xunit
 
-[![Build status](https://ci.appveyor.com/api/projects/status/yinx2sypuempoi3g?svg=true)](https://ci.appveyor.com/project/ObjectivityAdminsTeam/bot-tests-stories-xunit)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/ObjectivityLtd/Bot.Tests.Stories.Xunit?branch=master&svg=true)](https://ci.appveyor.com/project/ObjectivityAdminsTeam/bot-tests-stories-xunit) [![Tests Status](https://img.shields.io/appveyor/tests/ObjectivityAdminsTeam/bot-tests-stories-xunit/master.svg)](https://ci.appveyor.com/project/ObjectivityAdminsTeam/bot-tests-stories-xunit) [![codecov](https://codecov.io/gh/ObjectivityLtd/Bot.Tests.Stories.Xunit/branch/master/graph/badge.svg)](https://codecov.io/gh/ObjectivityLtd/Bot.Tests.Stories.Xunit) [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
 Tests library for Bot Framework dialogs using XUnit and Objectivity Test Stories.
 

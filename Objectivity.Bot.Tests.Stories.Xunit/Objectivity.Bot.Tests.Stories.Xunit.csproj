@@ -3,29 +3,37 @@
   <PropertyGroup>
     <TargetFramework>net47</TargetFramework>
     <CodeAnalysisRuleSet>..\Analysers.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Version>0.0.0.0</Version>
     <PackageVersion>0.0.0.0</PackageVersion>
     <AssemblyVersion>0.0.0.0</AssemblyVersion>
     <FileVersion>0.0.0.0</FileVersion>
     <InformationalVersion>0.0.0.0</InformationalVersion>
     <IsPackable>true</IsPackable>
-    <Authors>Objectivity Bespoke Software Specialists</Authors>
-    <Company>Objectivity Bespoke Software Specialists</Company>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IncludeSymbols>True</IncludeSymbols>
+    <IncludeSource>True</IncludeSource>
+    <Authors>Objectivity Ltd</Authors>
+    <Company>Objectivity Ltd</Company>
     <Description>Tests library for Bot Framework dialogs XUnit tests</Description>
     <Copyright></Copyright>
+    <IsPackable>true</IsPackable>
     <PackageTags>C#, bot.framework, xunit</PackageTags>
     <PackageProjectUrl>https://github.com/ObjectivityLtd/Bot.Tests.Stories.Xunit</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/ObjectivityLtd.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/ObjectivityLtd/Bot.Tests.Stories.Xunit</RepositoryUrl>
-    <PackageLicenseUrl>https://opensource.org/licenses/mit-license.php</PackageLicenseUrl>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Bot.Builder" Version="3.15.2.2" />
-    <PackageReference Include="Moq" Version="4.8.3" />
+    <PackageReference Include="Microsoft.Bot.Builder" Version="3.19.1.44133" />
+    <PackageReference Include="Moq" Version="4.10.1" />
     <PackageReference Include="Objectivity.Bot.Tests.Stories" Version="0.0.15" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta004" PrivateAssets="All" />
-    <PackageReference Include="xunit" Version="2.3.1" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="xunit" Version="2.4.1" />
   </ItemGroup>
 
   <ItemGroup>
