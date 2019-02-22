@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net47</TargetFramework>
+    <CodeAnalysisRuleSet>..\Analysers.ruleset</CodeAnalysisRuleSet>
+    <Version>0.0.0.0</Version>
+    <PackageVersion>0.0.0.0</PackageVersion>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+    <FileVersion>0.0.0.0</FileVersion>
+    <InformationalVersion>0.0.0.0</InformationalVersion>
+    <IsPackable>true</IsPackable>
+    <Authors>Objectivity Bespoke Software Specialists</Authors>
+    <Company>Objectivity Bespoke Software Specialists</Company>
+    <Description>Set of abstract tools for testing user-bot interaction. Allows to "record" a story and test it with your custom player implementation.</Description>
+    <Copyright></Copyright>
+    <PackageTags>C#, bot.framework</PackageTags>
+    <PackageProjectUrl>https://github.com/ObjectivityLtd/Bot.Tests.Stories.Xunit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ObjectivityLtd/Bot.Tests.Stories.Xunit</RepositoryUrl>
+    <PackageLicenseUrl>https://opensource.org/licenses/mit-license.php</PackageLicenseUrl>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Bot.Connector" Version="3.12.2.4" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" PrivateAssets="All" />
+  </ItemGroup>
+
+</Project>
