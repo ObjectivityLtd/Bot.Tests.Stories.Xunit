@@ -1,0 +1,89 @@
+{
+  "intents": [
+    {
+      "name": "Help"
+    },
+    {
+      "name": "UserInfo"
+    },
+    {
+      "name": "FavoriteColor"
+    }
+  ],
+  "entities": [],
+  "composites": [],
+  "closedLists": [],
+  "regex_entities": [],
+  "model_features": [],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "What you can do?",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "I need help",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "What is your purpose?",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "What is my color",
+      "intent": "FavoriteColor",
+      "entities": []
+    }
+  ],
+  "patterns": [
+    {
+      "pattern": "My [first] name [is] {userName_patternAny}",
+      "intent": "UserInfo"
+    },
+    {
+      "pattern": "I'm {userName_patternAny}",
+      "intent": "UserInfo"
+    },
+    {
+      "pattern": "You can call me {userName_patternAny}",
+      "intent": "UserInfo"
+    },
+    {
+      "pattern": "call me {userName_patternAny}",
+      "intent": "UserInfo"
+    },
+    {
+      "pattern": "[please] call me {userName_patternAny}",
+      "intent": "UserInfo"
+    },
+    {
+      "pattern": "{userName_patternAny} is my name",
+      "intent": "UserInfo"
+    }
+  ],
+  "patternAnyEntities": [
+    {
+      "name": "userName_patternAny",
+      "explicitList": [],
+      "roles": []
+    }
+  ],
+  "prebuiltEntities": [
+    {
+      "name": "number",
+      "roles": []
+    },
+    {
+      "name": "datetimeV2",
+      "roles": []
+    }
+  ],
+  "luis_schema_version": "3.0.0",
+  "versionId": "0.1",
+  "name": "dispatchModel",
+  "desc": "",
+  "culture": "en-us"
+}
