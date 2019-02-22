@@ -4,8 +4,8 @@
     using System.Threading.Tasks;
     using StoryModel;
 
-    public interface IStoryPlayer
+    public interface IStoryPlayer<T>
     {
-        Task<IStoryResult> Play(IStory story, CancellationToken cancellationToken = default(CancellationToken));
+        Task<IStoryResult> Play(IStory<T> story, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

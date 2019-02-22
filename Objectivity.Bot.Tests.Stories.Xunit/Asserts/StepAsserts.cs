@@ -8,15 +8,14 @@
     using Microsoft.Bot.Connector;
     using Newtonsoft.Json.Linq;
     using StoryModel;
-    using StoryPerformer;
-    using StoryPlayer;
 
     public static class StepAsserts
     {
         private const string MessageType = "message";
 
-        public static void AssertStep(StoryStep storyStep, PerformanceStep performanceStep, string[] options = null)
+        public static void AssertStep(StoryStep<IMessageActivity> storyStep, PerformanceStep<IMessageActivity> performanceStep, string[] options = null)
         {
+
             switch (storyStep.Actor)
             {
                 case Actor.Bot:
@@ -28,7 +27,7 @@
             }
         }
 
-        private static void AssertBotStepMessage(StoryStep storyStep, PerformanceStep performanceStep)
+        private static void AssertBotStepMessage(StoryStep<IMessageActivity> storyStep, PerformanceStep<IMessageActivity> performanceStep)
         {
             var message = performanceStep.MessageActivity;
             var frame = storyStep.StoryFrame;
@@ -67,7 +66,7 @@
             }
         }
 
-        private static void AssertUserStepMessage(StoryStep storyStep, PerformanceStep performanceStep, IReadOnlyList<string> options = null)
+        private static void AssertUserStepMessage(StoryStep<IMessageActivity> storyStep, PerformanceStep<IMessageActivity> performanceStep, IReadOnlyList<string> options = null)
         {
             var frame = storyStep.StoryFrame;
 
@@ -89,7 +88,7 @@
             }
         }
 
-        private static void AssertUserFrameOption(IStoryFrame storyFrame, IMessageActivity message, IReadOnlyList<string> options)
+        private static void AssertUserFrameOption(IStoryFrame<IMessageActivity> storyFrame, IMessageActivity message, IReadOnlyList<string> options)
         {
             Assert.NotEmpty(options);
 
@@ -98,46 +97,46 @@
             Assert.Equal(optionValue, message.Text);
         }
 
-        private static void ProcessFrameTextExact(IStoryFrame storyFrame, string messageType, string message)
+        private static void ProcessFrameTextExact(IStoryFrame<IMessageActivity> storyFrame, string messageType, string message)
         {
             Assert.NotNull(message);
             Assert.Equal(MessageType, messageType);
             Assert.Equal(storyFrame.Text, message);
         }
 
-        private static void ProcessBotFrameTextMatchRegex(IStoryFrame storyFrame, IMessageActivity message)
+        private static void ProcessBotFrameTextMatchRegex(IStoryFrame<IMessageActivity> storyFrame, IMessageActivity message)
         {
             Assert.NotNull(message);
             Assert.Equal(MessageType, message.Type);
             Assert.Matches(storyFrame.Text, message.Text);
         }
 
-        private static void ProcessBotFramePredicate(IStoryFrame storyFrame, IMessageActivity message)
+        private static void ProcessBotFramePredicate(IStoryFrame<IMessageActivity> storyFrame, IMessageActivity message)
         {
             Assert.True(storyFrame.MessageActivityPredicate(message));
         }
 
-        private static void ProcessBotFrameTextMatchRegexWithSuggestions(IStoryFrame storyFrame, IMessageActivity message)
+        private static void ProcessBotFrameTextMatchRegexWithSuggestions(IStoryFrame<IMessageActivity> storyFrame, IMessageActivity message)
         {
             ProcessBotFrameTextMatchRegex(storyFrame, message);
             AssertSuggestions(storyFrame, message);
         }
 
-        private static void ProcessBotFrameTextWithSuggestions(IStoryFrame storyFrame, IMessageActivity message)
+        private static void ProcessBotFrameTextWithSuggestions(IStoryFrame<IMessageActivity> storyFrame, IMessageActivity message)
         {
             ProcessFrameTextExact(storyFrame, message.Type, message.Text);
             AssertSuggestions(storyFrame, message);
         }
 
-        private static void AssertSuggestions(IStoryFrame storyFrame, IMessageActivity message)
+        private static void AssertSuggestions(IStoryFrame<IMessageActivity> storyFrame, IMessageActivity message)
         {
-            var botStoryFrame = storyFrame as BotStoryFrame;
+            var botStoryFrame = storyFrame as BotStoryFrame<IMessageActivity>;
 
             Assert.NotNull(botStoryFrame);
             Assert.Equal(botStoryFrame.Suggestions, message.SuggestedActions.Actions.Select(s => new KeyValuePair<string, object>(s.Title, s.Value)));
         }
 
-        private static void ProcessBotFrameListPresent(IStoryFrame storyFrame, IMessageActivity message)
+        private static void ProcessBotFrameListPresent(IStoryFrame<IMessageActivity> storyFrame, IMessageActivity message)
         {
             Assert.NotNull(message);
             Assert.Equal(1, message.Attachments.Count);

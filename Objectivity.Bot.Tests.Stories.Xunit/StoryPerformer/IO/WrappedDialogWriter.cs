@@ -5,14 +5,15 @@
     using Exceptions;
     using Microsoft.Bot.Connector;
     using Moq;
+    using Stories.Core;
     using StoryModel;
 
-    public class WrappedDialogWriter : IDialogWriter
+    public class WrappedDialogWriter : IDialogWriter<IMessageActivity>
     {
         private readonly IScopeContext scopeContext;
-        private readonly IConversationService conversationService;
+        private readonly IConversationService<IMessageActivity> conversationService;
 
-        public WrappedDialogWriter(IScopeContext scopeContext, IConversationService conversationService)
+        public WrappedDialogWriter(IScopeContext scopeContext, IConversationService<IMessageActivity> conversationService)
         {
             this.scopeContext = scopeContext;
             this.conversationService = conversationService;
@@ -34,14 +35,14 @@
             }
         }
 
-        public async Task<IMessageActivity> GetStepMessageActivity(IStoryFrame frame)
+        public async Task<IMessageActivity> GetStepMessageActivity(IStoryFrame<IMessageActivity> frame)
         {
             var message = this.GetUserStepMessage(frame);
 
             return this.conversationService.GetToBotActivity(message);
         }
 
-        private string GetUserStepMessage(IStoryFrame frame)
+        private string GetUserStepMessage(IStoryFrame<IMessageActivity> frame)
         {
             switch (frame.ComparisonType)
             {
@@ -52,7 +53,7 @@
             }
         }
 
-        private string GetUserOptionMessage(IStoryFrame frame)
+        private string GetUserOptionMessage(IStoryFrame<IMessageActivity> frame)
         {
             if (this.conversationService.LatestOptions == null)
             {

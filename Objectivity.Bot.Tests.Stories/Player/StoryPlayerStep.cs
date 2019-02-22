@@ -2,9 +2,9 @@
 {
     using StoryModel;
 
-    public class StoryPlayerStep
+    public class StoryPlayerStep<T>
     {
-        public IStoryFrame StoryFrame { get; set; }
+        public IStoryFrame<T> StoryFrame { get; set; }
 
         public StoryPlayerStepStatus Status { get; set; }
     }

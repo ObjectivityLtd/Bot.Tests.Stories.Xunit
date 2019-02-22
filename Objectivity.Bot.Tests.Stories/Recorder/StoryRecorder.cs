@@ -2,26 +2,21 @@
 {
     using StoryModel;
 
-    public class StoryRecorder : IStoryRecorder
+    public abstract class StoryRecorderBase<T> : IStoryRecorder<T>
     {
-        public StoryRecorder()
+        public StoryRecorderBase()
         {
-            this.Bot = new BotRecorder(this);
-            this.User = new UserRecorder(this);
+            this.Bot = new BotRecorder<T>(this);
+            this.User = new UserRecorder<T>(this);
         }
 
-        public IBotRecorder Bot { get; }
+        public IBotRecorder<T> Bot { get; }
 
-        public IUserRecorder User { get; }
+        public IUserRecorder<T> User { get; }
 
-        internal IStory Story { get; } = new Story();
+        public IStory<T> Story { get; } = new Story<T>();
 
-        public static IStoryRecorder Record()
-        {
-            return new StoryRecorder();
-        }
-
-        public IStory Rewind()
+        public IStory<T> Rewind()
         {
             return this.Story;
         }

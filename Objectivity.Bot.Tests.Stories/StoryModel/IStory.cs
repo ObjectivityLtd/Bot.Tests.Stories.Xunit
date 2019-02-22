@@ -2,10 +2,10 @@
 {
     using System.Collections.Generic;
 
-    public interface IStory
+    public interface IStory<T>
     {
-        IList<IStoryFrame> StoryFrames { get; }
+        IList<IStoryFrame<T>> StoryFrames { get; }
 
-        void AddStoryFrame(IStoryFrame storyFrame);
+        void AddStoryFrame(IStoryFrame<T> storyFrame);
     }
 }

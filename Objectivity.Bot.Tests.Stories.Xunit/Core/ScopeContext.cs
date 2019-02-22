@@ -3,6 +3,8 @@
     using System;
     using Autofac;
     using Microsoft.Bot.Builder.Dialogs.Internals;
+    using Microsoft.Bot.Connector;
+    using Stories.Core;
 
     public class ScopeContext : IScopeContext
     {
@@ -10,7 +12,7 @@
 
         public ScopeContext(IContainer container)
         {
-            var conversationService = container.Resolve<IConversationService>();
+            var conversationService = container.Resolve<IConversationService<IMessageActivity>>();
             var messageActivity = conversationService.GetToBotActivity(string.Empty);
 
             this.Scope = DialogModule.BeginLifetimeScope(container, messageActivity);

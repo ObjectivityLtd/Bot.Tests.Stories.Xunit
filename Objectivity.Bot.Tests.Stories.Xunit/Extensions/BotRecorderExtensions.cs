@@ -2,16 +2,16 @@
 {
     using System.Linq;
     using Microsoft.Bot.Connector;
-    using Recorder;
+    using Stories.Recorder;
 
     public static class BotRecorderExtensions
     {
-        public static IStoryRecorder Confirms(this IBotRecorder recorder, string prompt)
+        public static IStoryRecorder<IMessageActivity> Confirms(this IBotRecorder<IMessageActivity> recorder, string prompt)
         {
             return recorder.GivesChoice(prompt, new[] { "Yes", "No" }); // todo: replace with prompt resources
         }
 
-        public static IStoryRecorder GivesChoice(this IBotRecorder recorder, string prompt, string[] options)
+        public static IStoryRecorder<IMessageActivity> GivesChoice(this IBotRecorder<IMessageActivity> recorder, string prompt, string[] options)
         {
             return recorder.SendsActivity(activity =>
                 activity.Attachments?

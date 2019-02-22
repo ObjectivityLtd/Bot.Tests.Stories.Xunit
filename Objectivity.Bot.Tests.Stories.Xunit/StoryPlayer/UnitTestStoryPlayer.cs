@@ -14,7 +14,7 @@
     using StoryModel;
     using StoryPerformer;
 
-    public class UnitTestStoryPlayer : IStoryPlayer
+    public class UnitTestStoryPlayer : IStoryPlayer<IMessageActivity>
     {
         private readonly ITestContainerBuilder testContainerBuilder;
 
@@ -23,13 +23,13 @@
             this.testContainerBuilder = testContainerBuilder;
         }
 
-        public async Task<IStoryResult> Play(IStory story, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<IStoryResult> Play(IStory<IMessageActivity> story, CancellationToken cancellationToken = default(CancellationToken))
         {
             using (var container = this.GetDialogTestContainer())
             using (var scopeContext = InitializeScopeContext(container))
             {
                 var testDialog = container.Resolve<IDialog<object>>();
-                var storyPerformer = container.Resolve<IStoryPerformer>();
+                var storyPerformer = container.Resolve<IStoryPerformer<IMessageActivity>>();
 
                 DialogModule_MakeRoot.Register(scopeContext.Scope, () => testDialog);
 

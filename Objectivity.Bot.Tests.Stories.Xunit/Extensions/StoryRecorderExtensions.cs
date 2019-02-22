@@ -2,22 +2,23 @@
 {
     using System;
     using Core;
-    using Recorder;
+    using Microsoft.Bot.Connector;
+    using Stories.Recorder;
     using StoryModel;
 
     public static class StoryRecorderExtensions
     {
-        public static IStory DialogDone(this IStoryRecorder recorder)
+        public static IStory<IMessageActivity> DialogDone(this IStoryRecorder<IMessageActivity> recorder)
         {
             return GetResultStory(recorder, DialogStatus.Finished);
         }
 
-        public static IStory DialogDoneWithResult(this IStoryRecorder recorder, Predicate<object> resultPredicate)
+        public static IStory<IMessageActivity> DialogDoneWithResult(this IStoryRecorder<IMessageActivity> recorder, Predicate<object> resultPredicate)
         {
             return GetResultStory(recorder, DialogStatus.Finished, resultPredicate);
         }
 
-        public static IStory DialogDoneWithResult<T>(this IStoryRecorder recorder, Predicate<T> resultPredicate)
+        public static IStory<IMessageActivity> DialogDoneWithResult<T>(this IStoryRecorder<IMessageActivity> recorder, Predicate<T> resultPredicate)
         {
             return GetResultStory(recorder, DialogStatus.Finished, resultObject =>
             {
@@ -39,17 +40,17 @@
             });
         }
 
-        public static IStory DialogFailed(this IStoryRecorder recorder)
+        public static IStory<IMessageActivity> DialogFailed(this IStoryRecorder<IMessageActivity> recorder)
         {
             return GetResultStory(recorder, DialogStatus.Failed);
         }
 
-        public static IStory DialogFailedWithExceptionOfType<TExceptionType>(this IStoryRecorder recorder)
+        public static IStory<IMessageActivity> DialogFailedWithExceptionOfType<TExceptionType>(this IStoryRecorder<IMessageActivity> recorder)
         {
             return GetResultStory(recorder, DialogStatus.Failed, null, typeof(TExceptionType));
         }
 
-        private static IStory GetResultStory(IStoryRecorder storyRecorder, DialogStatus resultType, Predicate<object> resultPredicate = null, Type exceptionType = null)
+        private static IStory<IMessageActivity> GetResultStory(IStoryRecorder<IMessageActivity> storyRecorder, DialogStatus resultType, Predicate<object> resultPredicate = null, Type exceptionType = null)
         {
             var story = storyRecorder.Rewind();
 

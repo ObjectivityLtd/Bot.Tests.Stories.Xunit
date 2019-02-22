@@ -2,6 +2,8 @@
 {
     public enum ComparisonType
     {
+        None,
+
         TextExact,
 
         TextMatchRegex,

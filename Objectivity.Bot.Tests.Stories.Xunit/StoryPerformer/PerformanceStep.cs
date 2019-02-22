@@ -1,12 +1,11 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.StoryPerformer
 {
     using System.Linq;
-    using Core;
     using Microsoft.Bot.Connector;
     using Newtonsoft.Json.Linq;
     using StoryModel;
 
-    public class PerformanceStep : IStep
+    public class PerformanceStep : PerformanceStep<IMessageActivity>
     {
         private const string OptionsToken = "buttons";
         private const string TokenValueKey = "value";
@@ -16,22 +15,12 @@
         }
 
         public PerformanceStep(IMessageActivity messageActivity)
+            : base(messageActivity)
         {
-            this.MessageActivity = messageActivity;
             this.Message = messageActivity.Text;
 
             this.TrySetOptions();
         }
-
-        public IMessageActivity MessageActivity { get; set; }
-
-        public Actor Actor { get; set; }
-
-        public int StepIndex { get; set; }
-
-        public string Message { get; set; }
-
-        public string[] Options { get; set; }
 
         private void TrySetOptions()
         {

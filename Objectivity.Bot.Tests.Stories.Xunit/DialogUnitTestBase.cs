@@ -11,13 +11,13 @@
     using StoryModel;
     using StoryPlayer;
 
-    public abstract class DialogUnitTestBase<TDialog> : DialogTestBase, IStoryPlayer
+    public abstract class DialogUnitTestBase<TDialog> : DialogTestBase, IStoryPlayer<IMessageActivity>
         where TDialog : IDialog<object>
     {
         protected ChannelAccount From { get; set; }
 
         public async Task<IStoryResult> Play(
-            IStory story,
+            IStory<IMessageActivity> story,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             var builder = this.GetTestContainerBuilder();

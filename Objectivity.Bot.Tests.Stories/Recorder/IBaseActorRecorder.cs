@@ -1,7 +1,7 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Recorder
 {
-    public interface IBaseActorRecorder
+    public interface IBaseActorRecorder<T>
     {
-        IStoryRecorder Says(string text);
+        IStoryRecorder<T> Says(string text);
     }
 }

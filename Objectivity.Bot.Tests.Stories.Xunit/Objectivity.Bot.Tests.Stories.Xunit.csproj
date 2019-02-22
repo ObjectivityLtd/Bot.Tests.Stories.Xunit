@@ -28,12 +28,15 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Bot.Builder" Version="3.19.1.44133" />
     <PackageReference Include="Moq" Version="4.10.1" />
-    <PackageReference Include="Objectivity.Bot.Tests.Stories" Version="0.0.15" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="xunit" Version="2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Objectivity.Bot.Tests.Stories\Objectivity.Bot.Tests.Stories.csproj" />
   </ItemGroup>
 
   <ItemGroup>
