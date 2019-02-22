@@ -4,8 +4,8 @@
     using System.Threading.Tasks;
     using StoryModel;
 
-    public interface IStoryPerformer
+    public interface IStoryPerformer<T>
     {
-        Task<List<PerformanceStep>> Perform(IStory testStory);
+        Task<List<PerformanceStep<T>>> Perform(IStory<T> testStory);
     }
 }

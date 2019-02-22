@@ -18,7 +18,7 @@
     using StoryModel;
     using StoryPlayer;
 
-    public abstract class LuisDialogUnitTestBase<TDialog> : LuisTestBase, IStoryPlayer
+    public abstract class LuisDialogUnitTestBase<TDialog> : LuisTestBase, IStoryPlayer<IMessageActivity>
         where TDialog : IDialog<object>
     {
         private readonly List<IntentUtterance<TDialog>> intentUtterances = new List<IntentUtterance<TDialog>>();
@@ -26,7 +26,7 @@
         protected ChannelAccount From { get; set; }
 
         public async Task<IStoryResult> Play(
-            IStory story,
+            IStory<IMessageActivity> story,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             var builder = this.GetTestContainerBuilder();

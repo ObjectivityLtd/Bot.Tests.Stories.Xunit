@@ -4,7 +4,8 @@
     using System.Globalization;
     using Core;
     using global::Xunit;
-    using StoryPlayer;
+    using Microsoft.Bot.Connector;
+    using StoryModel;
 
     public class FinishStepAsserts
     {
@@ -22,7 +23,7 @@
             this.dialogResult = dialogResult;
         }
 
-        public void AssertDialogFinishStep(StoryStep storyStep)
+        public void AssertDialogFinishStep(StoryStep<IMessageActivity> storyStep)
         {
             var dialogStoryFrame = storyStep.StoryFrame as DialogStoryFrame;
             if (dialogStoryFrame == null)

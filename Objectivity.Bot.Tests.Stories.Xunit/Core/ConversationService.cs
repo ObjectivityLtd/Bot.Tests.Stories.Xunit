@@ -2,8 +2,9 @@
 {
     using System;
     using Microsoft.Bot.Connector;
+    using Stories.Core;
 
-    public class ConversationService : IConversationService
+    public class ConversationService : IConversationService<IMessageActivity>
     {
         private readonly string userId = Guid.NewGuid().ToString();
         private readonly IMessageActivity toBotMessageActivity;

@@ -2,11 +2,11 @@
 {
     using System.Collections.Generic;
 
-    public class Story : IStory
+    public class Story<T> : IStory<T>
     {
-        public IList<IStoryFrame> StoryFrames { get; } = new List<IStoryFrame>();
+        public IList<IStoryFrame<T>> StoryFrames { get; } = new List<IStoryFrame<T>>();
 
-        public void AddStoryFrame(IStoryFrame storyFrame)
+        public void AddStoryFrame(IStoryFrame<T> storyFrame)
         {
             this.StoryFrames.Add(storyFrame);
         }

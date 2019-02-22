@@ -6,7 +6,7 @@
     using Core;
     using Microsoft.Bot.Connector;
 
-    public class WrapperDialogReader : IDialogReader
+    public class WrapperDialogReader : IDialogReader<IMessageActivity>
     {
         private readonly IScopeContext scopeContext;
         private readonly Queue<IMessageActivity> startupActivities = new Queue<IMessageActivity>();

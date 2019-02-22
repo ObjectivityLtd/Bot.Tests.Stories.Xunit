@@ -1,13 +1,13 @@
-﻿namespace Objectivity.Bot.Tests.Stories.Xunit.Extensions
+﻿namespace Objectivity.Bot.Tests.Stories.Extensions
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using StoryPerformer;
+    using StoryModel;
 
     public static class PerformanceStepListExtensions
     {
-        public static string[] TryGetOptions(this List<PerformanceStep> performanceSteps, int takeCount = 0)
+        public static string[] TryGetOptions<T>(this List<PerformanceStep<T>> performanceSteps, int takeCount = 0)
         {
             takeCount = Math.Min(takeCount <= 0 ? performanceSteps.Count : takeCount, performanceSteps.Count);
 
@@ -17,7 +17,7 @@
             return performanceStep?.Options;
         }
 
-        public static void AddNotNullStep(this List<PerformanceStep> performanceSteps, PerformanceStep performanceStep)
+        public static void AddNotNullStep<T>(this List<PerformanceStep<T>> performanceSteps, PerformanceStep<T> performanceStep)
         {
             if (performanceStep != null)
             {

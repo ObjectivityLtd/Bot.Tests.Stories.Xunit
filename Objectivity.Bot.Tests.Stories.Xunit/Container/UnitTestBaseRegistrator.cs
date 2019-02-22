@@ -4,6 +4,7 @@
     using Core;
     using Microsoft.Bot.Builder.Dialogs;
     using Microsoft.Bot.Connector;
+    using Stories.Core;
 
     public class UnitTestBaseRegistrator
     {
@@ -14,7 +15,7 @@
 
             containerBuilder
                 .Register(c => conversationService)
-                .As<IConversationService>()
+                .As<IConversationService<IMessageActivity>>()
                 .SingleInstance();
 
             containerBuilder

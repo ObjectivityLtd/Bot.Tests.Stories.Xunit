@@ -1,10 +1,10 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.StoryModel
 {
     using System;
-    using Microsoft.Bot.Connector;
+    using Core;
     using Newtonsoft.Json.Linq;
 
-    public interface IStoryFrame
+    public interface IStoryFrame<T>
     {
         Actor Actor { get; }
 
@@ -12,7 +12,9 @@
 
         Predicate<JObject> ListPredicate { get; }
 
-        Predicate<IMessageActivity> MessageActivityPredicate { get; }
+        Predicate<T> MessageActivityPredicate { get; }
+
+        IActivityBuilder<T> ActivityBuilder { get; }
 
         int OptionIndex { get; }
 

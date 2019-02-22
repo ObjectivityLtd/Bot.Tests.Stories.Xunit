@@ -5,24 +5,26 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Core;
-    using Extensions;
     using IO;
+    using Microsoft.Bot.Connector;
     using Player;
     using Recorder;
+    using Stories.Core;
+    using Stories.Extensions;
+    using Stories.StoryPerformer;
     using StoryModel;
-    using StoryPlayer;
 
-    public class WrappedStoryPerformer : IStoryPerformer
+    public class WrappedStoryPerformer : IStoryPerformer<IMessageActivity>
     {
-        private readonly IConversationService conversationService;
-        private readonly IDialogReader dialogReader;
-        private readonly IDialogWriter dialogWriter;
-        private readonly IPerformanceStory performanceStory;
+        private readonly IConversationService<IMessageActivity> conversationService;
+        private readonly IDialogReader<IMessageActivity> dialogReader;
+        private readonly IDialogWriter<IMessageActivity> dialogWriter;
+        private readonly IPerformanceStory<IMessageActivity> performanceStory;
         private readonly WrappedDialogResult wrappedDialogResult;
 
         public WrappedStoryPerformer(
             IScopeContext scopeContext,
-            IConversationService conversationService,
+            IConversationService<IMessageActivity> conversationService,
             WrappedDialogResult wrappedDialogResult)
         {
             this.conversationService = conversationService;
@@ -34,7 +36,7 @@
             this.dialogWriter = new WrappedDialogWriter(scopeContext, conversationService);
         }
 
-        public async Task<List<PerformanceStep>> Perform(IStory testStory)
+        public async Task<List<PerformanceStep<IMessageActivity>>> Perform(IStory<IMessageActivity> testStory)
         {
             var steps = this.GetStorySteps(testStory);
 
@@ -60,7 +62,7 @@
             return this.performanceStory.Steps;
         }
 
-        private List<StoryStep> GetStorySteps(IStory testStory)
+        private List<StoryStep<IMessageActivity>> GetStorySteps(IStory<IMessageActivity> testStory)
         {
             var wrapperStory = StoryRecorder.Record()
                 .User.Says(Consts.WrapperStartMessage)
@@ -70,7 +72,7 @@
             var wrappedStory = testStory.Concat(wrapperStory);
 
             return wrappedStory.StoryFrames.Select((storyFrame, stepIndex) =>
-                new StoryStep(storyFrame)
+                new StoryStep<IMessageActivity>(storyFrame, isDialogResultCheckupStep: storyFrame is DialogStoryFrame)
                 {
                     Status = StoryPlayerStepStatus.NotDone,
                     StepIndex = stepIndex
@@ -98,7 +100,7 @@
             this.conversationService.LatestOptions = options;
         }
 
-        private async Task WriteUserMessageActivity(StoryStep step)
+        private async Task WriteUserMessageActivity(StoryStep<IMessageActivity> step)
         {
             if (step.Actor == Actor.User)
             {

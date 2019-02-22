@@ -2,12 +2,12 @@
 {
     using StoryModel;
 
-    public interface IStoryRecorder
+    public interface IStoryRecorder<T>
     {
-        IBotRecorder Bot { get; }
+        IBotRecorder<T> Bot { get; }
 
-        IUserRecorder User { get; }
+        IUserRecorder<T> User { get; }
 
-        IStory Rewind();
+        IStory<T> Rewind();
     }
 }

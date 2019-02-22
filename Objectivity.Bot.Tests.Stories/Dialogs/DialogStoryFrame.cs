@@ -1,15 +1,13 @@
-﻿namespace Objectivity.Bot.Tests.Stories.Xunit.Core
+﻿namespace Objectivity.Bot.Tests.Stories.Dialogs
 {
     using System;
-    using Microsoft.Bot.Connector;
+    using Core;
     using Newtonsoft.Json.Linq;
-    using Stories.Core;
     using StoryModel;
 
-    public class DialogStoryFrame : IStoryFrame<IMessageActivity>
+    public class DialogStoryFrame<T> : IStoryFrame<T>
     {
-        public DialogStoryFrame(
-            DialogStatus dialogStatus,
+        public DialogStoryFrame(DialogStatus dialogStatus,
             Predicate<object> resultPredicate = null,
             Type exceptionType = null)
         {
@@ -18,7 +16,7 @@
             this.ExceptionType = exceptionType;
         }
 
-        public IActivityBuilder<IMessageActivity> ActivityBuilder { get; set; }
+        public IActivityBuilder<T> ActivityBuilder { get; set; }
 
         public DialogStatus DialogStatus { get; }
 
@@ -30,7 +28,7 @@
 
         public Predicate<JObject> ListPredicate { get; }
 
-        public Predicate<IMessageActivity> MessageActivityPredicate { get; }
+        public Predicate<T> MessageActivityPredicate { get; }
 
         public int OptionIndex { get; }
 

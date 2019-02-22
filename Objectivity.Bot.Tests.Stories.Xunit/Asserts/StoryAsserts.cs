@@ -6,12 +6,11 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Core;
-    using Extensions;
     using global::Xunit;
+    using Microsoft.Bot.Connector;
     using Player;
+    using Stories.Extensions;
     using StoryModel;
-    using StoryPerformer;
-    using StoryPlayer;
 
     public class StoryAsserts
     {
@@ -29,10 +28,12 @@
             this.finishStepAsserts = finishStepAsserts;
         }
 
-        public Task AssertStory(IStory story, List<PerformanceStep> performanceSteps)
+        public Task AssertStory(
+            IStory<IMessageActivity> story, 
+            List<PerformanceStep<IMessageActivity>> performanceSteps)
         {
             var storySteps = story.StoryFrames
-                .Select((storyFrame, stepIndex) => new StoryStep(storyFrame)
+                .Select((storyFrame, stepIndex) => new StoryStep<IMessageActivity>(storyFrame, isDialogResultCheckupStep: storyFrame is DialogStoryFrame)
                 {
                     Status = StoryPlayerStepStatus.NotDone,
                     StepIndex = stepIndex
@@ -49,7 +50,7 @@
             return Task.CompletedTask;
         }
 
-        private static string GetNotMatchingActorMessage(IStep storyStep, IStep performanceStep)
+        private static string GetNotMatchingActorMessage(IStoryStep<IMessageActivity> storyStep, IStoryStep<IMessageActivity> performanceStep)
         {
             return string.Format(
                 CultureInfo.InvariantCulture,
@@ -59,14 +60,14 @@
                 performanceStep.Actor);
         }
 
-        private static string GetNotCoveredStoryStepMessage(string format, IStep step)
+        private static string GetNotCoveredStoryStepMessage(string format, IStoryStep<IMessageActivity> step)
         {
             return string.Format(CultureInfo.InvariantCulture, format, step?.StepIndex, step?.Actor, step?.Message);
         }
 
         private void AssertStoryStep(
-            List<PerformanceStep> performanceSteps,
-            IReadOnlyList<StoryStep> storySteps,
+            List<PerformanceStep<IMessageActivity>> performanceSteps,
+            IReadOnlyList<StoryStep<IMessageActivity>> storySteps,
             int stepIndex)
         {
             var storyStep = storySteps.Count > stepIndex ? storySteps[stepIndex] : null;

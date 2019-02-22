@@ -2,19 +2,22 @@
 {
     using System;
     using System.Collections.Generic;
-    using Microsoft.Bot.Connector;
     using Newtonsoft.Json.Linq;
 
-    public interface IBotRecorder : IBaseActorRecorder
+    public interface IBotRecorder<T> : IBaseActorRecorder<T>
     {
-        IStoryRecorder ListsOptions(Predicate<JObject> listPredicate = null);
+        IStoryRecorder<T> ListsOptions(Predicate<JObject> listPredicate = null);
 
-        IStoryRecorder SendsActivity(Predicate<IMessageActivity> predicate);
+        IStoryRecorder<T> ListsOptions(string title, string[] options);
 
-        IStoryRecorder ListsOptionsIncluding(params string[] options);
+        IStoryRecorder<T> ListsOptions(string title, string subtitle, string[] options);
 
-        IStoryRecorder SaysSomethingLike(string pattern, IList<KeyValuePair<string, object>> suggestions = null);
+        IStoryRecorder<T> ListsOptionsIncluding(params string[] options);
 
-        IStoryRecorder Says(string pattern, IList<KeyValuePair<string, object>> suggestions);
+        IStoryRecorder<T> SendsActivity(Predicate<T> predicate);
+
+        IStoryRecorder<T> SaysSomethingLike(string pattern, IList<KeyValuePair<string, object>> suggestions = null);
+
+        IStoryRecorder<T> Says(string pattern, IList<KeyValuePair<string, object>> suggestions);
     }
 }

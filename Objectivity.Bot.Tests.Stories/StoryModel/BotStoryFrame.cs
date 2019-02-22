@@ -2,16 +2,16 @@
 {
     using System;
     using System.Collections.Generic;
-    using Microsoft.Bot.Connector;
+    using Core;
     using Newtonsoft.Json.Linq;
 
-    public class BotStoryFrame : IStoryFrame
+    public class BotStoryFrame<T> : IStoryFrame<T>
     {
         public BotStoryFrame(
             ComparisonType comparisonType,
             string text = null,
             Predicate<JObject> listPredicate = null,
-            Predicate<IMessageActivity> messageActivityPredicate = null,
+            Predicate<T> messageActivityPredicate = null,
             IList<KeyValuePair<string, object>> suggestions = null)
         {
             this.Actor = Actor.Bot;
@@ -28,7 +28,9 @@
 
         public Predicate<JObject> ListPredicate { get; }
 
-        public Predicate<IMessageActivity> MessageActivityPredicate { get; }
+        public Predicate<T> MessageActivityPredicate { get; }
+
+        public IActivityBuilder<T> ActivityBuilder { get; }
 
         public int OptionIndex { get; }
 
