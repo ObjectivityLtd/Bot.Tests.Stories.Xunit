@@ -2,7 +2,6 @@
 {
     using System.Threading.Tasks;
     using global::Xunit;
-    using StoryPerformer;
 
     public class WelcomeMessageTests: DemoBotTestBase
     {
