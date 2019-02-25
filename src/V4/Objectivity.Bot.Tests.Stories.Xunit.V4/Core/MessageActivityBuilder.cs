@@ -1,9 +1,9 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.V4.Core
 {
     using System;
+    using Exceptions;
     using Microsoft.Bot.Schema;
     using Stories.Core;
-    using Exceptions;
     using StoryModel;
 
     public class MessageActivityBuilder : IActivityBuilder<IMessageActivity>
