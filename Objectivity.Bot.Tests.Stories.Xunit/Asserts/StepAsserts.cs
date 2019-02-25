@@ -15,7 +15,6 @@
 
         public static void AssertStep(StoryStep<IMessageActivity> storyStep, PerformanceStep<IMessageActivity> performanceStep, string[] options = null)
         {
-
             switch (storyStep.Actor)
             {
                 case Actor.Bot:
