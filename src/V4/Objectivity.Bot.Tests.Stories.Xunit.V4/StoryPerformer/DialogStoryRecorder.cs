@@ -7,7 +7,8 @@
     public class DialogStoryRecorder : StoryRecorderBase<IMessageActivity>
     {
         private DialogStoryRecorder()
-        { }
+        {
+        }
 
         public static IStoryRecorder<IMessageActivity> Record()
         {

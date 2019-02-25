@@ -13,7 +13,7 @@
             {
                 var optionsPart = activity.Text?.Replace(prompt, string.Empty)?.Trim();
 
-                var isValid = !string.IsNullOrWhiteSpace(optionsPart) && 
+                var isValid = !string.IsNullOrWhiteSpace(optionsPart) &&
                               options.All(x => optionsPart.Contains(x, StringComparison.InvariantCultureIgnoreCase));
 
                 if (isValid)

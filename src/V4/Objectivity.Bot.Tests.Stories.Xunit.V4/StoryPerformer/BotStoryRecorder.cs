@@ -8,7 +8,8 @@
     public class BotStoryRecorder : StoryRecorderBase<IMessageActivity>
     {
         private BotStoryRecorder()
-        { }
+        {
+        }
 
         public static IStoryRecorder<IMessageActivity> Record()
         {

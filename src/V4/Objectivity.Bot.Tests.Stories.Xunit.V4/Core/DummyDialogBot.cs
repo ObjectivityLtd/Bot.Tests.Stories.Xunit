@@ -22,7 +22,7 @@
             this.dialogs.Add(new DialogProxy(dialog, result));
         }
 
-        public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = new CancellationToken())
+        public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
         {
             var dc = await this.dialogs.CreateContextAsync(turnContext, cancellationToken);
             var results = await dc.ContinueDialogAsync(cancellationToken);

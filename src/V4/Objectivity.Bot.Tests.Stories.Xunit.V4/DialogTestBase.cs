@@ -17,7 +17,6 @@
     public abstract class DialogTestBase<TDialog>
         where TDialog : Dialog
     {
-
         private readonly TestPlayer testPlayer;
 
         protected DialogTestBase()

@@ -13,7 +13,8 @@
 
         public DialogProxy(
             Dialog baseDialog,
-            WrappedDialogResult result) : base(nameof(DialogProxy))
+            WrappedDialogResult result)
+            : base(nameof(DialogProxy))
         {
             this.baseDialog = baseDialog;
             this.dialogResult = result;
@@ -22,14 +23,14 @@
         public override async Task<DialogTurnResult> BeginDialogAsync(
             DialogContext dc,
             object options = null,
-            CancellationToken cancellationToken = new CancellationToken())
+            CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.CaptureResult(await this.baseDialog.BeginDialogAsync(dc, cancellationToken));
         }
 
         public override async Task<DialogTurnResult> ContinueDialogAsync(
             DialogContext dc,
-            CancellationToken cancellationToken = new CancellationToken())
+            CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.CaptureResult(await this.baseDialog.ContinueDialogAsync(dc, cancellationToken));
         }
