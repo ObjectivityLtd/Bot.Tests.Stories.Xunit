@@ -29,7 +29,7 @@
         }
 
         public Task AssertStory(
-            IStory<IMessageActivity> story, 
+            IStory<IMessageActivity> story,
             List<PerformanceStep<IMessageActivity>> performanceSteps)
         {
             var storySteps = story.StoryFrames
