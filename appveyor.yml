@@ -16,28 +16,31 @@ dotnet_csproj:
   file_version: '{version}'
   informational_version: '{version}'
 environment:
-  namespace: Objectivity.Bot.Tests.Stories.Xunit
+  namespace: Objectivity.Bot.Tests.Stories
   cc: opencover
+  matrix:
+  - package_module: Xunit
+  - package_module: Xunit.V4
 install:
 - ps: >-
     choco install codecov
 build_script:
 - ps: >-
-    dotnet build
+    dotnet build ./src
 
     if ($env:APPVEYOR_REPO_TAG -eq "true")
     {
-        dotnet pack ./$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
+        dotnet pack ./src/%namespace%.%package_module% --no-build -p:PackageVersion=$env:APPVEYOR_REPO_TAG_NAME
     }
     else
     {
-        dotnet pack ./$env:namespace --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
+        dotnet pack ./src/%namespace%.%package_module% --no-build -p:PackageVersion=$env:APPVEYOR_BUILD_VERSION
     }
 test_script:
 - cmd: >-
-    dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.xml
+    dotnet test ./src /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%.%package_module%.xml
 
-    codecov -f %appveyor_build_folder%\%cc%\%namespace%.xml --flag unittests
+    codecov -f %appveyor_build_folder%\%cc%\%namespace%.%package_module%.xml --flag unittests
 artifacts:
 - path: '**\*.nupkg'
 deploy:
