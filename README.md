@@ -12,6 +12,6 @@ This project is still a work in progress, all contributions from your side will 
 
 Two versions of Bot Framework are currently supported:
 
-[Bot Framework V3](/V3)
+[Bot Framework V3](/src/V3)
 
-[Bot Framework V4](/V4)
+[Bot Framework V4](/src/V4)
