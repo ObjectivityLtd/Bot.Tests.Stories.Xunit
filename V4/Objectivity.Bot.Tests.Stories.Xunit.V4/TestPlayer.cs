@@ -12,41 +12,30 @@
     using Xunit.StoryPerformer;
     using Xunit.StoryPerformer.IO;
 
-    public abstract class TestBase
+    internal class TestPlayer
     {
-        /// <summary>
-        /// Gets or sets from channel account.
-        /// </summary>
+        public TestPlayer(ChannelAccount from)
+        {
+            this.From = from;
+        }
+
         protected ChannelAccount From { get; set; }
 
-        /// <summary>
-        /// Executes test scenario.
-        /// </summary>
-        /// <param name="story">Test story.</param>
-        /// <returns>Awaitable task.</returns>
-        protected async Task Play(IStory<IMessageActivity> story)
+        public async Task Play(IStory<IMessageActivity> story, ChannelAccount from, IServiceCollection services)
         {
-            var services = new ServiceCollection();
-
-            this.ConfigureServices(services);
-
             var provider = services.BuildServiceProvider();
             var player = new StoryPlayer(provider);
 
             await player.Play(story);
         }
 
-        /// <summary>
-        /// Configures test services.
-        /// </summary>
-        /// <param name="services">Service collection.</param>
-        protected virtual void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<StoryAsserts>();
-            services.AddScoped<Queue<IMessageActivity>>(x => new Queue<IMessageActivity>());
+            services.AddScoped(x => new Queue<IMessageActivity>());
             services.AddScoped<IStoryPerformer<IMessageActivity>, WrappedStoryPerformer>();
             services.AddScoped<IConversationService, ConversationService>();
-            services.AddScoped<ChannelAccount>(x => this.From);
+            services.AddScoped(x => this.From);
             services.AddScoped<WrappedDialogResult>();
             services.AddScoped<FinishStepAsserts>();
 
