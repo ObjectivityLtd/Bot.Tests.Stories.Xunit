@@ -1,4 +1,4 @@
-﻿// Based on: https://raw.githubusercontent.com/Microsoft/BotBuilder/master/CSharp/Tests/Microsoft.Bot.Builder.Tests/DialogTaskTests.cs
+﻿// Based on: https://raw.githubusercontent.com/Microsoft/BotBuilder/3.0/CSharp/Tests/Microsoft.Bot.Builder.Tests/DialogTaskTests.cs
 //
 //
 // Copyright (c) Microsoft. All rights reserved.
@@ -32,7 +32,7 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-namespace Objectivity.Bot.Tests.Stories.Xunit.Core
+namespace Objectivity.Bot.Tests.Stories.Core
 {
     public static class ChannelID
     {

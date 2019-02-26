@@ -43,6 +43,7 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
     using global::Xunit;
     using Microsoft.Bot.Builder.Dialogs.Internals;
     using Microsoft.Bot.Connector;
+    using Stories.Core;
 
     public abstract class DialogTestBase
     {
