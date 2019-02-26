@@ -1,5 +1,6 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.V4.Sample.Dialog
 {
+    using System.Globalization;
     using System.Threading.Tasks;
     using DemoBot.Dialogs;
     using DemoBot.Dialogs.State;
@@ -10,47 +11,39 @@
 
     public class TestGreetingDialogTests: DialogTestBase<TestGreetingDialog>
     {
-        [Fact]
-        public async Task TwoFloorsPassed_PlayStoryIsCalled_MustShowMotivationMessage()
+        [Theory]
+        [InlineData(17, "I'm sorry John but you must be at least 18 years old.")]
+        [InlineData(18, "Thank you.")]
+        [InlineData(20, "Thank you.")]
+        public async Task GivenAge_PlayStoryIsCalled_MustReplyExpectedMessage(
+            int age,
+            string expectedBotReply)
         {
             var story = this.Record
                 .Bot.Says("What's your name?")
                 .User.Says("John")
-                .Bot.Says("How many floors have you climbed today?")
-                .User.Says("2")
-                .Bot.Says("Come back when it's at least 3 John.")
+                .Bot.Says("How old are you?")
+                .User.Says(age.ToString(CultureInfo.InvariantCulture))
+                .Bot.Says(expectedBotReply)
                 .Rewind();
 
             await this.Play(story);
         }
 
         [Fact]
-        public async Task ThreeFloorsPassed_PlayStoryIsCalled_MustShowMotivationMessage()
+        public async Task InvalidNumberPassed_PlayStoryIsCalled_MustRepromtForAge()
         {
             var story = this.Record
                 .Bot.Says("What's your name?")
                 .User.Says("John")
-                .Bot.Says("How many floors have you climbed today?")
-                .User.Says("3")
-                .Bot.Says("Great score!")
+                .Bot.Says("How old are you?")
+                .User.Says("NaN")
+                .Bot.Says("Your answer must be a number. Please try again.")
                 .Rewind();
 
             await this.Play(story);
         }
 
-        [Fact]
-        public async Task InvalidNumberPassed_PlayStoryIsCalled_MustRepromtForNumberOfFloors()
-        {
-            var story = this.Record
-                .Bot.Says("What's your name?")
-                .User.Says("John")
-                .Bot.Says("How many floors have you climbed today?")
-                .User.Says("no")
-                .Bot.Says("How many floors have you climbed today?")
-                .Rewind();
-
-            await this.Play(story);
-        }
         protected override void ConfigureServices(IServiceCollection services)
         {
             base.ConfigureServices(services);
