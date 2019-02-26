@@ -7,7 +7,8 @@
 
     public class DialogStoryFrame<T> : IStoryFrame<T>
     {
-        public DialogStoryFrame(DialogStatus dialogStatus,
+        public DialogStoryFrame(
+            DialogStatus dialogStatus,
             Predicate<object> resultPredicate = null,
             Type exceptionType = null)
         {
