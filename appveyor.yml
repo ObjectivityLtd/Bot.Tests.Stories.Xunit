@@ -42,7 +42,7 @@ test_script:
 - cmd: >-
     dotnet test ./src/%package_module% /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%%package_suffix%.xml
 
-    codecov -f -v %appveyor_build_folder%\%cc%\%namespace%%package_suffix%.xml --flag unittests
+    codecov -f %appveyor_build_folder%\%cc%\%namespace%%package_suffix%.xml --flag unittests
 artifacts:
 - path: '**\*.nupkg'
 deploy:
