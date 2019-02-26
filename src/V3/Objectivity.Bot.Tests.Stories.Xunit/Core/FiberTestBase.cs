@@ -1,4 +1,4 @@
-﻿// Based on: https://github.com/Microsoft/BotBuilder/blob/master/CSharp/Tests/Microsoft.Bot.Builder.Tests/FiberTests.cs
+﻿// Based on: https://github.com/Microsoft/BotBuilder/blob/3.0/CSharp/Tests/Microsoft.Bot.Builder.Tests/FiberTests.cs
 //
 //
 // Copyright (c) Microsoft. All rights reserved.
