@@ -23,7 +23,7 @@
             this.testContainerBuilder = testContainerBuilder;
         }
 
-        public async Task<IStoryResult> Play(IStory<IMessageActivity> story, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task Play(IStory<IMessageActivity> story, CancellationToken cancellationToken = default(CancellationToken))
         {
             using (var container = this.GetDialogTestContainer())
             using (var scopeContext = InitializeScopeContext(container))
@@ -39,8 +39,6 @@
 
                 await storyAsserts.AssertStory(story, performanceSteps.Where(s => s.MessageActivity.Type != ActivityTypes.Trace).ToList());
             }
-
-            return new StoryResult();
         }
 
         private static IScopeContext InitializeScopeContext(IContainer container)

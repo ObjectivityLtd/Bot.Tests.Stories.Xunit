@@ -20,7 +20,7 @@
             this.serviceProvider = serviceProvider;
         }
 
-        public async Task<IStoryResult> Play(IStory<IMessageActivity> story, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task Play(IStory<IMessageActivity> story, CancellationToken cancellationToken = default(CancellationToken))
         {
             using (var scope = this.serviceProvider.CreateScope())
             {
@@ -31,8 +31,6 @@
 
                 await storyAsserts.AssertStory(story, performanceSteps.Where(s => s.MessageActivity.Type != ActivityTypes.Trace).ToList());
             }
-
-            return new StoryResult();
         }
     }
 }
