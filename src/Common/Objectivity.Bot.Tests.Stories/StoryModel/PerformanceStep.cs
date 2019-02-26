@@ -2,8 +2,8 @@
 {
     public class PerformanceStep<T> : IStoryStep<T>
     {
-        private const string OptionsToken = "buttons";
-        private const string TokenValueKey = "value";
+        protected const string OptionsToken = "buttons";
+        protected const string TokenValueKey = "value";
 
         public PerformanceStep()
         {

@@ -7,9 +7,6 @@
 
     public class PerformanceStep : PerformanceStep<IMessageActivity>
     {
-        private const string OptionsToken = "buttons";
-        private const string TokenValueKey = "value";
-
         public PerformanceStep()
         {
         }
