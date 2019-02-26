@@ -61,29 +61,30 @@
                 AgePrompt,
                 new PromptOptions
                 {
-                    Prompt = MessageFactory.Text($"How many floors have you climbed today?")
+                    Prompt = MessageFactory.Text($"How old are you?"),
+                    RetryPrompt = MessageFactory.Text($"Your answer must be a number. Please try again.")
                 },
                 cancellationToken);
         }
 
         private async Task<DialogTurnResult> WelcomeUserAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            var numberOfFloors = (int)stepContext.Result;
+            var age = (int)stepContext.Result;
 
             var userState = await this.userStateAccessor.DemoUserState.GetAsync(
                 stepContext.Context,
                 () => new DemoUserState(),
                 cancellationToken: cancellationToken);
 
-            userState.FloorsPassed = numberOfFloors;
+            userState.Age = age;
 
-            if (numberOfFloors < 3)
+            if (age < 18)
             {
-                await stepContext.Context.SendActivityAsync($"Come back when it's at least 3 {userState.UserName}.", cancellationToken: cancellationToken);
+                await stepContext.Context.SendActivityAsync($"I'm sorry {userState.UserName} but you must be at least 18 years old.", cancellationToken: cancellationToken);
             }
             else
             {
-                await stepContext.Context.SendActivityAsync($"Great score!", cancellationToken: cancellationToken);
+                await stepContext.Context.SendActivityAsync($"Thank you.", cancellationToken: cancellationToken);
             }
 
             return await stepContext.EndDialogAsync(null, cancellationToken);

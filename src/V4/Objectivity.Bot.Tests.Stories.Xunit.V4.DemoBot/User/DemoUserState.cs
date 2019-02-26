@@ -3,7 +3,7 @@
     public class DemoUserState
     {
         public string UserName { get; set; }
-        public int FloorsPassed { get; set; }
+        public int Age { get; set; }
         public  int PickedNumber { get; set; }
     }
 }
