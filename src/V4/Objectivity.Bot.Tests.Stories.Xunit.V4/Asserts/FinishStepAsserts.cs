@@ -25,7 +25,9 @@
 
         public void AssertDialogFinishStep(StoryStep<IMessageActivity> storyStep)
         {
-            if (!(storyStep.StoryFrame is DialogStoryFrame<IMessageActivity> dialogStoryFrame))
+            var dialogStoryFrame = storyStep.StoryFrame as DialogStoryFrame<IMessageActivity>;
+
+            if (dialogStoryFrame == null)
             {
                 return;
             }
