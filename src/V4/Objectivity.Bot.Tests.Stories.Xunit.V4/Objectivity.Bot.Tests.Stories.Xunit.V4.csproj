@@ -22,10 +22,10 @@
     <PackageIconUrl>https://github.com/ObjectivityLtd.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/ObjectivityLtd/Bot.Tests.Stories.Xunit</RepositoryUrl>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
+	<IsTestProject>false</IsTestProject>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.9.0" />
     <PackageReference Include="Microsoft.Bot.Builder" Version="4.2.2" />
     <PackageReference Include="Microsoft.Bot.Builder.AI.Luis" Version="4.2.2" />
     <PackageReference Include="Microsoft.Bot.Builder.Dialogs" Version="4.2.2" />
