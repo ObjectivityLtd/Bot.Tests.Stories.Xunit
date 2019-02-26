@@ -11,5 +11,15 @@
             : base(string.Format(CultureInfo.InvariantCulture, ExceptionMessage, index, optionsCount))
         {
         }
+
+        public OptionsIndexOutOfRangeException(string message)
+            : base(message)
+        {
+        }
+
+        public OptionsIndexOutOfRangeException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
     }
 }
