@@ -5,5 +5,6 @@
         public string UserName { get; set; }
         public int Age { get; set; }
         public  int PickedNumber { get; set; }
+        public string FavoriteColor { get; set; }
     }
 }

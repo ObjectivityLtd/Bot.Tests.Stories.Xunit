@@ -26,7 +26,7 @@
                                            throw new ArgumentNullException(nameof(demoDialogStateAccessor));
             
             this.dialogs = new DialogSet(demoDialogStateAccessor.DialogStateAccessor);
-            this.dialogs.Add(new TestChoicePromptDialog());
+            this.dialogs.Add(new TestChoicePromptDialog(this.demoUserStateAccessor));
             this.dialogs.Add(new TestCardsDialog());
             this.dialogs.Add(new TestGreetingDialog(this.demoUserStateAccessor));
             this.dialogs.Add(new TestSumDialog(this.demoUserStateAccessor));
