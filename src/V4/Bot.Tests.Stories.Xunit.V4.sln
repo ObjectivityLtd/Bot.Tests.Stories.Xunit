@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7C5C17E5-C30B-4273-A440-2981DC0B4DEA}"
+	ProjectSection(SolutionItems) = preProject
+		..\Analysers.ruleset = ..\Analysers.ruleset
+		..\AnalysersTests.ruleset = ..\AnalysersTests.ruleset
+		..\CustomDictionary.xml = ..\CustomDictionary.xml
+		..\CustomDictionaryTests.xml = ..\CustomDictionaryTests.xml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objectivity.Bot.Tests.Stories.Xunit.V4", "Objectivity.Bot.Tests.Stories.Xunit.V4\Objectivity.Bot.Tests.Stories.Xunit.V4.csproj", "{0BA741E0-E44E-43EE-8938-B67954DCEB5D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objectivity.Bot.Tests.Stories.Xunit.V4.Sample", "Objectivity.Bot.Tests.Stories.Xunit.V4.Sample\Objectivity.Bot.Tests.Stories.Xunit.V4.Sample.csproj", "{56C4C9FC-A759-4895-9C78-D1D4EC37104F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objectivity.Bot.Tests.Stories.Xunit.V4.DemoBot", "Objectivity.Bot.Tests.Stories.Xunit.V4.DemoBot\Objectivity.Bot.Tests.Stories.Xunit.V4.DemoBot.csproj", "{A44FD66E-4BBF-4F7D-BDDF-ACCBAD3A9E55}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Objectivity.Bot.Tests.Stories", "..\Common\Objectivity.Bot.Tests.Stories\Objectivity.Bot.Tests.Stories.csproj", "{325BF38F-E382-4972-A75B-B5A2663CC5BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BA741E0-E44E-43EE-8938-B67954DCEB5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BA741E0-E44E-43EE-8938-B67954DCEB5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BA741E0-E44E-43EE-8938-B67954DCEB5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BA741E0-E44E-43EE-8938-B67954DCEB5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56C4C9FC-A759-4895-9C78-D1D4EC37104F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C4C9FC-A759-4895-9C78-D1D4EC37104F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C4C9FC-A759-4895-9C78-D1D4EC37104F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C4C9FC-A759-4895-9C78-D1D4EC37104F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A44FD66E-4BBF-4F7D-BDDF-ACCBAD3A9E55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A44FD66E-4BBF-4F7D-BDDF-ACCBAD3A9E55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A44FD66E-4BBF-4F7D-BDDF-ACCBAD3A9E55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A44FD66E-4BBF-4F7D-BDDF-ACCBAD3A9E55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{325BF38F-E382-4972-A75B-B5A2663CC5BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{325BF38F-E382-4972-A75B-B5A2663CC5BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{325BF38F-E382-4972-A75B-B5A2663CC5BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{325BF38F-E382-4972-A75B-B5A2663CC5BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B329672E-51FF-4872-8896-E49D3E5627C4}
+	EndGlobalSection
+EndGlobal

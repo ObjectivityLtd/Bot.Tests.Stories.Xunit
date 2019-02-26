@@ -28,7 +28,7 @@ install:
     choco install codecov
 build_script:
 - ps: >-
-    dotnet build ./src
+    dotnet build ./src/$env:package_module
     
     if ($env:APPVEYOR_REPO_TAG -eq "true")
     {
@@ -40,7 +40,7 @@ build_script:
     }
 test_script:
 - cmd: >-
-    dotnet test ./src /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%%package_suffix%.xml
+    dotnet test ./src/%package_module% /p:CollectCoverage=true /p:CoverletOutputFormat=%cc% /p:CoverletOutput=%appveyor_build_folder%\%cc%\%namespace%%package_suffix%.xml
 
     codecov -f %appveyor_build_folder%\%cc%\%namespace%%package_suffix%.xml --flag unittests
 artifacts:
