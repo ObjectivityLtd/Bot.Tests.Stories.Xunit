@@ -16,14 +16,14 @@
     {
         protected ChannelAccount From { get; set; }
 
-        public async Task<IStoryResult> Play(
+        public async Task Play(
             IStory<IMessageActivity> story,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             var builder = this.GetTestContainerBuilder();
             var player = new UnitTestStoryPlayer(builder);
 
-            return await player.Play(story, cancellationToken);
+            await player.Play(story, cancellationToken);
         }
 
         protected virtual void RegisterAdditionalTypes(ContainerBuilder builder)

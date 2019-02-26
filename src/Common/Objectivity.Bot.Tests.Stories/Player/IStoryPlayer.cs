@@ -6,6 +6,6 @@
 
     public interface IStoryPlayer<T>
     {
-        Task<IStoryResult> Play(IStory<T> story, CancellationToken cancellationToken = default(CancellationToken));
+        Task Play(IStory<T> story, CancellationToken cancellationToken = default(CancellationToken));
     }
 }
