@@ -1,6 +1,6 @@
 # Bot.Tests.Stories.Xunit
 
-[![Build status](https://ci.appveyor.com/api/projects/status/yinx2sypuempoi3g?svg=true)](https://ci.appveyor.com/project/ObjectivityAdminsTeam/bot-tests-stories-xunit)
+[![Build status](https://ci.appveyor.com/api/projects/status/github/ObjectivityLtd/Bot.Tests.Stories.Xunit?branch=master&svg=true)](https://ci.appveyor.com/project/ObjectivityAdminsTeam/bot-tests-stories-xunit)
 
 Tests library for Bot Framework V4 using XUnit.
 
