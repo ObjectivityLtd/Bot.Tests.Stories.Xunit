@@ -1,4 +1,4 @@
-﻿// Based on: https://github.com/Microsoft/BotBuilder/blob/master/CSharp/Library/Microsoft.Bot.Builder.Autofac/Dialogs/Conversation.cs
+﻿// Based on: https://github.com/Microsoft/BotBuilder/blob/3.0/CSharp/Library/Microsoft.Bot.Builder.Autofac/Dialogs/Conversation.cs
 //
 //
 // Copyright (c) Microsoft. All rights reserved.
