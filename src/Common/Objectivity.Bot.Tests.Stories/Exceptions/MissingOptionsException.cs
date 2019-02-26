@@ -10,5 +10,15 @@
             : base(ExceptionMessage)
         {
         }
+
+        public MissingOptionsException(string message)
+            : base(message)
+        {
+        }
+
+        public MissingOptionsException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
     }
 }
