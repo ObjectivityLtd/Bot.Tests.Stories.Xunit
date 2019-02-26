@@ -6,6 +6,9 @@
     using Dialogs;
     using Microsoft.Bot.Builder.Dialogs;
 
+    /// <summary>
+    /// Dialog proxy to track dialog result and update wrapped dialog result
+    /// </summary>
     public class DialogProxy : Dialog
     {
         private readonly Dialog baseDialog;
