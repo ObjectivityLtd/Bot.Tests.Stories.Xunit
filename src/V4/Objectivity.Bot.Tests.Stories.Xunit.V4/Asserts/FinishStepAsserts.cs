@@ -1,12 +1,14 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.V4.Asserts
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using Dialogs;
     using global::Xunit;
     using Microsoft.Bot.Schema;
     using StoryModel;
 
+    [SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local", Justification = "Methods with precondition check only parameters created for code clarity.")]
     public class FinishStepAsserts
     {
         private const string WrongExceptionTypeMessageFormat = "Expected dialog fail with exception of type = '{0}', actual exception type = '{1}'";
