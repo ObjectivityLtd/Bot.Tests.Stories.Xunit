@@ -36,6 +36,7 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
     using System.Linq.Expressions;
@@ -47,6 +48,7 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
     using Microsoft.Bot.Builder.Luis.Models;
     using Moq;
 
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Unused methods are planned to be used outside the framework")]
     public abstract class LuisTestBase : DialogTestBase
     {
         public static IntentRecommendation[] IntentsFor<TDialog>(Expression<Func<TDialog, Task>> expression, double? score)
@@ -127,11 +129,11 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
 
                 luis
                     .Setup(l => l.QueryAsync(uri, It.IsAny<CancellationToken>()))
-                    .Returns<Uri, CancellationToken>(async (_, token) => new LuisResult
+                    .Returns<Uri, CancellationToken>((_, token) => Task.FromResult(new LuisResult
                     {
                         Intents = IntentsFor(expression, score),
                         Entities = entities
-                    });
+                    }));
             }
         }
     }

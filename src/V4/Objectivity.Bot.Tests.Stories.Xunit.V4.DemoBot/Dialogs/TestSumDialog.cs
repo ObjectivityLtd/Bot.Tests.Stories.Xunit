@@ -37,8 +37,8 @@
                 ChooseNumberDialogName,
                 new PromptOptions
                 {
-                    Prompt = MessageFactory.Text($"What's the first number?"),
-                    RetryPrompt = MessageFactory.Text("A number must be between 0 and 100. Please try again."),
+                    Prompt = MessageFactory.Text("What's the first number?"),
+                    RetryPrompt = MessageFactory.Text("A number must be between 0 and 100. Please try again.")
                 },
                 cancellationToken);
         }
@@ -60,8 +60,8 @@
                 ChooseNumberDialogName,
                 new PromptOptions
                 {
-                    Prompt = MessageFactory.Text($"What's the second number?"),
-                    RetryPrompt = MessageFactory.Text("A number must be between 0 and 100. Please try again."),
+                    Prompt = MessageFactory.Text("What's the second number?"),
+                    RetryPrompt = MessageFactory.Text("A number must be between 0 and 100. Please try again.")
                 },
                 cancellationToken);
         }

@@ -7,8 +7,6 @@
     {
         List<PerformanceStep<T>> Steps { get; set; }
 
-        void EnqueueStartupStep(T messageActivity, Actor actor);
-
         void EnqueueStartupSteps(List<T> messageActivities, Actor actor);
 
         void AddStep(T messageActivity, Actor actor);

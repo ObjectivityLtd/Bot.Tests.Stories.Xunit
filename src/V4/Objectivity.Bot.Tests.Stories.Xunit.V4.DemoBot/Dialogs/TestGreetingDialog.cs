@@ -21,8 +21,7 @@
         {
             this.userStateAccessor = userStateAccessor;
 
-            WaterfallStep[] steps = new WaterfallStep[]
-            {
+            WaterfallStep[] steps = {
                 this.PromptForNameAsync,
                 this.PromptForAgeAsync,
                 this.WelcomeUserAsync
@@ -39,7 +38,7 @@
                 NamePrompt,
                 new PromptOptions
                 {
-                    Prompt = MessageFactory.Text("What's your name?"),
+                    Prompt = MessageFactory.Text("What's your name?")
                 },
                 cancellationToken);
         }
@@ -61,8 +60,8 @@
                 AgePrompt,
                 new PromptOptions
                 {
-                    Prompt = MessageFactory.Text($"How old are you?"),
-                    RetryPrompt = MessageFactory.Text($"Your answer must be a number. Please try again.")
+                    Prompt = MessageFactory.Text("How old are you?"),
+                    RetryPrompt = MessageFactory.Text("Your answer must be a number. Please try again.")
                 },
                 cancellationToken);
         }
@@ -84,7 +83,7 @@
             }
             else
             {
-                await stepContext.Context.SendActivityAsync($"Thank you.", cancellationToken: cancellationToken);
+                await stepContext.Context.SendActivityAsync("Thank you.", cancellationToken: cancellationToken);
             }
 
             return await stepContext.EndDialogAsync(null, cancellationToken);

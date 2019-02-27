@@ -30,25 +30,25 @@
             {
                 new CardAction
                 {
-                    Value = $"Banana",
+                    Value = "Banana",
                     Title = "Banana",
-                    Type = ActionTypes.ImBack,
+                    Type = ActionTypes.ImBack
                 },
                 new CardAction
                 {
-                    Value = $"Apple",
+                    Value = "Apple",
                     Title = "Apple",
-                    Type = ActionTypes.ImBack,
+                    Type = ActionTypes.ImBack
                 },
                 new CardAction
                 {
-                    Value = $"Orange",
+                    Value = "Orange",
                     Title = "Orange",
-                    Type = ActionTypes.ImBack,
-                },
+                    Type = ActionTypes.ImBack
+                }
             };
 
-            var card = new HeroCard()
+            var card = new HeroCard
             {
                 Title = "Which fruit you take?",
                 Buttons = cardButtons,

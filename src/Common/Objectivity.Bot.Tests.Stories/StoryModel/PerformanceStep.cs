@@ -5,10 +5,6 @@
         protected const string OptionsToken = "buttons";
         protected const string TokenValueKey = "value";
 
-        public PerformanceStep()
-        {
-        }
-
         public PerformanceStep(T messageActivity)
         {
             this.MessageActivity = messageActivity;
@@ -23,10 +19,5 @@
         public string Message { get; set; }
 
         public string[] Options { get; set; }
-
-        public virtual string[] TryGetOptions()
-        {
-            return new string[0];
-        }
     }
 }

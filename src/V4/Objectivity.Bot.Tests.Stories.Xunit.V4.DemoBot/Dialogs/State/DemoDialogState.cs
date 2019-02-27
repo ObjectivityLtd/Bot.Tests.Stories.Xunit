@@ -2,6 +2,5 @@
 {
     public class DemoDialogState
     {
-        public string FavoriteColor { get; set; }
     }
 }
