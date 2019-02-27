@@ -35,7 +35,7 @@
             }
         }
 
-        public async Task<IMessageActivity> GetStepMessageActivity(IStoryFrame<IMessageActivity> frame)
+        public IMessageActivity GetStepMessageActivity(IStoryFrame<IMessageActivity> frame)
         {
             var message = this.GetUserStepMessage(frame);
 

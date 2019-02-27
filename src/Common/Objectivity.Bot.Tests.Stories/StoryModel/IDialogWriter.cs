@@ -7,6 +7,6 @@
     {
         Task SendActivity(T messageActivity);
 
-        Task<T> GetStepMessageActivity(IStoryFrame<T> frame);
+        T GetStepMessageActivity(IStoryFrame<T> frame);
     }
 }
