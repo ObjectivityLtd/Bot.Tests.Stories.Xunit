@@ -34,7 +34,7 @@
 
 namespace Objectivity.Bot.Tests.Stories.Core
 {
-    public static class ChannelID
+    public static class ChannelId
     {
         public const string User = "testUser";
         public const string Bot = "testBot";
