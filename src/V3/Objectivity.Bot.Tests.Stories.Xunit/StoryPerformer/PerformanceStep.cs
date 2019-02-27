@@ -7,10 +7,6 @@
 
     public class PerformanceStep : PerformanceStep<IMessageActivity>
     {
-        public PerformanceStep()
-        {
-        }
-
         public PerformanceStep(IMessageActivity messageActivity)
             : base(messageActivity)
         {

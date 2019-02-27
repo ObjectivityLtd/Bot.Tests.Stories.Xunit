@@ -23,8 +23,7 @@
         {
             this.userStateAccessor = userStateAccessor;
 
-            WaterfallStep[] steps = new WaterfallStep[]
-            {
+            WaterfallStep[] steps = {
                 this.PromptForFavoriteColorAsync,
                 this.PromptForFavoriteFruitAsync,
                 this.AcknowledgeFavoriteColorAsync

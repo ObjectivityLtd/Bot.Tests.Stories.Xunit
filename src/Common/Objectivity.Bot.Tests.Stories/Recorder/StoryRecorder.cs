@@ -4,7 +4,7 @@
 
     public abstract class StoryRecorderBase<T> : IStoryRecorder<T>
     {
-        public StoryRecorderBase()
+        protected StoryRecorderBase()
         {
             this.Bot = new BotRecorder<T>(this);
             this.User = new UserRecorder<T>(this);

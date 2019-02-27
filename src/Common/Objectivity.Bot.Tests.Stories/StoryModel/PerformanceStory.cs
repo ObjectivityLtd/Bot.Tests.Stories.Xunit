@@ -1,9 +1,8 @@
-﻿namespace Objectivity.Bot.Tests.Stories.StoryPerformer
+﻿namespace Objectivity.Bot.Tests.Stories.StoryModel
 {
     using System.Collections.Generic;
     using System.Linq;
     using Extensions;
-    using StoryModel;
 
     public abstract class PerformanceStory<T> : IPerformanceStory<T>
     {
@@ -15,16 +14,6 @@
         }
 
         public List<PerformanceStep<T>> Steps { get; set; }
-
-        public void EnqueueStartupStep(T messageActivity, Actor actor)
-        {
-            var step = this.GetPerformanceStep(messageActivity, actor);
-
-            if (step != null)
-            {
-                this.startupSteps.Enqueue(step);
-            }
-        }
 
         public void EnqueueStartupSteps(List<T> messageActivities, Actor actor)
         {
@@ -59,5 +48,15 @@
         }
 
         protected abstract PerformanceStep<T> GetPerformanceStep(T message, Actor actor);
+
+        private void EnqueueStartupStep(T messageActivity, Actor actor)
+        {
+            var step = this.GetPerformanceStep(messageActivity, actor);
+
+            if (step != null)
+            {
+                this.startupSteps.Enqueue(step);
+            }
+        }
     }
 }

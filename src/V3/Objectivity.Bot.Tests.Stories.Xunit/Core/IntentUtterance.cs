@@ -17,10 +17,10 @@
         }
 
         public IntentUtterance(string utterance, Expression<Func<TDialog, Task>> intentAction)
+            : this()
         {
             this.Utterance = utterance;
             this.IntentAction = intentAction;
-            this.Entities = new List<EntityRecommendation>();
         }
 
         public IntentUtterance(string utterance, Expression<Func<TDialog, Task>> intentAction, params EntityRecommendation[] entities)

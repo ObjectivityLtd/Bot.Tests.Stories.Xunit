@@ -1,14 +1,13 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.V4.DemoBot
 {
-    using Microsoft.Bot.Builder;
-    using Microsoft.Bot.Builder.Dialogs;
-    using Microsoft.Extensions.DependencyInjection;
     using System;
     using System.Linq;
     using Dialogs.State;
+    using Microsoft.Bot.Builder;
     using Microsoft.Bot.Builder.Integration.AspNet.Core;
     using Microsoft.Bot.Configuration;
     using Microsoft.Bot.Connector.Authentication;
+    using Microsoft.Extensions.DependencyInjection;
     using User;
 
     public static class DemoConfiguration
@@ -18,8 +17,8 @@
             IStorage dataStore = new MemoryStorage();
             var userState = new UserState(dataStore);
 
-            services.AddScoped<ConversationState>(sp => new ConversationState(dataStore));
-            services.AddScoped<UserState>(sp => new UserState(dataStore));
+            services.AddScoped(sp => new ConversationState(dataStore));
+            services.AddScoped(sp => new UserState(dataStore));
 
             services.AddBot<DemoBot>(options =>
             {
@@ -30,7 +29,7 @@
 
                 if (!(service is EndpointService endpointService))
                 {
-                    throw new InvalidOperationException($"The .bot file does not contain a development endpoint.");
+                    throw new InvalidOperationException("The .bot file does not contain a development endpoint.");
                 }
 
                 options.CredentialProvider = new SimpleCredentialProvider(endpointService.AppId, endpointService.AppPassword);

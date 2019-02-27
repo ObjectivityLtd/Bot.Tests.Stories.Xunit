@@ -25,7 +25,6 @@
         public WrappedStoryPerformer(
             IDialogWriter<IMessageActivity> writer,
             IDialogReader<IMessageActivity> reader,
-            IServiceProvider serviceProvider,
             IConversationService conversationService,
             WrappedDialogResult wrappedDialogResult)
         {

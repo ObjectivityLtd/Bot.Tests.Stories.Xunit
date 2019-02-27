@@ -4,10 +4,6 @@
 
     public class StoryStep<T> : IStoryStep<T>
     {
-        public StoryStep()
-        {
-        }
-
         public StoryStep(IStoryFrame<T> storyFrame, bool isDialogResultCheckupStep)
         {
             this.StoryFrame = storyFrame;
