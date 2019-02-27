@@ -5,7 +5,7 @@
     using System.Linq;
     using Microsoft.Bot.Schema;
     using Microsoft.Extensions.DependencyInjection;
-    using Xunit.StoryPerformer.IO;
+    using StoryModel;
 
     public class WrappedBotReader : IDialogReader<IMessageActivity>
     {

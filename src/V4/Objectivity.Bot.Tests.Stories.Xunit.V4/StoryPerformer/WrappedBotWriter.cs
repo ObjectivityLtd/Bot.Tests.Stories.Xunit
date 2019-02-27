@@ -11,7 +11,6 @@
     using Microsoft.Extensions.DependencyInjection;
     using Moq;
     using StoryModel;
-    using Xunit.StoryPerformer.IO;
 
     public class WrappedBotWriter : IDialogWriter<IMessageActivity>
     {

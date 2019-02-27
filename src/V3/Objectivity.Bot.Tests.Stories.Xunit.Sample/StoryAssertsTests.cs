@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using Asserts;
     using Dialogs;
+    using Extensions;
     using global::Xunit;
     using Recorder;
     using Xunit;
@@ -93,7 +94,7 @@
                 .User.Says("Hi")
                 .Bot.Says("How are you?")
                 .User.Says("I'm good.")
-                .DialogDoneWithResult(result => (bool)result == true);
+                .DialogDoneWithResult(result => (bool)result);
 
             await this.ThrowsTrueException(story, ResultEmptyMessage);
         }

@@ -34,11 +34,13 @@
 
 namespace Objectivity.Bot.Tests.Stories.Xunit.Core
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.Bot.Builder.Dialogs;
     using Microsoft.Bot.Builder.Internals.Fibers;
 
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Code ported from external source. Unused members left for consistency.")]
     public interface IMethod
     {
         Task<IWait<ContextStruct>> CodeAsync<T>(IFiber<ContextStruct> fiber, ContextStruct context, IAwaitable<T> item, CancellationToken token);

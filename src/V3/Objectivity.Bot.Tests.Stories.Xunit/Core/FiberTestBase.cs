@@ -35,6 +35,7 @@
 namespace Objectivity.Bot.Tests.Stories.Xunit.Core
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq.Expressions;
     using System.Runtime.Serialization;
@@ -44,6 +45,7 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
     using Microsoft.Bot.Builder.Dialogs;
     using Microsoft.Bot.Builder.Internals.Fibers;
 
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Code ported from external source. Unused members left for consistency.")]
     public abstract class FiberTestBase
     {
         public static readonly ContextStruct Context = default(ContextStruct);

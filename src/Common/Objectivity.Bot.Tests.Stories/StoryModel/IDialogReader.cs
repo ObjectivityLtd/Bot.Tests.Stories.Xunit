@@ -1,4 +1,4 @@
-﻿namespace Objectivity.Bot.Tests.Stories.Xunit.StoryPerformer.IO
+﻿namespace Objectivity.Bot.Tests.Stories.StoryModel
 {
     using System.Collections.Generic;
 

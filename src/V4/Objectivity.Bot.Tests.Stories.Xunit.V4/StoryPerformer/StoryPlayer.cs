@@ -9,7 +9,6 @@
     using Microsoft.Extensions.DependencyInjection;
     using Player;
     using StoryModel;
-    using Xunit.StoryPerformer;
 
     public class StoryPlayer : IStoryPlayer<IMessageActivity>
     {

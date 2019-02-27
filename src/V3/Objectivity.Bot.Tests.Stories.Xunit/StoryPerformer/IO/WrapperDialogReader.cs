@@ -5,6 +5,7 @@
     using Autofac;
     using Core;
     using Microsoft.Bot.Connector;
+    using StoryModel;
 
     public class WrapperDialogReader : IDialogReader<IMessageActivity>
     {

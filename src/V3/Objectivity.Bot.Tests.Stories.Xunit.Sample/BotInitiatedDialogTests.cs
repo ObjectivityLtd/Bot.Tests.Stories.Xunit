@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using Dialogs;
+    using Extensions;
     using global::Xunit;
     using Recorder;
 

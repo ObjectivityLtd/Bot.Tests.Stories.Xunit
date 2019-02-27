@@ -143,7 +143,7 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
             Assert.Empty(queue);
         }
 
-        public static string NewID()
+        public static string NewId()
         {
             return Guid.NewGuid().ToString();
         }

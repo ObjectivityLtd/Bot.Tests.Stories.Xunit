@@ -1,11 +1,13 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.V4.Extensions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Dialogs;
     using Microsoft.Bot.Schema;
     using Recorder;
     using StoryModel;
 
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Unused members are planned to be used outside the framework")]
     public static class DialogStoryRecorderExtensions
     {
         public static IStory<IMessageActivity> DialogDone(this IStoryRecorder<IMessageActivity> recorder)

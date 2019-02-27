@@ -1,7 +1,6 @@
-﻿namespace Objectivity.Bot.Tests.Stories.StoryPerformer
+﻿namespace Objectivity.Bot.Tests.Stories.StoryModel
 {
     using System.Collections.Generic;
-    using StoryModel;
 
     public interface IPerformanceStory<T>
     {

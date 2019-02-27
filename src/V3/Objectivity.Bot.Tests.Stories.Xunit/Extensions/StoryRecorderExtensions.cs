@@ -1,4 +1,4 @@
-﻿namespace Objectivity.Bot.Tests.Stories.Xunit
+﻿namespace Objectivity.Bot.Tests.Stories.Xunit.Extensions
 {
     using System;
     using Core;

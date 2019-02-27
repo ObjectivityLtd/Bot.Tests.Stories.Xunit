@@ -28,7 +28,7 @@
             object options = null,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.CaptureResult(await this.baseDialog.BeginDialogAsync(dc, cancellationToken));
+            return this.CaptureResult(await this.baseDialog.BeginDialogAsync(dc, cancellationToken: cancellationToken));
         }
 
         public override async Task<DialogTurnResult> ContinueDialogAsync(

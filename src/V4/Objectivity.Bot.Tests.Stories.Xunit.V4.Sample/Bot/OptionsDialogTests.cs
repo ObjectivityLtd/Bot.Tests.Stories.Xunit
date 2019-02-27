@@ -2,7 +2,6 @@
 {
     using System.Threading.Tasks;
     using global::Xunit;
-    using V4.StoryPerformer;
 
     public class OptionsDialogTests : DemoBotTestBase
     {

@@ -2,8 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Newtonsoft.Json.Linq;
 
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Unused methods are planned to be used outside the framework")]
     public interface IBotRecorder<T> : IBaseActorRecorder<T>
     {
         IStoryRecorder<T> ListsOptions(Predicate<JObject> listPredicate = null);

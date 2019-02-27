@@ -1,7 +1,7 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.V4.DemoBot.User
 {
-    using Microsoft.Bot.Builder;
     using System;
+    using Microsoft.Bot.Builder;
 
     public class DemoUserStateAccessors
     {
