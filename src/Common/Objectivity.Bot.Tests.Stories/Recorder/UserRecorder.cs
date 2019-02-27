@@ -11,22 +11,21 @@
             this.storyRecorder = storyRecorder;
         }
 
-        public IStoryRecorder<T> PicksOption(int optionIndex, string optionOutputPlaceholder = null)
+        public IStoryRecorder<T> PicksOption(int optionIndex)
         {
             this.storyRecorder.Story.AddStoryFrame(
                 new UserStoryFrame<T>
                 {
                     Actor = Actor.User,
                     ComparisonType = ComparisonType.Option,
-                    OptionIndex = optionIndex,
-                    OptionOutputPlaceholder = optionOutputPlaceholder,
+                    OptionIndex = optionIndex
                 });
             return this.storyRecorder;
         }
 
-        public IStoryRecorder<T> PicksOption(OptionNumber optionNumber, string optionOutputPlaceholder = null)
+        public IStoryRecorder<T> PicksOption(OptionNumber optionNumber)
         {
-            return this.PicksOption((int)optionNumber, optionOutputPlaceholder);
+            return this.PicksOption((int)optionNumber);
         }
 
         public IStoryRecorder<T> Says(string text)

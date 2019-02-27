@@ -18,8 +18,6 @@
 
         int OptionIndex { get; }
 
-        string OptionOutputPlaceholder { get; }
-
         string Text { get; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.Core
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Microsoft.Bot.Connector;
     using Newtonsoft.Json.Linq;
     using Stories.Core;
@@ -28,14 +29,16 @@
 
         public ComparisonType ComparisonType => ComparisonType.Predicate;
 
+        [SuppressMessage("ReSharper", "UnassignedGetOnlyAutoProperty", Justification = "Property forced by implemented interface.")]
         public Predicate<JObject> ListPredicate { get; }
 
+        [SuppressMessage("ReSharper", "UnassignedGetOnlyAutoProperty", Justification = "Property forced by implemented interface.")]
         public Predicate<IMessageActivity> MessageActivityPredicate { get; }
 
+        [SuppressMessage("ReSharper", "UnassignedGetOnlyAutoProperty", Justification = "Property forced by implemented interface.")]
         public int OptionIndex { get; }
 
-        public string OptionOutputPlaceholder { get; }
-
+        [SuppressMessage("ReSharper", "UnassignedGetOnlyAutoProperty", Justification = "Property forced by implemented interface.")]
         public string Text { get; }
 
         public Type ExceptionType { get; }

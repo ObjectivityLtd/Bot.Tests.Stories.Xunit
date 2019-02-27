@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Core;
     using Newtonsoft.Json.Linq;
 
@@ -30,11 +31,11 @@
 
         public Predicate<T> MessageActivityPredicate { get; }
 
+        [SuppressMessage("ReSharper", "UnassignedGetOnlyAutoProperty", Justification = "Property forced by implemented interface.")]
         public IActivityBuilder<T> ActivityBuilder { get; }
 
+        [SuppressMessage("ReSharper", "UnassignedGetOnlyAutoProperty", Justification = "Property forced by implemented interface.")]
         public int OptionIndex { get; }
-
-        public string OptionOutputPlaceholder { get; }
 
         public string Text { get; }
 
