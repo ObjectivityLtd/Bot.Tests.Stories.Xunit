@@ -2,11 +2,11 @@
 
 [![Build Status](https://ci.appveyor.com/api/projects/status/github/ObjectivityLtd/Bot.Tests.Stories.Xunit?branch=master&svg=true)](https://ci.appveyor.com/project/ObjectivityAdminsTeam/bot-tests-stories-xunit) [![Tests Status](https://img.shields.io/appveyor/tests/ObjectivityAdminsTeam/bot-tests-stories-xunit/master.svg)](https://ci.appveyor.com/project/ObjectivityAdminsTeam/bot-tests-stories-xunit) [![codecov](https://codecov.io/gh/ObjectivityLtd/Bot.Tests.Stories.Xunit/branch/master/graph/badge.svg)](https://codecov.io/gh/ObjectivityLtd/Bot.Tests.Stories.Xunit) [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
-Tests library for Bot Framework V3 dialogs using XUnit.
+Tests library for [Microsoft Bot Framework V3](https://dev.botframework.com/) dialogs using [XUnit](https://xunit.github.io/).
 
 ## Note
 
-This project is still a work in progress, all contributions from your side will be very desirable!
+This project is still a work in progress, all contributions from your side are desirable!
 
 ## Installation
 
