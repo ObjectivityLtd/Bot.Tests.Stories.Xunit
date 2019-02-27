@@ -104,7 +104,7 @@
         {
             if (step.Actor == Actor.User)
             {
-                var messageActivity = await this.dialogWriter.GetStepMessageActivity(step.StoryFrame);
+                var messageActivity = this.dialogWriter.GetStepMessageActivity(step.StoryFrame);
                 this.performanceStory.AddStep(messageActivity, Actor.User);
 
                 await this.dialogWriter.SendActivity(messageActivity);

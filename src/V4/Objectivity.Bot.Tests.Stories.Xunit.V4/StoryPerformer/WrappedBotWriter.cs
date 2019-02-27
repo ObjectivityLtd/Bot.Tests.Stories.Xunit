@@ -50,13 +50,11 @@
             }
         }
 
-        public Task<IMessageActivity> GetStepMessageActivity(IStoryFrame<IMessageActivity> frame)
+        public IMessageActivity GetStepMessageActivity(IStoryFrame<IMessageActivity> frame)
         {
             var activityBuilder = frame.ActivityBuilder ?? new MessageActivityBuilder(this.conversationService);
 
-            var activity = activityBuilder.Build(frame);
-
-            return Task.FromResult(activity);
+            return activityBuilder.Build(frame);
         }
     }
 }
