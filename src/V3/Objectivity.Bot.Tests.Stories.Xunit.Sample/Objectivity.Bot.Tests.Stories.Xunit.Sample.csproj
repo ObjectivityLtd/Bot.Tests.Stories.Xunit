@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Objectivity.Bot.Tests.Stories\Objectivity.Bot.Tests.Stories.csproj" />
     <ProjectReference Include="..\Objectivity.Bot.Tests.Stories.Xunit\Objectivity.Bot.Tests.Stories.Xunit.csproj" />
   </ItemGroup>
 

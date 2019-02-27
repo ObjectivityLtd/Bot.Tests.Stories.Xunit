@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Objectivity.Bot.Tests.Stories\Objectivity.Bot.Tests.Stories.csproj" />
     <ProjectReference Include="..\Objectivity.Bot.Tests.Stories.Xunit.V4.DemoBot\Objectivity.Bot.Tests.Stories.Xunit.V4.DemoBot.csproj" />
     <ProjectReference Include="..\Objectivity.Bot.Tests.Stories.Xunit.V4\Objectivity.Bot.Tests.Stories.Xunit.V4.csproj" />
   </ItemGroup>

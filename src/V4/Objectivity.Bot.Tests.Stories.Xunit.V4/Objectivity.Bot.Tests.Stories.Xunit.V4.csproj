@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <!-- Workaround for packaging referenced projects' assemblies into a single nuget package. Issue: https://github.com/NuGet/Home/issues/3891 -->
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
     <CodeAnalysisRuleSet>..\..\Analysers.ruleset</CodeAnalysisRuleSet>
     <IsPackable>true</IsPackable>			   
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -39,7 +41,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Objectivity.Bot.Tests.Stories\Objectivity.Bot.Tests.Stories.csproj" />
+    <ProjectReference Include="..\..\Common\Objectivity.Bot.Tests.Stories\Objectivity.Bot.Tests.Stories.csproj" PrivateAssets="All" />
   </ItemGroup>
 
+  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')->WithMetadataValue('PrivateAssets', 'All'))" />
+    </ItemGroup>
+  </Target>
 </Project>
