@@ -24,7 +24,7 @@
         {
             this.wrappedDialogResult.DialogStatus = DialogStatus.InProgress;
 
-            await context.PostAsync(Consts.WrapperStartMessage);
+            await context.PostAsync(Constants.WrapperStartMessage);
 
             context.Wait(this.ResumeAfterStart);
         }

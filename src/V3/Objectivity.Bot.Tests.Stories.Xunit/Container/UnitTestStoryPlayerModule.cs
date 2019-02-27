@@ -27,7 +27,7 @@
             builder
                 .Register<IDialog<object>>(ctx =>
                     new WrapperDialog(
-                        ctx.ResolveKeyed<IDialog<object>>(Consts.TargetDialogKey),
+                        ctx.ResolveKeyed<IDialog<object>>(Constants.TargetDialogKey),
                         ctx.Resolve<WrappedDialogResult>()))
                 .As<IDialog<object>>()
                 .InstancePerDependency();

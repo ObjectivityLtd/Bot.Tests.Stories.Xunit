@@ -39,7 +39,7 @@
             {
                 var messageActivity = queue.Dequeue();
 
-                if (messageActivity.Text == Consts.WrapperStartMessage)
+                if (messageActivity.Text == Constants.WrapperStartMessage)
                 {
                     enqueueToStartupActivities = true;
                 }

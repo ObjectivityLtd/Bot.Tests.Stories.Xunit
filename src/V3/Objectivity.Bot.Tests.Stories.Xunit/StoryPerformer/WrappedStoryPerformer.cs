@@ -65,8 +65,8 @@
         private List<StoryStep<IMessageActivity>> GetStorySteps(IStory<IMessageActivity> testStory)
         {
             var wrapperStory = StoryRecorder.Record()
-                .User.Says(Consts.WrapperStartMessage)
-                .Bot.Says(Consts.WrapperStartMessage)
+                .User.Says(Constants.WrapperStartMessage)
+                .Bot.Says(Constants.WrapperStartMessage)
                 .Rewind();
 
             var wrappedStory = testStory.Concat(wrapperStory);
