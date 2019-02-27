@@ -36,6 +36,7 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -45,6 +46,7 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
     using Microsoft.Bot.Connector;
     using Stories.Core;
 
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Code ported from external source. Unused members left for consistency.")]
     public abstract class DialogTestBase
     {
         public static IMessageActivity MakeTestMessage()
@@ -53,9 +55,9 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
             {
                 Id = Guid.NewGuid().ToString(),
                 Type = ActivityTypes.Message,
-                From = new ChannelAccount { Id = ChannelID.User },
+                From = new ChannelAccount { Id = ChannelId.User },
                 Conversation = new ConversationAccount { Id = Guid.NewGuid().ToString() },
-                Recipient = new ChannelAccount { Id = ChannelID.Bot },
+                Recipient = new ChannelAccount { Id = ChannelId.Bot },
                 ServiceUrl = "InvalidServiceUrl",
                 ChannelId = "Test",
                 Attachments = Array.Empty<Attachment>(),
@@ -78,7 +80,7 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
 
             var toBot = MakeTestMessage();
 
-            for (int index = 0; index < pairs.Length; ++index)
+            for (var index = 0; index < pairs.Length; ++index)
             {
                 var toBotText = pairs[index];
                 toBot.Text = toBotText;

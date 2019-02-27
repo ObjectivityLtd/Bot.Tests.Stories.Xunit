@@ -14,16 +14,16 @@
             {
                 Id = Guid.NewGuid().ToString(),
                 Type = ActivityTypes.ConversationUpdate,
-                From = new ChannelAccount { Id = ChannelID.User },
+                From = new ChannelAccount { Id = ChannelId.User },
                 Conversation = new ConversationAccount { Id = Guid.NewGuid().ToString() },
-                Recipient = new ChannelAccount { Id = ChannelID.Bot },
+                Recipient = new ChannelAccount { Id = ChannelId.Bot },
                 ServiceUrl = "InvalidServiceUrl",
                 ChannelId = "Test",
                 Attachments = Array.Empty<Attachment>(),
                 Entities = Array.Empty<Entity>(),
                 MembersAdded = new List<ChannelAccount>
                 {
-                    new ChannelAccount(ChannelID.User),
+                    new ChannelAccount(ChannelId.User),
                 },
             };
         }

@@ -24,10 +24,10 @@
             {
                 Id = Guid.NewGuid().ToString(),
                 Type = ActivityTypes.Message,
-                From = new ChannelAccount { Id = ChannelID.User },
+                From = new ChannelAccount { Id = ChannelId.User },
                 Text = text,
                 Conversation = this.conversationService.Account,
-                Recipient = new ChannelAccount { Id = ChannelID.Bot },
+                Recipient = new ChannelAccount { Id = ChannelId.Bot },
                 ServiceUrl = "InvalidServiceUrl",
                 ChannelId = "Test",
                 Attachments = Array.Empty<Attachment>(),
