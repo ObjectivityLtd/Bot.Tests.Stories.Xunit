@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
     using global::Xunit;
@@ -9,6 +10,7 @@
     using Newtonsoft.Json.Linq;
     using StoryModel;
 
+    [SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local", Justification = "Methods with precondition check only parameters created for code clarity.")]
     public static class StepAsserts
     {
         private const string MessageType = "message";
