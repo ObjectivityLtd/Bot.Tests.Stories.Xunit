@@ -20,7 +20,7 @@
 
             containerBuilder
                 .RegisterType<TDialog>()
-                .Keyed<IDialog<object>>(Consts.TargetDialogKey)
+                .Keyed<IDialog<object>>(Constants.TargetDialogKey)
                 .InstancePerDependency();
         }
     }

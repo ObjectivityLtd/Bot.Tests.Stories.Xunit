@@ -10,7 +10,7 @@
 
         protected override PerformanceStep<IMessageActivity> GetPerformanceStep(IMessageActivity message, Actor actor)
         {
-            if (message.Type == TypingMessageType || message.Text == Consts.WrapperStartMessage)
+            if (message.Type == TypingMessageType || message.Text == Constants.WrapperStartMessage)
             {
                 return null;
             }
