@@ -11,7 +11,6 @@
     using Recorder;
     using Stories.Core;
     using Stories.Extensions;
-    using Stories.StoryPerformer;
     using StoryModel;
 
     public class WrappedStoryPerformer : IStoryPerformer<IMessageActivity>

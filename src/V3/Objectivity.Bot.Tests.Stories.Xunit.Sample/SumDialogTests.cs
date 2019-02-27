@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using Asserts;
     using Dialogs;
+    using Extensions;
     using global::Xunit;
     using Recorder;
 

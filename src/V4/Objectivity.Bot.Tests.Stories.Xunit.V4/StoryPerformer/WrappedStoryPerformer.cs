@@ -9,10 +9,7 @@
     using Microsoft.Bot.Schema;
     using Player;
     using Stories.Extensions;
-    using Stories.StoryPerformer;
     using StoryModel;
-    using Xunit.StoryPerformer;
-    using Xunit.StoryPerformer.IO;
 
     public class WrappedStoryPerformer : IStoryPerformer<IMessageActivity>
     {

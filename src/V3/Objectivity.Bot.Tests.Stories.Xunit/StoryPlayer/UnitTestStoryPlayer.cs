@@ -12,7 +12,6 @@
     using Microsoft.Bot.Connector;
     using Player;
     using StoryModel;
-    using StoryPerformer;
 
     public class UnitTestStoryPlayer : IStoryPlayer<IMessageActivity>
     {

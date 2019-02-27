@@ -1,7 +1,6 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.V4.StoryPerformer
 {
     using Microsoft.Bot.Schema;
-    using Stories.StoryPerformer;
     using StoryModel;
 
     public class PerformanceStory : PerformanceStory<IMessageActivity>

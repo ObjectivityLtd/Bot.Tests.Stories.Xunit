@@ -93,7 +93,7 @@
                 Assert.True(false, wrongDialogResultTypeMessage);
             }
         }
-        
+
         private void VerifyResultNotEmpty(DialogStoryFrame dialogStoryFrame)
         {
             if (dialogStoryFrame.ResultPredicate != null && this.dialogResult.Result == null)

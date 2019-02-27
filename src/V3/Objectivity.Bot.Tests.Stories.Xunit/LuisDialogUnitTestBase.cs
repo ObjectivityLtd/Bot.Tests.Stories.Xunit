@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq.Expressions;
     using System.Threading;
     using System.Threading.Tasks;
@@ -44,6 +45,7 @@
             this.intentUtterances.Add(new IntentUtterance<TDialog>(utterance, intentAction));
         }
 
+        [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Unused methods are planned to be used outside the framework")]
         protected void RegisterUtterance(
             string utterance,
             Expression<Func<TDialog, Task>> intentAction,

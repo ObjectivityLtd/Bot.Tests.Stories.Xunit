@@ -3,7 +3,6 @@
     using System.Threading.Tasks;
     using global::Xunit;
     using global::Xunit.Sdk;
-    using Xunit.V4.StoryPerformer;
 
     public class UserInitiatedDialogTests : DemoBotTestBase
     {

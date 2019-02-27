@@ -32,7 +32,7 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-// Only becasue we base on Microsoft's implementation where stateClient is obsolete we need to disabled warning
+// Only because we base on Microsoft's implementation where stateClient is obsolete we need to disabled warning
 
 #pragma warning disable 612
 #pragma warning disable 618

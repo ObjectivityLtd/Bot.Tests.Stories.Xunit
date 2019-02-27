@@ -1,14 +1,14 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.V4.DemoBot
 {
     using System;
-    using Dialogs;
-    using Dialogs.State;
-    using Microsoft.Bot.Builder.Dialogs;
-    using User;
     using System.Threading;
     using System.Threading.Tasks;
+    using Dialogs;
+    using Dialogs.State;
     using Microsoft.Bot.Builder;
+    using Microsoft.Bot.Builder.Dialogs;
     using Microsoft.Bot.Schema;
+    using User;
 
     public class DemoBot : IBot
     {

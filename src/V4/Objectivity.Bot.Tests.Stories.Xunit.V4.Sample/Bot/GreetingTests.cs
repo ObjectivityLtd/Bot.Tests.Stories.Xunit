@@ -28,7 +28,7 @@
         }
 
         [Fact]
-        public async Task InvalidNumberPassed_PlayStoryIsCalled_MustRepromtForAge()
+        public async Task InvalidNumberPassed_PlayStoryIsCalled_MustRepromptForAge()
         {
             var story = this.Record
                 .Bot.Says("Welcome to demo bot")

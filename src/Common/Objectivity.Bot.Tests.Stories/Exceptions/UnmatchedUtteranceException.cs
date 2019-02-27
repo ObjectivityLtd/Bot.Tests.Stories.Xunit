@@ -1,9 +1,11 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Exceptions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
     [Serializable]
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Unused constructors added to follow exception best practices")]
     public class UnmatchedUtteranceException : Exception
     {
         public UnmatchedUtteranceException()

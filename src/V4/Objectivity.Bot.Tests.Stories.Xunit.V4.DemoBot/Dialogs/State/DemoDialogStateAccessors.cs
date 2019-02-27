@@ -1,7 +1,7 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.V4.DemoBot.Dialogs.State
 {
-    using Microsoft.Bot.Builder;
     using System;
+    using Microsoft.Bot.Builder;
     using Microsoft.Bot.Builder.Dialogs;
 
     public class DemoDialogStateAccessors

@@ -9,8 +9,6 @@
     using Microsoft.Extensions.DependencyInjection;
     using StoryModel;
     using StoryPerformer;
-    using Xunit.StoryPerformer;
-    using Xunit.StoryPerformer.IO;
 
     internal class TestPlayer
     {

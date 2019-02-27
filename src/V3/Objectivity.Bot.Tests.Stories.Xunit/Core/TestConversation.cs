@@ -35,6 +35,7 @@
 namespace Objectivity.Bot.Tests.Stories.Xunit.Core
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading;
     using System.Threading.Tasks;
     using Autofac;
@@ -46,6 +47,7 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
     /// <summary>
     /// The top level composition root for the SDK.
     /// </summary>
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Unused methods are planned to be used outside the framework")]
     public static class TestConversation
     {
         private static readonly object Gate = new object();
