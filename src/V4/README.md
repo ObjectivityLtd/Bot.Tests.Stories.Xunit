@@ -1,6 +1,6 @@
-# Bot.Tests.Stories.Xunit
+# Bot.Tests.Stories.Xunit.V4
 
-[![Build status](https://ci.appveyor.com/api/projects/status/github/ObjectivityLtd/Bot.Tests.Stories.Xunit?branch=master&svg=true)](https://ci.appveyor.com/project/ObjectivityAdminsTeam/bot-tests-stories-xunit)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/ObjectivityLtd/Bot.Tests.Stories.Xunit?branch=master&svg=true)](https://ci.appveyor.com/project/ObjectivityAdminsTeam/bot-tests-stories-xunit) [![Tests Status](https://img.shields.io/appveyor/tests/ObjectivityAdminsTeam/bot-tests-stories-xunit/master.svg)](https://ci.appveyor.com/project/ObjectivityAdminsTeam/bot-tests-stories-xunit) [![codecov](https://codecov.io/gh/ObjectivityLtd/Bot.Tests.Stories.Xunit/branch/master/graph/badge.svg)](https://codecov.io/gh/ObjectivityLtd/Bot.Tests.Stories.Xunit) [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
 Tests library for Bot Framework V4 using XUnit.
 
@@ -86,15 +86,22 @@ Example:
 ```cs
 public class TestGreetingDialogTests: DialogTestBase<TestGreetingDialog>
 {
-    [Fact]
-    public async Task ThreeFloorsPassed_PlayStoryIsCalled_MustShowMotivationMessage()
+    [Theory]
+    [InlineData(17, "I'm sorry John but you must be at least 18 years old.")]
+    [InlineData(18, "Thank you.")]
+    [InlineData(20, "Thank you.")]
+    public async Task GivenAge_PlayStoryIsCalled_MustReplyExpectedMessage(
+        int age,
+        string expectedBotReply)
     {
         var story = this.Record
+            .Bot.Says("Welcome to demo bot")
+            .User.Says("hello")
             .Bot.Says("What's your name?")
             .User.Says("John")
-            .Bot.Says("How many floors have you climbed today?")
-            .User.Says("3")
-            .Bot.Says("Great score!")
+            .Bot.Says("How old are you?")
+            .User.Says(age.ToString(CultureInfo.InvariantCulture))
+            .Bot.Says(expectedBotReply)
             .Rewind();
 
         await this.Play(story);
