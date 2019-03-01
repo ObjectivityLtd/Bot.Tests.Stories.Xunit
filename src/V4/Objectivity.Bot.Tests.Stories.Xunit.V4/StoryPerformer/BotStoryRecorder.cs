@@ -15,7 +15,7 @@
             {
                 Text = null,
                 ComparisonType = ComparisonType.None,
-                ActivityBuilder = new ConversationUpdateActivityBuilder(recorder.Config),
+                ActivityBuilder = new ConversationUpdateActivityBuilder(recorder.Configuration),
             });
 
             return recorder;

@@ -5,7 +5,7 @@
 
     public interface IStory<T>
     {
-        IConfiguration Config { get; set; }
+        IConfiguration Configuration { get; set; }
 
         IList<IStoryFrame<T>> StoryFrames { get; }
 

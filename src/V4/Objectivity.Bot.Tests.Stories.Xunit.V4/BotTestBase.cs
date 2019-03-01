@@ -42,7 +42,7 @@
             var services = new ServiceCollection();
 
             services.AddScoped<IBot, TBot>();
-            services.AddScoped(sp => story.Config);
+            services.AddScoped(sp => story.Configuration);
 
             this.testPlayer.ConfigureServices(services);
             this.ConfigureServices(services);
