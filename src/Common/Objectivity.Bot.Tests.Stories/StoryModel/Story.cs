@@ -5,7 +5,7 @@
 
     public class Story<T> : IStory<T>
     {
-        public IConfiguration Config { get; set; }
+        public IConfiguration Configuration { get; set; }
 
         public IList<IStoryFrame<T>> StoryFrames { get; } = new List<IStoryFrame<T>>();
 

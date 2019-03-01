@@ -51,7 +51,7 @@
             this.RegisterDummyBot(services);
 
             services.AddScoped<Dialog, TDialog>();
-            services.AddScoped(sp => story.Config);
+            services.AddScoped(sp => story.Configuration);
 
             this.testPlayer.ConfigureServices(services);
             this.ConfigureServices(services);

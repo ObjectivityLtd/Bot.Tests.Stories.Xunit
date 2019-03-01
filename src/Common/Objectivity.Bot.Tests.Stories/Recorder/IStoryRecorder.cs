@@ -5,7 +5,7 @@
 
     public interface IStoryRecorder<T>
     {
-        Configuration<T> Config { get; }
+        Configuration<T> Configuration { get; }
 
         IBotRecorder<T> Bot { get; }
 
