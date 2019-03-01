@@ -24,7 +24,7 @@
             this.demoUserStateAccessor = demoUserStateAccessor ?? throw new ArgumentNullException(nameof(demoUserStateAccessor));
             this.demoDialogStateAccessor = demoDialogStateAccessor ??
                                            throw new ArgumentNullException(nameof(demoDialogStateAccessor));
-            
+
             this.dialogs = new DialogSet(demoDialogStateAccessor.DialogStateAccessor);
             this.dialogs.Add(new TestChoicePromptDialog(this.demoUserStateAccessor));
             this.dialogs.Add(new TestCardsDialog());
@@ -51,7 +51,7 @@
                         await this.HandleDialog(nameof(TestGreetingDialog), turnContext, cancellationToken);
                         break;
                     case "choice test":
-                        await this.HandleDialog(nameof(TestChoicePromptDialog),turnContext, cancellationToken);
+                        await this.HandleDialog(nameof(TestChoicePromptDialog), turnContext, cancellationToken);
                         break;
                     case "cards test":
                         await this.HandleDialog(nameof(TestCardsDialog), turnContext, cancellationToken);
@@ -90,12 +90,22 @@
                 {
                     if (member.Id != activity.Recipient.Id)
                     {
-                        await turnContext.SendActivityAsync(DemoBotWelcomeMessage, cancellationToken: cancellationToken);
+                        await turnContext.SendActivityAsync(GetDemoBotWelcomeMessageForChannel(activity.ChannelId), cancellationToken: cancellationToken);
                     }
                 }
             }
 
             await this.demoUserStateAccessor.UserState.SaveChangesAsync(turnContext, cancellationToken: cancellationToken);
+        }
+
+        private string GetDemoBotWelcomeMessageForChannel(string channelId)
+        {
+            if (channelId.ToLower() != "test")
+            {
+                return $"{DemoBotWelcomeMessage} {channelId}";
+            }
+
+            return DemoBotWelcomeMessage;
         }
     }
 }

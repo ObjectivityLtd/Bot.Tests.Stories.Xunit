@@ -7,10 +7,6 @@
 
     public class BotStoryRecorder : StoryRecorderBase<IMessageActivity>
     {
-        private BotStoryRecorder()
-        {
-        }
-
         public static IStoryRecorder<IMessageActivity> Record()
         {
             var recorder = new BotStoryRecorder();
@@ -19,7 +15,7 @@
             {
                 Text = null,
                 ComparisonType = ComparisonType.None,
-                ActivityBuilder = new ConversationUpdateActivityBuilder(),
+                ActivityBuilder = new ConversationUpdateActivityBuilder(recorder.Config),
             });
 
             return recorder;

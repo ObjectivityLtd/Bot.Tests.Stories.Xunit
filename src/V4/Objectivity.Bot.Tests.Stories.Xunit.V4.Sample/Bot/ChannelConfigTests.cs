@@ -10,7 +10,6 @@
         public async Task UseDefaultChannel()
         {
             var story = this.Record
-                .Config.UseChannel("")
                 .Bot.Says("Welcome to demo bot")
                 .Rewind();
 
@@ -22,7 +21,7 @@
         {
             var story = this.Record
                 .Config.UseChannel(Channels.Facebook)
-                .Bot.Says("Welcome to demo bot")
+                .Bot.Says("Welcome to demo bot facebook")
                 .Rewind();
 
             await this.Play(story);

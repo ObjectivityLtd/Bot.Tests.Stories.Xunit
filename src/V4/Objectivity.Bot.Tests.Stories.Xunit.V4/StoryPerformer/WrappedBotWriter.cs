@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Config;
     using Core;
     using Exceptions;
     using Microsoft.Bot.Builder;
@@ -16,11 +17,13 @@
     {
         private readonly IServiceProvider scopeContext;
         private readonly IConversationService conversationService;
+        private readonly IConfig config;
 
-        public WrappedBotWriter(IServiceProvider scopeContext, IConversationService conversationService)
+        public WrappedBotWriter(IServiceProvider scopeContext, IConversationService conversationService, IConfig config)
         {
             this.scopeContext = scopeContext;
             this.conversationService = conversationService;
+            this.config = config;
         }
 
         public async Task SendActivity(IMessageActivity messageActivity)
@@ -51,7 +54,7 @@
 
         public IMessageActivity GetStepMessageActivity(IStoryFrame<IMessageActivity> frame)
         {
-            var activityBuilder = frame.ActivityBuilder ?? new MessageActivityBuilder(this.conversationService);
+            var activityBuilder = frame.ActivityBuilder ?? new MessageActivityBuilder(this.conversationService, this.config);
 
             return activityBuilder.Build(frame);
         }

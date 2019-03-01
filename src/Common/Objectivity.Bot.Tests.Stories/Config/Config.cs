@@ -2,16 +2,16 @@
 {
     using Recorder;
 
-    public class Config<T> : IConfig<T>
+    public class Config<T> : IConfig, IConfigRecorder<T>
     {
         public Config(StoryRecorderBase<T> storyRecorder)
         {
             this.StoryRecorder = storyRecorder;
         }
 
-        protected StoryRecorderBase<T> StoryRecorder { get; }
+        public string ChannelId { get; set; } = "Test";
 
-        private string ChannelId { get; set; } = "Test";
+        protected StoryRecorderBase<T> StoryRecorder { get; }
 
         public IStoryRecorder<T> UseChannel(string channelId)
         {
