@@ -1,6 +1,7 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.V4.Core
 {
     using System;
+    using Config;
     using Exceptions;
     using Microsoft.Bot.Schema;
     using Stories.Core;
@@ -9,11 +10,14 @@
     public class MessageActivityBuilder : IActivityBuilder<IMessageActivity>
     {
         private readonly IConversationService conversationService;
+        private readonly IConfig config;
 
         public MessageActivityBuilder(
-            IConversationService conversationService)
+            IConversationService conversationService,
+            IConfig config)
         {
             this.conversationService = conversationService;
+            this.config = config;
         }
 
         public IMessageActivity Build(IStoryFrame<IMessageActivity> frame)
@@ -29,7 +33,7 @@
                 Conversation = this.conversationService.Account,
                 Recipient = new ChannelAccount { Id = ChannelId.Bot },
                 ServiceUrl = "InvalidServiceUrl",
-                ChannelId = "Test",
+                ChannelId = this.config.ChannelId,
                 Attachments = Array.Empty<Attachment>(),
                 Entities = Array.Empty<Entity>(),
             };

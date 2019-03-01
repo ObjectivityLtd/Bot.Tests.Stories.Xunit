@@ -2,12 +2,20 @@
 {
     using System;
     using System.Collections.Generic;
+    using Config;
     using Microsoft.Bot.Schema;
     using Stories.Core;
     using StoryModel;
 
     public class ConversationUpdateActivityBuilder : IActivityBuilder<IMessageActivity>
     {
+        public ConversationUpdateActivityBuilder(IConfig config)
+        {
+            this.Config = config;
+        }
+
+        private IConfig Config { get; set; }
+
         public IMessageActivity Build(IStoryFrame<IMessageActivity> frame)
         {
             return new Activity()
@@ -18,7 +26,7 @@
                 Conversation = new ConversationAccount { Id = Guid.NewGuid().ToString() },
                 Recipient = new ChannelAccount { Id = ChannelId.Bot },
                 ServiceUrl = "InvalidServiceUrl",
-                ChannelId = "Test",
+                ChannelId = this.Config.ChannelId,
                 Attachments = Array.Empty<Attachment>(),
                 Entities = Array.Empty<Entity>(),
                 MembersAdded = new List<ChannelAccount>

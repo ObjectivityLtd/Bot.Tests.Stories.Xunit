@@ -1,9 +1,7 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Config
 {
-    using Recorder;
-
-    public interface IConfig<T>
+    public interface IConfig
     {
-        IStoryRecorder<T> UseChannel(string channelId);
+        string ChannelId { get; set; }
     }
 }
