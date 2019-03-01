@@ -17,13 +17,13 @@
     {
         private readonly IServiceProvider scopeContext;
         private readonly IConversationService conversationService;
-        private readonly IConfiguration config;
+        private readonly IConfiguration configuration;
 
-        public WrappedBotWriter(IServiceProvider scopeContext, IConversationService conversationService, IConfiguration config)
+        public WrappedBotWriter(IServiceProvider scopeContext, IConversationService conversationService, IConfiguration configuration)
         {
             this.scopeContext = scopeContext;
             this.conversationService = conversationService;
-            this.config = config;
+            this.configuration = configuration;
         }
 
         public async Task SendActivity(IMessageActivity messageActivity)
@@ -54,7 +54,7 @@
 
         public IMessageActivity GetStepMessageActivity(IStoryFrame<IMessageActivity> frame)
         {
-            var activityBuilder = frame.ActivityBuilder ?? new MessageActivityBuilder(this.conversationService, this.config);
+            var activityBuilder = frame.ActivityBuilder ?? new MessageActivityBuilder(this.conversationService, this.configuration);
 
             return activityBuilder.Build(frame);
         }

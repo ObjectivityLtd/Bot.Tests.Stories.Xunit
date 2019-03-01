@@ -10,14 +10,14 @@
     public class MessageActivityBuilder : IActivityBuilder<IMessageActivity>
     {
         private readonly IConversationService conversationService;
-        private readonly IConfiguration config;
+        private readonly IConfiguration configuration;
 
         public MessageActivityBuilder(
             IConversationService conversationService,
-            IConfiguration config)
+            IConfiguration configuration)
         {
             this.conversationService = conversationService;
-            this.config = config;
+            this.configuration = configuration;
         }
 
         public IMessageActivity Build(IStoryFrame<IMessageActivity> frame)
@@ -33,7 +33,7 @@
                 Conversation = this.conversationService.Account,
                 Recipient = new ChannelAccount { Id = ChannelId.Bot },
                 ServiceUrl = "InvalidServiceUrl",
-                ChannelId = this.config.ChannelId,
+                ChannelId = this.configuration.ChannelId,
                 Attachments = Array.Empty<Attachment>(),
                 Entities = Array.Empty<Entity>(),
             };

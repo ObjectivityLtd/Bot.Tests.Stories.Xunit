@@ -9,12 +9,12 @@
 
     public class ConversationUpdateActivityBuilder : IActivityBuilder<IMessageActivity>
     {
-        public ConversationUpdateActivityBuilder(IConfiguration config)
+        public ConversationUpdateActivityBuilder(IConfiguration configuration)
         {
-            this.Config = config;
+            this.Configuration = configuration;
         }
 
-        private IConfiguration Config { get; set; }
+        private IConfiguration Configuration { get; set; }
 
         public IMessageActivity Build(IStoryFrame<IMessageActivity> frame)
         {
@@ -26,7 +26,7 @@
                 Conversation = new ConversationAccount { Id = Guid.NewGuid().ToString() },
                 Recipient = new ChannelAccount { Id = ChannelId.Bot },
                 ServiceUrl = "InvalidServiceUrl",
-                ChannelId = this.Config.ChannelId,
+                ChannelId = this.Configuration.ChannelId,
                 Attachments = Array.Empty<Attachment>(),
                 Entities = Array.Empty<Entity>(),
                 MembersAdded = new List<ChannelAccount>
