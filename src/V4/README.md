@@ -51,6 +51,26 @@ public class WelcomeMessageTests: BotTestBase<DemoBot>
 }
 ```
 
+### Testing channels
+
+You can use specialized method for setting channel. 
+
+```cs
+public class WelcomeMessageTests: BotTestBase<DemoBot>
+{
+    [Fact]
+    public async Task UseFacebookChannel()
+    {
+        var story = this.Record
+            .Config.UseChannel(Channels.Facebook)
+            .Bot.Says("Welcome to demo bot facebook")
+            .Rewind();
+
+        await this.Play(story);
+    }
+}
+```
+
 ### Bot with prompts
 
 You can use specialized method for dialogs with prompts:
