@@ -20,11 +20,17 @@
             var exception = await Record.ExceptionAsync(TestCode);
 
             Assert.NotNull(exception);
-            Assert.IsType<TrueException>(exception);
 
-            if (!string.IsNullOrEmpty(messagePattern))
+            if (exception is TrueException)
             {
-                Assert.Matches(messagePattern, exception.Message);
+                if (!string.IsNullOrEmpty(messagePattern))
+                {
+                    Assert.Matches(messagePattern, exception.Message);
+                }
+            }
+            else
+            {
+                throw exception;
             }
         }
     }
