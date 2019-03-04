@@ -3,9 +3,9 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
-    using Core;
     using global::Xunit;
     using Microsoft.Bot.Connector;
+    using Stories.Dialogs;
     using StoryModel;
 
     [SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local", Justification = "Methods with precondition check only parameters created for code clarity.")]
@@ -27,7 +27,7 @@
 
         public void AssertDialogFinishStep(StoryStep<IMessageActivity> storyStep)
         {
-            var dialogStoryFrame = storyStep.StoryFrame as DialogStoryFrame;
+            var dialogStoryFrame = storyStep.StoryFrame as DialogStoryFrame<IMessageActivity>;
             if (dialogStoryFrame == null)
             {
                 return;
@@ -47,7 +47,7 @@
             }
         }
 
-        private void VerifyExceptionType(DialogStoryFrame dialogStoryFrame)
+        private void VerifyExceptionType(DialogStoryFrame<IMessageActivity> dialogStoryFrame)
         {
             if (this.dialogResult.Exception == null)
             {
@@ -72,7 +72,7 @@
                 wrongExceptionTypeMessage);
         }
 
-        private void VerifyResultPredicate(DialogStoryFrame dialogStoryFrame)
+        private void VerifyResultPredicate(DialogStoryFrame<IMessageActivity> dialogStoryFrame)
         {
             try
             {
@@ -94,7 +94,7 @@
             }
         }
 
-        private void VerifyResultNotEmpty(DialogStoryFrame dialogStoryFrame)
+        private void VerifyResultNotEmpty(DialogStoryFrame<IMessageActivity> dialogStoryFrame)
         {
             if (dialogStoryFrame.ResultPredicate != null && this.dialogResult.Result == null)
             {
@@ -102,7 +102,7 @@
             }
         }
 
-        private void VerifyStatusesEqual(DialogStoryFrame dialogStoryFrame)
+        private void VerifyStatusesEqual(DialogStoryFrame<IMessageActivity> dialogStoryFrame)
         {
             var notEqualStatusesMessage = string.Format(
                             CultureInfo.CurrentCulture,

@@ -10,6 +10,7 @@
     using Player;
     using Recorder;
     using Stories.Core;
+    using Stories.Dialogs;
     using Stories.Extensions;
     using StoryModel;
 
@@ -71,7 +72,7 @@
             var wrappedStory = testStory.Concat(wrapperStory);
 
             return wrappedStory.StoryFrames.Select((storyFrame, stepIndex) =>
-                new StoryStep<IMessageActivity>(storyFrame, isDialogResultCheckupStep: storyFrame is DialogStoryFrame)
+                new StoryStep<IMessageActivity>(storyFrame, isDialogResultCheckupStep: storyFrame is DialogStoryFrame<IMessageActivity>)
                 {
                     Status = StoryPlayerStepStatus.NotDone,
                     StepIndex = stepIndex

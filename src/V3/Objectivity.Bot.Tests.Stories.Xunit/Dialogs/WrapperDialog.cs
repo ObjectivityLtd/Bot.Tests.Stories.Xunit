@@ -2,9 +2,9 @@
 {
     using System;
     using System.Threading.Tasks;
-    using Core;
     using Microsoft.Bot.Builder.Dialogs;
     using Microsoft.Bot.Connector;
+    using Stories.Dialogs;
 
     [Serializable]
     internal class WrapperDialog : IDialog<object>
