@@ -1,6 +1,5 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.V4.DemoBot.Dialogs
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -8,8 +7,7 @@
     using Microsoft.Bot.Builder.Dialogs;
     using Microsoft.Bot.Builder.Dialogs.Choices;
     using User;
-
-    [Serializable]
+    
     public class TestChoicePromptDialog : ComponentDialog
     {
         private readonly DemoUserStateAccessors userStateAccessor;
