@@ -22,9 +22,13 @@
             "Error while testing a story: test story produced a step #{0} from {1} with message '{2}' which was not covered by performed story.";
 
         private readonly FinishStepAsserts finishStepAsserts;
+        private readonly WrappedDialogResult dialogResult;
 
-        public StoryAsserts(FinishStepAsserts finishStepAsserts)
+        public StoryAsserts(
+            FinishStepAsserts finishStepAsserts,
+            WrappedDialogResult dialogResult)
         {
+            this.dialogResult = dialogResult;
             this.finishStepAsserts = finishStepAsserts;
         }
 
@@ -32,6 +36,16 @@
             IStory<IMessageActivity> story,
             List<PerformanceStep<IMessageActivity>> performanceSteps)
         {
+            if (this.dialogResult.Exception != null)
+            {
+                var dialogFrame = story.StoryFrames.FirstOrDefault(x => x is DialogStoryFrame) as DialogStoryFrame;
+
+                if (dialogFrame == null || dialogFrame.DialogStatus != DialogStatus.Failed)
+                {
+                    throw this.dialogResult.Exception;
+                }
+            }
+
             var storySteps = story.StoryFrames
                 .Select((storyFrame, stepIndex) => new StoryStep<IMessageActivity>(storyFrame, isDialogResultCheckupStep: storyFrame is DialogStoryFrame)
                 {
