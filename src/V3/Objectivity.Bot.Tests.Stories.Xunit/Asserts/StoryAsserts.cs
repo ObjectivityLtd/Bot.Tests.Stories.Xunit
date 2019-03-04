@@ -5,10 +5,10 @@
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
-    using Core;
     using global::Xunit;
     using Microsoft.Bot.Connector;
     using Player;
+    using Stories.Dialogs;
     using Stories.Extensions;
     using StoryModel;
 
@@ -38,7 +38,7 @@
         {
             if (this.dialogResult.Exception != null)
             {
-                var dialogFrame = story.StoryFrames.FirstOrDefault(x => x is DialogStoryFrame) as DialogStoryFrame;
+                var dialogFrame = story.StoryFrames.FirstOrDefault(x => x is DialogStoryFrame<IMessageActivity>) as DialogStoryFrame<IMessageActivity>;
 
                 if (dialogFrame == null || dialogFrame.DialogStatus != DialogStatus.Failed)
                 {
@@ -47,7 +47,7 @@
             }
 
             var storySteps = story.StoryFrames
-                .Select((storyFrame, stepIndex) => new StoryStep<IMessageActivity>(storyFrame, isDialogResultCheckupStep: storyFrame is DialogStoryFrame)
+                .Select((storyFrame, stepIndex) => new StoryStep<IMessageActivity>(storyFrame, isDialogResultCheckupStep: storyFrame is DialogStoryFrame<IMessageActivity>)
                 {
                     Status = StoryPlayerStepStatus.NotDone,
                     StepIndex = stepIndex

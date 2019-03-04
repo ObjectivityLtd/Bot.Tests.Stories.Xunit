@@ -5,6 +5,7 @@
     using Core;
     using Dialogs;
     using Microsoft.Bot.Builder.Dialogs;
+    using Stories.Dialogs;
     using StoryPerformer;
 
     public class UnitTestStoryPlayerModule : Module

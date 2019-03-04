@@ -1,8 +1,8 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.Extensions
 {
     using System;
-    using Core;
     using Microsoft.Bot.Connector;
+    using Stories.Dialogs;
     using Stories.Recorder;
     using StoryModel;
 
@@ -54,7 +54,7 @@
         {
             var story = storyRecorder.Rewind();
 
-            story.AddStoryFrame(new DialogStoryFrame(resultType, resultPredicate,  exceptionType));
+            story.AddStoryFrame(new DialogStoryFrame<IMessageActivity>(resultType, resultPredicate,  exceptionType));
 
             return story;
         }
