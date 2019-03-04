@@ -62,7 +62,7 @@ public class ChannelConfigurationTests: BotTestBase<DemoBot>
     public async Task ConversationInitiatedWithFacebookChannel_PlayStoryIsCalled_MustShowFacebookWelcomeMessage()
     {
         var story = this.Record
-            .Config.UseChannel(Channels.Facebook)
+            .Configuration.UseChannel(Channels.Facebook)
             .Bot.Says("Welcome to demo bot facebook")
             .Rewind();
 
