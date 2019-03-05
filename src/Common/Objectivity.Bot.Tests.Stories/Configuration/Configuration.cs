@@ -1,10 +1,10 @@
-﻿namespace Objectivity.Bot.Tests.Stories.Config
+﻿namespace Objectivity.Bot.Tests.Stories.Configuration
 {
     using Recorder;
 
-    public class Config<T> : IConfig, IConfigRecorder<T>
+    public class Configuration<T> : IConfiguration, IConfigurationRecorder<T>
     {
-        public Config(StoryRecorderBase<T> storyRecorder)
+        public Configuration(StoryRecorderBase<T> storyRecorder)
         {
             this.StoryRecorder = storyRecorder;
         }

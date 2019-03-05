@@ -1,11 +1,11 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.StoryModel
 {
     using System.Collections.Generic;
-    using Config;
+    using Configuration;
 
     public interface IStory<T>
     {
-        IConfig Config { get; set; }
+        IConfiguration Config { get; set; }
 
         IList<IStoryFrame<T>> StoryFrames { get; }
 

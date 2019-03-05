@@ -1,11 +1,11 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Recorder
 {
-    using Config;
+    using Configuration;
     using StoryModel;
 
     public interface IStoryRecorder<T>
     {
-        Config<T> Config { get; }
+        Configuration<T> Config { get; }
 
         IBotRecorder<T> Bot { get; }
 
