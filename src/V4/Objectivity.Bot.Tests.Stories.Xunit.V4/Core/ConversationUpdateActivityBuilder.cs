@@ -2,19 +2,19 @@
 {
     using System;
     using System.Collections.Generic;
-    using Config;
+    using Configuration;
     using Microsoft.Bot.Schema;
     using Stories.Core;
     using StoryModel;
 
     public class ConversationUpdateActivityBuilder : IActivityBuilder<IMessageActivity>
     {
-        public ConversationUpdateActivityBuilder(IConfig config)
+        public ConversationUpdateActivityBuilder(IConfiguration config)
         {
             this.Config = config;
         }
 
-        private IConfig Config { get; set; }
+        private IConfiguration Config { get; set; }
 
         public IMessageActivity Build(IStoryFrame<IMessageActivity> frame)
         {

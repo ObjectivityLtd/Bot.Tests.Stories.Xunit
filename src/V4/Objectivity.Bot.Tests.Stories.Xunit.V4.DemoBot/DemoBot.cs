@@ -100,7 +100,7 @@
 
         private string GetDemoBotWelcomeMessageForChannel(string channelId)
         {
-            if (channelId.ToLower() != "test")
+            if (!String.Equals(channelId, "test", StringComparison.OrdinalIgnoreCase))
             {
                 return $"{DemoBotWelcomeMessage} {channelId}";
             }

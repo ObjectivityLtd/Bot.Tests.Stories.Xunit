@@ -1,7 +1,7 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.V4.Core
 {
     using System;
-    using Config;
+    using Configuration;
     using Exceptions;
     using Microsoft.Bot.Schema;
     using Stories.Core;
@@ -10,11 +10,11 @@
     public class MessageActivityBuilder : IActivityBuilder<IMessageActivity>
     {
         private readonly IConversationService conversationService;
-        private readonly IConfig config;
+        private readonly IConfiguration config;
 
         public MessageActivityBuilder(
             IConversationService conversationService,
-            IConfig config)
+            IConfiguration config)
         {
             this.conversationService = conversationService;
             this.config = config;

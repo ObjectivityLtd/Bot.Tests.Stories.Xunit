@@ -4,7 +4,7 @@
     using global::Xunit;
     using Microsoft.Bot.Connector;
 
-    public class ChannelConfigTests : DemoBotTestBase
+    public class ChannelConfigurationTests : DemoBotTestBase
     {
         [Fact]
         public async Task ConversationInitiatedWithNoChannel_PlayStoryIsCalled_MustShowDefaultWelcomeMessage()

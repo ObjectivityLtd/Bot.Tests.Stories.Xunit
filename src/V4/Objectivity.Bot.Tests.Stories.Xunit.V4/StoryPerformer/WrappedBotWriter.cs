@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Config;
+    using Configuration;
     using Core;
     using Exceptions;
     using Microsoft.Bot.Builder;
@@ -17,9 +17,9 @@
     {
         private readonly IServiceProvider scopeContext;
         private readonly IConversationService conversationService;
-        private readonly IConfig config;
+        private readonly IConfiguration config;
 
-        public WrappedBotWriter(IServiceProvider scopeContext, IConversationService conversationService, IConfig config)
+        public WrappedBotWriter(IServiceProvider scopeContext, IConversationService conversationService, IConfiguration config)
         {
             this.scopeContext = scopeContext;
             this.conversationService = conversationService;

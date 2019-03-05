@@ -1,6 +1,6 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Recorder
 {
-    using Config;
+    using Configuration;
     using StoryModel;
 
     public abstract class StoryRecorderBase<T> : IStoryRecorder<T>
@@ -9,7 +9,7 @@
         {
             this.Bot = new BotRecorder<T>(this);
             this.User = new UserRecorder<T>(this);
-            this.Config = new Config<T>(this);
+            this.Config = new Configuration<T>(this);
             this.Story = new Story<T>();
         }
 
@@ -17,7 +17,7 @@
 
         public IUserRecorder<T> User { get; }
 
-        public Config<T> Config { get; }
+        public Configuration<T> Config { get; }
 
         public IStory<T> Story { get; }
 
