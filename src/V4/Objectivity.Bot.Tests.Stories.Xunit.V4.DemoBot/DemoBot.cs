@@ -8,6 +8,7 @@
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Builder.Dialogs;
     using Microsoft.Bot.Schema;
+    using Services;
     using User;
 
     public class DemoBot : IBot
@@ -19,7 +20,8 @@
 
         public DemoBot(
             DemoUserStateAccessors demoUserStateAccessor,
-            DemoDialogStateAccessors demoDialogStateAccessor)
+            DemoDialogStateAccessors demoDialogStateAccessor,
+            IRoomService roomService)
         {
             this.demoUserStateAccessor = demoUserStateAccessor ?? throw new ArgumentNullException(nameof(demoUserStateAccessor));
             this.demoDialogStateAccessor = demoDialogStateAccessor ??
@@ -30,6 +32,7 @@
             this.dialogs.Add(new TestCardsDialog());
             this.dialogs.Add(new TestGreetingDialog(this.demoUserStateAccessor));
             this.dialogs.Add(new TestSumDialog(this.demoUserStateAccessor));
+            this.dialogs.Add(new TestRoomDialog(roomService));
         }
 
         public async Task OnTurnAsync(
@@ -58,6 +61,9 @@
                         break;
                     case "sum test":
                         await this.HandleDialog(nameof(TestSumDialog), turnContext, cancellationToken);
+                        break;
+                    case "room test":
+                        await this.HandleDialog(nameof(TestRoomDialog), turnContext, cancellationToken);
                         break;
                     default:
                         var dc = await this.dialogs.CreateContextAsync(turnContext, cancellationToken);
