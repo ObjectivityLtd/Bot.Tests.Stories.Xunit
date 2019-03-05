@@ -56,10 +56,10 @@ public class WelcomeMessageTests: BotTestBase<DemoBot>
 You can use specialized method for setting channel. 
 
 ```cs
-public class WelcomeMessageTests: BotTestBase<DemoBot>
+public class ChannelConfigurationTests: BotTestBase<DemoBot>
 {
     [Fact]
-    public async Task UseFacebookChannel()
+    public async Task ConversationInitiatedWithFacebookChannel_PlayStoryIsCalled_MustShowFacebookWelcomeMessage()
     {
         var story = this.Record
             .Config.UseChannel(Channels.Facebook)
