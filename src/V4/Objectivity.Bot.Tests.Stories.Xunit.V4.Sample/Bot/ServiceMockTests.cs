@@ -16,7 +16,7 @@
             roomServiceMock.Setup(x => x.GetRoomFloorByNumber(It.IsAny<decimal>())).Returns(expectedResult);
 
             var story = this.Record
-                .Config.RegisterService(services => services.AddScoped(sp => roomServiceMock.Object))
+                .Configuration.RegisterService(services => services.AddScoped(sp => roomServiceMock.Object))
                 .Bot.Says("Welcome to demo bot")
                 .User.Says("room test")
                 .Bot.Says("What's the room number?")
