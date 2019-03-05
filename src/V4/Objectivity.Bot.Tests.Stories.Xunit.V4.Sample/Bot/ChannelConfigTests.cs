@@ -7,7 +7,7 @@
     public class ChannelConfigTests : DemoBotTestBase
     {
         [Fact]
-        public async Task UseDefaultChannel()
+        public async Task ConversationInitiatedWithNoChannel_PlayStoryIsCalled_MustShowDefaultWelcomeMessage()
         {
             var story = this.Record
                 .Bot.Says("Welcome to demo bot")
@@ -17,7 +17,7 @@
         }
 
         [Fact]
-        public async Task UseFacebookChannel()
+        public async Task ConversationInitiatedWithFacebookChannel_PlayStoryIsCalled_MustShowFacebookWelcomeMessage()
         {
             var story = this.Record
                 .Config.UseChannel(Channels.Facebook)
