@@ -71,6 +71,34 @@ public class ChannelConfigurationTests: BotTestBase<DemoBot>
 }
 ```
 
+### Testing with mocks
+
+You can use specialized method for setting channel. 
+
+```cs
+public class ServiceMocksTests: DemoBotTestBase
+{
+    [Fact]
+    public async Task ConversationInitiatedWithServiceMock_PlayStoryIsCalled_MustReturnMockedResults()
+    {
+        var expectedResult = 0;
+        var roomServiceMock = new Mock<IRoomService>();
+        roomServiceMock.Setup(x => x.GetRoomFloorByNumber(It.IsAny<decimal>())).Returns(expectedResult);
+
+        var story = this.Record
+            .Configuration.RegisterService(services => services.AddScoped(sp => roomServiceMock.Object))
+            .Bot.Says("Welcome to demo bot")
+            .User.Says("room test")
+            .Bot.Says("What's the room number?")
+            .User.Says("1.55")
+            .Bot.Says($"Room floor is: {expectedResult}")
+            .Rewind();
+
+        await this.Play(story);
+    }
+}
+```
+
 ### Bot with prompts
 
 You can use specialized method for dialogs with prompts:
