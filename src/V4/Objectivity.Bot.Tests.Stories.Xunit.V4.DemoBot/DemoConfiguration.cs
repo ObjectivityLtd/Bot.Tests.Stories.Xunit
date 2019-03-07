@@ -41,12 +41,7 @@
                 };
             });
 
-            if (services.All(x => x.ServiceType != typeof(IRoomService)))
-            {
-                services.AddScoped<IRoomService, RoomService>();
-            }
-
-
+            services.AddScoped<IRoomService, RoomService>();
             services.AddScoped(sp => new DemoUserStateAccessors(userState));
             services.AddScoped(sp => new DemoDialogStateAccessors(sp.GetService<ConversationState>()));
         }

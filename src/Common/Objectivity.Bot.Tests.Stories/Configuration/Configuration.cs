@@ -1,6 +1,7 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Configuration
 {
     using System;
+    using System.Collections.Generic;
     using Microsoft.Extensions.DependencyInjection;
     using Recorder;
 
@@ -15,12 +16,13 @@
 
         public ServiceCollection Services { get; } = new ServiceCollection();
 
+        public List<Action<ServiceCollection>> Registrations { get; } = new List<Action<ServiceCollection>>();
+
         protected StoryRecorderBase<T> StoryRecorder { get; }
 
         public IStoryRecorder<T> RegisterService(Action<ServiceCollection> registration)
         {
-            registration?.Invoke(this.Services);
-
+            this.Registrations.Add(registration);
             return this.StoryRecorder;
         }
 
