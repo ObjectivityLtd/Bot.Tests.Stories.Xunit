@@ -46,7 +46,7 @@
         /// <returns>Awaitable task.</returns>
         protected async Task Play(IStory<IMessageActivity> story)
         {
-            var services = story.Configuration.Services;
+            var services = new ServiceCollection();
 
             this.RegisterDummyBot(services);
 
@@ -55,6 +55,7 @@
 
             this.testPlayer.ConfigureServices(services);
             this.ConfigureServices(services);
+            story.Configuration.Registrations.ForEach(action => action?.Invoke(services));
 
             await this.testPlayer.Play(story, this.From, services);
         }
