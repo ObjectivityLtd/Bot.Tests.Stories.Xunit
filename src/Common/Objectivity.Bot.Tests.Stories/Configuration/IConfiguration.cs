@@ -8,8 +8,6 @@
     {
         string ChannelId { get; set; }
 
-        ServiceCollection Services { get; }
-
         List<Action<ServiceCollection>> Registrations { get; }
     }
 }
