@@ -5,26 +5,26 @@
     <!-- Workaround for packaging referenced projects' assemblies into a single nuget package. Issue: https://github.com/NuGet/Home/issues/3891 -->
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
     <CodeAnalysisRuleSet>..\..\Analysers.ruleset</CodeAnalysisRuleSet>
-    <IsPackable>true</IsPackable>			   
+    <IsPackable>true</IsPackable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <Version>0.0.0.0</Version>		 
+    <Version>0.0.0.0</Version>
     <PackageVersion>0.0.0.0</PackageVersion>
     <AssemblyVersion>0.0.0.0</AssemblyVersion>
     <FileVersion>0.0.0.0</FileVersion>
-    <InformationalVersion>0.0.0.0</InformationalVersion>   
+    <InformationalVersion>0.0.0.0</InformationalVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <IncludeSymbols>True</IncludeSymbols>
-    <IncludeSource>True</IncludeSource>			  
+    <IncludeSource>True</IncludeSource>
     <Authors>Objectivity Ltd</Authors>
     <Company>Objectivity Ltd</Company>
     <Description>Tests library for Bot Framework V4 XUnit tests</Description>
-    <Copyright></Copyright>				 
+    <Copyright></Copyright>
     <PackageTags>C#, bot.framework, xunit</PackageTags>
-    <PackageProjectUrl>https://github.com/ObjectivityLtd/Bot.Tests.Stories.Xunit</PackageProjectUrl> 
+    <PackageProjectUrl>https://github.com/ObjectivityLtd/Bot.Tests.Stories.Xunit</PackageProjectUrl>
     <PackageIconUrl>https://github.com/ObjectivityLtd.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/ObjectivityLtd/Bot.Tests.Stories.Xunit</RepositoryUrl>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
-	<IsTestProject>false</IsTestProject>
+    <IsTestProject>false</IsTestProject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -47,7 +47,7 @@
 
   <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
     <ItemGroup>
-      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')-&gt;WithMetadataValue('PrivateAssets', 'All'))" />
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')->WithMetadataValue('PrivateAssets', 'All'))" />
     </ItemGroup>
   </Target>
 </Project>

@@ -14,8 +14,6 @@
 
         public string ChannelId { get; set; } = "Test";
 
-        public ServiceCollection Services { get; } = new ServiceCollection();
-
         public List<Action<ServiceCollection>> Registrations { get; } = new List<Action<ServiceCollection>>();
 
         protected StoryRecorderBase<T> StoryRecorder { get; }
