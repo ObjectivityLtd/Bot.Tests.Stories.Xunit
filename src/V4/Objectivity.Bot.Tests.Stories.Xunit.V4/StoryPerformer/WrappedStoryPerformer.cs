@@ -66,7 +66,7 @@
                 new StoryStep<IMessageActivity>(storyFrame, isDialogResultCheckupStep: storyFrame is DialogStoryFrame<IMessageActivity>)
                 {
                     Status = StoryPlayerStepStatus.NotDone,
-                    StepIndex = stepIndex,
+                    StepIndex = stepIndex
                 })
                 .ToList();
         }

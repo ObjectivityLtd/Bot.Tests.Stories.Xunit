@@ -24,7 +24,7 @@
         {
             var text = this.GetUserStepMessage(frame);
 
-            return new Activity()
+            return new Activity
             {
                 Id = Guid.NewGuid().ToString(),
                 Type = ActivityTypes.Message,
@@ -35,7 +35,7 @@
                 ServiceUrl = "InvalidServiceUrl",
                 ChannelId = this.configuration.ChannelId,
                 Attachments = Array.Empty<Attachment>(),
-                Entities = Array.Empty<Entity>(),
+                Entities = Array.Empty<Entity>()
             };
         }
 

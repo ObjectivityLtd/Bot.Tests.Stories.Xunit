@@ -18,7 +18,7 @@
 
         public IMessageActivity Build(IStoryFrame<IMessageActivity> frame)
         {
-            return new Activity()
+            return new Activity
             {
                 Id = Guid.NewGuid().ToString(),
                 Type = ActivityTypes.ConversationUpdate,
@@ -31,8 +31,8 @@
                 Entities = Array.Empty<Entity>(),
                 MembersAdded = new List<ChannelAccount>
                 {
-                    new ChannelAccount(ChannelId.User),
-                },
+                    new ChannelAccount(ChannelId.User)
+                }
             };
         }
     }

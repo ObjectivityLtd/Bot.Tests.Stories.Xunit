@@ -106,7 +106,7 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
 
         public IOAuthClient MakeOAuthClient()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         protected IAddress AddressFrom(string channelId, string userId, string conversationId)

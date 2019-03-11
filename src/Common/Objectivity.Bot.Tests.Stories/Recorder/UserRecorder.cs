@@ -31,7 +31,7 @@
         public IStoryRecorder<T> Says(string text)
         {
             this.storyRecorder.Story.AddStoryFrame(
-                new UserStoryFrame<T> { Actor = Actor.User, ComparisonType = ComparisonType.TextExact, Text = text, });
+                new UserStoryFrame<T> { Actor = Actor.User, ComparisonType = ComparisonType.TextExact, Text = text });
             return this.storyRecorder;
         }
     }

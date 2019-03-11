@@ -7,6 +7,6 @@
         NotDone,
 
         [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Unused members are planned to be used outside the framework")]
-        Done,
+        Done
     }
 }

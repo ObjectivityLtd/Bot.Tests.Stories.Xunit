@@ -4,6 +4,6 @@
     {
         Bot,
 
-        User,
+        User
     }
 }

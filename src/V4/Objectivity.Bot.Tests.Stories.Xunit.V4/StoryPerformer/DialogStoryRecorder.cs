@@ -17,7 +17,7 @@
             recorder.Story.AddStoryFrame(new UserStoryFrame<IMessageActivity>
             {
                 Text = null,
-                ComparisonType = ComparisonType.None,
+                ComparisonType = ComparisonType.None
             });
 
             return recorder;

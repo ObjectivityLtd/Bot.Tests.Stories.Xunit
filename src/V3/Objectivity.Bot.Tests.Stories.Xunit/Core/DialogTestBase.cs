@@ -35,14 +35,7 @@
 namespace Objectivity.Bot.Tests.Stories.Xunit.Core
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Autofac;
-    using global::Xunit;
-    using Microsoft.Bot.Builder.Dialogs.Internals;
     using Microsoft.Bot.Connector;
     using Stories.Core;
 
@@ -61,102 +54,8 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
                 ServiceUrl = "InvalidServiceUrl",
                 ChannelId = "Test",
                 Attachments = Array.Empty<Attachment>(),
-                Entities = Array.Empty<Entity>(),
+                Entities = Array.Empty<Entity>()
             };
-        }
-
-        public static async Task PostActivityAsync(ILifetimeScope container, IMessageActivity toBot, CancellationToken token)
-        {
-            using (var scope = DialogModule.BeginLifetimeScope(container, toBot))
-            {
-                var task = scope.Resolve<IPostToBot>();
-                await task.PostAsync(toBot, token);
-            }
-        }
-
-        public static async Task AssertScriptAsync(ILifetimeScope container, params string[] pairs)
-        {
-            Assert.NotEmpty(pairs);
-
-            var toBot = MakeTestMessage();
-
-            for (var index = 0; index < pairs.Length; ++index)
-            {
-                var toBotText = pairs[index];
-                toBot.Text = toBotText;
-
-                await PostActivityAsync(container, toBot, CancellationToken.None);
-
-                var queue = container.Resolve<Queue<IMessageActivity>>();
-
-                // if user has more to say, bot should have said something
-                if (index + 1 < pairs.Length)
-                {
-                    Assert.NotEmpty(queue);
-                }
-
-                while (queue.Count > 0)
-                {
-                    ++index;
-
-                    var toUser = queue.Dequeue();
-                    string actual;
-                    switch (toUser.Type)
-                    {
-                        case ActivityTypes.Message:
-                            actual = toUser.Text;
-                            break;
-                        case ActivityTypes.EndOfConversation:
-                            actual = toUser.AsEndOfConversationActivity().Code;
-                            break;
-                        default:
-                            throw new NotImplementedException();
-                    }
-
-                    var expected = pairs[index];
-
-                    Assert.Equal(expected, actual);
-                }
-            }
-        }
-
-        public static void AssertMentions(string expectedText, IEnumerable<IMessageActivity> actualToUser)
-        {
-            var actualToUserList = actualToUser.ToList();
-
-            Assert.NotEqual(1, actualToUserList.Count);
-
-            var index = actualToUserList.Single().Text.IndexOf(expectedText, StringComparison.OrdinalIgnoreCase);
-
-            Assert.True(index >= 0);
-        }
-
-        public static void AssertMentions(string expectedText, ILifetimeScope scope)
-        {
-            var queue = scope.Resolve<Queue<IMessageActivity>>();
-            AssertMentions(expectedText, queue);
-        }
-
-        public static void AssertNoMessages(ILifetimeScope scope)
-        {
-            var queue = scope.Resolve<Queue<IMessageActivity>>();
-            Assert.Empty(queue);
-        }
-
-        public static string NewId()
-        {
-            return Guid.NewGuid().ToString();
-        }
-
-#pragma warning disable 1998
-        public static async Task AssertOutgoingActivity(ILifetimeScope container, Action<IMessageActivity> asserts)
-#pragma warning restore 1998
-        {
-            var queue = container.Resolve<Queue<IMessageActivity>>();
-
-            var toUser = queue.Dequeue();
-
-            asserts(toUser);
         }
     }
 }

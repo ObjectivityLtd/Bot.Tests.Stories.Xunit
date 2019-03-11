@@ -35,9 +35,7 @@
 namespace Objectivity.Bot.Tests.Stories.Xunit.Core
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Globalization;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
@@ -64,49 +62,6 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
                 .Select(attribute => new IntentRecommendation(attribute.IntentName, score))
                 .ToArray();
             return intents;
-        }
-
-        public static EntityRecommendation EntityFor(string type, string entity, IDictionary<string, object> resolution = null)
-        {
-            return new EntityRecommendation(type) { Entity = entity, Resolution = resolution };
-        }
-
-        public static EntityRecommendation EntityForDate(string type, DateTime date)
-        {
-            return EntityFor(
-                type,
-                date.ToString("d", DateTimeFormatInfo.InvariantInfo),
-                new Dictionary<string, object>
-                {
-                    { "resolution_type", "builtin.datetime.date" },
-                    { "date", date.ToString("yyyy-MM-dd", DateTimeFormatInfo.InvariantInfo) }
-                });
-        }
-
-        public static EntityRecommendation EntityForTime(string type, DateTime time)
-        {
-            return EntityFor(
-                type,
-                time.ToString("t", DateTimeFormatInfo.InvariantInfo),
-                new Dictionary<string, object>
-                {
-                    { "resolution_type", "builtin.datetime.time" },
-                    { "time", time.ToString("THH:mm:ss", DateTimeFormatInfo.InvariantInfo) }
-                });
-        }
-
-        public static void SetupLuis<TDialog>(
-            Mock<ILuisService> luis,
-            Expression<Func<TDialog, Task>> expression,
-            double? score,
-            params EntityRecommendation[] entities)
-        {
-            luis?.Setup(l => l.QueryAsync(It.IsAny<Uri>(), It.IsAny<CancellationToken>()))
-                .ReturnsAsync(new LuisResult
-                {
-                    Intents = IntentsFor(expression, score),
-                    Entities = entities
-                });
         }
 
         public static void SetupLuis<TDialog>(

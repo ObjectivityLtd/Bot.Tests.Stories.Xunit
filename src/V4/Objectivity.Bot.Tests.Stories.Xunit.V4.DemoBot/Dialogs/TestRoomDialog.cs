@@ -44,7 +44,7 @@
 
         private async Task<DialogTurnResult> AcknowledgeRoomNumberAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
         {
-            var floor = this.roomService.GetRoomFloorByNumber(Convert.ToDecimal(stepContext.Result.ToString(), new NumberFormatInfo() { NumberDecimalSeparator = "." }));
+            var floor = this.roomService.GetRoomFloorByNumber(Convert.ToDecimal(stepContext.Result.ToString(), new NumberFormatInfo { NumberDecimalSeparator = "." }));
 
             await stepContext.Context.SendActivityAsync($"Room floor is: {floor}", cancellationToken: cancellationToken);
 

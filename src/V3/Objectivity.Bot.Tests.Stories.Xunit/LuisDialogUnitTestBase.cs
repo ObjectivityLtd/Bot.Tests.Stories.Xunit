@@ -36,10 +36,6 @@
             await player.Play(story, cancellationToken);
         }
 
-        protected virtual void RegisterAdditionalTypes(ContainerBuilder builder)
-        {
-        }
-
         protected void RegisterUtterance(string utterance, Expression<Func<TDialog, Task>> intentAction)
         {
             this.intentUtterances.Add(new IntentUtterance<TDialog>(utterance, intentAction));
@@ -69,8 +65,6 @@
                         .SingleInstance();
 
                     UnitTestBaseRegistrator.RegisterTestComponents<TDialog>(containerBuilder, this.From);
-
-                    this.RegisterAdditionalTypes(containerBuilder);
                 }
             };
 
