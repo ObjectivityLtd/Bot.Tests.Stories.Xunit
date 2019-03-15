@@ -45,7 +45,7 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
     /// The top level composition root for the SDK.
     /// </summary>
     [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Unused methods are planned to be used outside the framework")]
-    public static class TestConversation
+    internal static class TestConversation
     {
         public static async Task SendAsync(ILifetimeScope scope, IActivity toBot, CancellationToken token = default(CancellationToken))
         {
