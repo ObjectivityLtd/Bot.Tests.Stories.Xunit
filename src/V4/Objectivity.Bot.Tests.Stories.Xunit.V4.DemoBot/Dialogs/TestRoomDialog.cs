@@ -23,7 +23,7 @@
             var steps = new WaterfallStep[]
             {
                 this.PromptForRoomNumberAsync,
-                this.AcknowledgeRoomNumberAsync
+                this.AcknowledgeRoomNumberAsync,
             };
 
             this.AddDialog(new WaterfallDialog(MainDialogName, steps));
@@ -37,7 +37,7 @@
                 new PromptOptions
                 {
                     Prompt = MessageFactory.Text("What's the room number?"),
-                    RetryPrompt = MessageFactory.Text("A number must consist of three digits separated by a dot (ex. 1.23). Please try again.")
+                    RetryPrompt = MessageFactory.Text("A number must consist of three digits separated by a dot (ex. 1.23). Please try again."),
                 },
                 cancellationToken);
         }

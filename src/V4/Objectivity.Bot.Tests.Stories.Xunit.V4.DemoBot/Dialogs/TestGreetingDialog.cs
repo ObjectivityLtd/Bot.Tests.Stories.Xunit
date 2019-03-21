@@ -5,7 +5,7 @@
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Builder.Dialogs;
     using User;
-    
+
     public class TestGreetingDialog : ComponentDialog
     {
         private readonly DemoUserStateAccessors userStateAccessor;
@@ -22,7 +22,7 @@
             WaterfallStep[] steps = {
                 this.PromptForNameAsync,
                 this.PromptForAgeAsync,
-                this.WelcomeUserAsync
+                this.WelcomeUserAsync,
             };
 
             this.AddDialog(new WaterfallDialog(GreetingDialog, steps));
@@ -36,7 +36,7 @@
                 NamePrompt,
                 new PromptOptions
                 {
-                    Prompt = MessageFactory.Text("What's your name?")
+                    Prompt = MessageFactory.Text("What's your name?"),
                 },
                 cancellationToken);
         }
@@ -51,7 +51,7 @@
                 cancellationToken: cancellationToken);
 
             userState.UserName = name;
-            
+
             await this.userStateAccessor.UserState.SaveChangesAsync(stepContext.Context, cancellationToken: cancellationToken);
 
             return await stepContext.PromptAsync(
@@ -59,7 +59,7 @@
                 new PromptOptions
                 {
                     Prompt = MessageFactory.Text("How old are you?"),
-                    RetryPrompt = MessageFactory.Text("Your answer must be a number. Please try again.")
+                    RetryPrompt = MessageFactory.Text("Your answer must be a number. Please try again."),
                 },
                 cancellationToken);
         }

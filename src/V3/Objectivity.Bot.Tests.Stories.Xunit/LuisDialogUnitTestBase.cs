@@ -71,7 +71,7 @@
                     UnitTestBaseRegistrator.RegisterTestComponents<TDialog>(containerBuilder, this.From);
 
                     this.RegisterAdditionalTypes(containerBuilder);
-                }
+                },
             };
 
             return builder;

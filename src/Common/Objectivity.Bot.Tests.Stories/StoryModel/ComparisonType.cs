@@ -16,6 +16,6 @@
 
         TextMatchRegexWithSuggestions,
 
-        Predicate
+        Predicate,
     }
 }

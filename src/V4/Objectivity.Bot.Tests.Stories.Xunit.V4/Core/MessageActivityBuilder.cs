@@ -35,7 +35,7 @@
                 ServiceUrl = "InvalidServiceUrl",
                 ChannelId = this.configuration.ChannelId,
                 Attachments = Array.Empty<Attachment>(),
-                Entities = Array.Empty<Entity>()
+                Entities = Array.Empty<Entity>(),
             };
         }
 

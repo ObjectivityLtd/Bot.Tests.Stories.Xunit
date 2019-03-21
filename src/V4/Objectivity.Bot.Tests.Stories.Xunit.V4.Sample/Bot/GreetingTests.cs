@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using global::Xunit;
 
-    public class GreetingTests: DemoBotTestBase
+    public class GreetingTests : DemoBotTestBase
     {
         [Theory]
         [InlineData(17, "I'm sorry John but you must be at least 18 years old.")]
@@ -42,6 +42,5 @@
 
             await this.Play(story);
         }
-
     }
 }

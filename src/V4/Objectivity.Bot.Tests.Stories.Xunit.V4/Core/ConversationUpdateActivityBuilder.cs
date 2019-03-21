@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using Configuration;
     using Microsoft.Bot.Schema;
+    using Stories.Configuration;
     using Stories.Core;
     using StoryModel;
 
@@ -31,8 +31,8 @@
                 Entities = Array.Empty<Entity>(),
                 MembersAdded = new List<ChannelAccount>
                 {
-                    new ChannelAccount(ChannelId.User)
-                }
+                    new ChannelAccount(ChannelId.User),
+                },
             };
         }
     }

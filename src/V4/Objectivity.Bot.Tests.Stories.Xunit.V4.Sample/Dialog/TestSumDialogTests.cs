@@ -9,7 +9,7 @@
     using Microsoft.Bot.Builder;
     using Microsoft.Extensions.DependencyInjection;
 
-    public class TestSumDialogTests: DialogTestBase<TestSumDialog>
+    public class TestSumDialogTests : DialogTestBase<TestSumDialog>
     {
         [Fact]
         public async Task CorrectNumbersPassed_PlayStoryIsCalled_MustReturnSum()

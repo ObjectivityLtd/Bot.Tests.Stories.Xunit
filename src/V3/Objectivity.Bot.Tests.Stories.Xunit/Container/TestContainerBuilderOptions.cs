@@ -12,6 +12,6 @@
         ScopedQueue = 2,
         MockConnectorFactory = 4,
         ResolveDialogFromContainer = 8,
-        LastWriteWinsCachingBotDataStore = 16
+        LastWriteWinsCachingBotDataStore = 16,
     }
 }

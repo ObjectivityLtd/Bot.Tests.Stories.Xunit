@@ -13,6 +13,6 @@
 
         Fourth = 3,
 
-        Fifth = 4
+        Fifth = 4,
     }
 }

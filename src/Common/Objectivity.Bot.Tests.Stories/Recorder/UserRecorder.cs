@@ -18,7 +18,7 @@
                 {
                     Actor = Actor.User,
                     ComparisonType = ComparisonType.Option,
-                    OptionIndex = optionIndex
+                    OptionIndex = optionIndex,
                 });
             return this.storyRecorder;
         }

@@ -54,7 +54,7 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
                 ServiceUrl = "InvalidServiceUrl",
                 ChannelId = "Test",
                 Attachments = Array.Empty<Attachment>(),
-                Entities = Array.Empty<Entity>()
+                Entities = Array.Empty<Entity>(),
             };
         }
     }

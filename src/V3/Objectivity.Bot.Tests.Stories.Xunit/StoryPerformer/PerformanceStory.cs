@@ -16,7 +16,7 @@
 
             var performanceStep = new PerformanceStep(message)
             {
-                Actor = actor
+                Actor = actor,
             };
 
             return performanceStep;
