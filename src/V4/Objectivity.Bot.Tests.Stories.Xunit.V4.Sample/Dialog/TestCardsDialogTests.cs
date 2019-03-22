@@ -10,7 +10,7 @@
         public async Task SingleFruitStory_PlayStoryIsCalled_DialogFlowIsCorrect()
         {
             var story = this.Record
-                .Bot.ListsOptions("Which fruit you take?", "Choose one of our fruits", new [] { "Banana", "Apple", "Orange" })
+                .Bot.ListsOptions("Which fruit you take?", "Choose one of our fruits", new[] { "Banana", "Apple", "Orange" })
                 .User.Says("Apple")
                 .Bot.Says("Your choice: Apple")
                 .Rewind();

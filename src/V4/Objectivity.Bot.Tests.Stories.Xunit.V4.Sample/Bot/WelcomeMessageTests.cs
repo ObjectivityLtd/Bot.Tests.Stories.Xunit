@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using global::Xunit;
 
-    public class WelcomeMessageTests: DemoBotTestBase
+    public class WelcomeMessageTests : DemoBotTestBase
     {
         [Fact]
         public async Task ConversationInitiated_PlayStoryIsCalled_MustShowWelcomeMessage()

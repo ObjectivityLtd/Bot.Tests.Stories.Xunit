@@ -56,7 +56,7 @@
         {
             var story = storyRecorder.Rewind();
 
-            story.AddStoryFrame(new DialogStoryFrame<IMessageActivity>(resultType, resultPredicate,  exceptionType));
+            story.AddStoryFrame(new DialogStoryFrame<IMessageActivity>(resultType, resultPredicate, exceptionType));
 
             return story;
         }

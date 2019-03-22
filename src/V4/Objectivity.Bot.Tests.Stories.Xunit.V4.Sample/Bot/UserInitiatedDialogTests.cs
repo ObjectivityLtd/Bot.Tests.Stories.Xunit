@@ -17,7 +17,7 @@
 
             await this.Play(story);
         }
-        
+
         [Fact]
         public async Task StoryWithWrongInitialActor_PlayStoryIsCalled_EqualExceptionThrown()
         {

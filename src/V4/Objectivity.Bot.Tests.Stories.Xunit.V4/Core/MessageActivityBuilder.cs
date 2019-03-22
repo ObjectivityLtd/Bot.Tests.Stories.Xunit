@@ -24,7 +24,7 @@
         {
             var text = this.GetUserStepMessage(frame);
 
-            return new Activity()
+            return new Activity
             {
                 Id = Guid.NewGuid().ToString(),
                 Type = ActivityTypes.Message,

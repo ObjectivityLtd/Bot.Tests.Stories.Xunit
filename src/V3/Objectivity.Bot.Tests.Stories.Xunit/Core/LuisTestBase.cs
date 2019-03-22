@@ -79,7 +79,7 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
                 new Dictionary<string, object>
                 {
                     { "resolution_type", "builtin.datetime.date" },
-                    { "date", date.ToString("yyyy-MM-dd", DateTimeFormatInfo.InvariantInfo) }
+                    { "date", date.ToString("yyyy-MM-dd", DateTimeFormatInfo.InvariantInfo) },
                 });
         }
 
@@ -91,7 +91,7 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
                 new Dictionary<string, object>
                 {
                     { "resolution_type", "builtin.datetime.time" },
-                    { "time", time.ToString("THH:mm:ss", DateTimeFormatInfo.InvariantInfo) }
+                    { "time", time.ToString("THH:mm:ss", DateTimeFormatInfo.InvariantInfo) },
                 });
         }
 
@@ -105,7 +105,7 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
                 .ReturnsAsync(new LuisResult
                 {
                     Intents = IntentsFor(expression, score),
-                    Entities = entities
+                    Entities = entities,
                 });
         }
 
@@ -132,7 +132,7 @@ namespace Objectivity.Bot.Tests.Stories.Xunit.Core
                     .Returns<Uri, CancellationToken>((_, token) => Task.FromResult(new LuisResult
                     {
                         Intents = IntentsFor(expression, score),
-                        Entities = entities
+                        Entities = entities,
                     }));
             }
         }

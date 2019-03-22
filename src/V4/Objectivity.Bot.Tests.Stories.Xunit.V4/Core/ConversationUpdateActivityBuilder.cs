@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using Configuration;
     using Microsoft.Bot.Schema;
+    using Stories.Configuration;
     using Stories.Core;
     using StoryModel;
 
@@ -18,7 +18,7 @@
 
         public IMessageActivity Build(IStoryFrame<IMessageActivity> frame)
         {
-            return new Activity()
+            return new Activity
             {
                 Id = Guid.NewGuid().ToString(),
                 Type = ActivityTypes.ConversationUpdate,

@@ -7,7 +7,7 @@
     using Microsoft.Bot.Builder.Dialogs;
     using Microsoft.Bot.Builder.Dialogs.Choices;
     using User;
-    
+
     public class TestChoicePromptDialog : ComponentDialog
     {
         private readonly DemoUserStateAccessors userStateAccessor;
@@ -15,8 +15,8 @@
         private const string ColorPrompt = nameof(ColorPrompt);
         private const string FavoriteColorDialog = nameof(FavoriteColorDialog);
         private const string FruitPrompt = nameof(FruitPrompt);
-        
-        public TestChoicePromptDialog(DemoUserStateAccessors userStateAccessor) 
+
+        public TestChoicePromptDialog(DemoUserStateAccessors userStateAccessor)
             : base(nameof(TestChoicePromptDialog))
         {
             this.userStateAccessor = userStateAccessor;
@@ -24,7 +24,7 @@
             WaterfallStep[] steps = {
                 this.PromptForFavoriteColorAsync,
                 this.PromptForFavoriteFruitAsync,
-                this.AcknowledgeFavoriteColorAsync
+                this.AcknowledgeFavoriteColorAsync,
             };
 
             this.AddDialog(new WaterfallDialog(FavoriteColorDialog, steps));
@@ -40,7 +40,7 @@
                 {
                     Prompt = MessageFactory.Text("Please choose your favorite color."),
                     RetryPrompt = MessageFactory.Text("Sorry, please choose a color from the list."),
-                    Choices = ChoiceFactory.ToChoices(new List<string> { "Red", "Green", "Blue" })
+                    Choices = ChoiceFactory.ToChoices(new List<string> { "Red", "Green", "Blue" }),
                 },
                 cancellationToken);
         }
@@ -57,14 +57,14 @@
             userState.FavoriteColor = choice?.Value;
 
             await this.userStateAccessor.UserState.SaveChangesAsync(stepContext.Context, cancellationToken: cancellationToken);
-            
+
             return await stepContext.PromptAsync(
                 FruitPrompt,
                 new PromptOptions
                 {
                     Prompt = MessageFactory.Text("Please choose your favorite fruit."),
                     RetryPrompt = MessageFactory.Text("Sorry, please choose a fruit from the list."),
-                    Choices = ChoiceFactory.ToChoices(new List<string> { "Apple", "Banana", "Orange" })
+                    Choices = ChoiceFactory.ToChoices(new List<string> { "Apple", "Banana", "Orange" }),
                 },
                 cancellationToken);
         }

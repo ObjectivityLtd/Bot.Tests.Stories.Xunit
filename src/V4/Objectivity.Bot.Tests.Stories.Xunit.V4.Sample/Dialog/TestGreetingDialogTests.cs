@@ -9,7 +9,7 @@
     using Microsoft.Bot.Builder;
     using Microsoft.Extensions.DependencyInjection;
 
-    public class TestGreetingDialogTests: DialogTestBase<TestGreetingDialog>
+    public class TestGreetingDialogTests : DialogTestBase<TestGreetingDialog>
     {
         [Theory]
         [InlineData(17, "I'm sorry John but you must be at least 18 years old.")]

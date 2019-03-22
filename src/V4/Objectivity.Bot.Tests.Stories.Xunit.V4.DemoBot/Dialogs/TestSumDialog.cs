@@ -6,7 +6,7 @@
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Builder.Dialogs;
     using User;
-    
+
     public class TestSumDialog : ComponentDialog
     {
         private const string MainDialogName = nameof(MainDialogName);
@@ -22,7 +22,7 @@
             {
                 this.PromptForFirstNumberAsync,
                 this.PromptForSecondNumberAsync,
-                this.AcknowledgeNumberAsync
+                this.AcknowledgeNumberAsync,
             };
 
             this.AddDialog(new WaterfallDialog(MainDialogName, steps));
@@ -36,7 +36,7 @@
                 new PromptOptions
                 {
                     Prompt = MessageFactory.Text("What's the first number?"),
-                    RetryPrompt = MessageFactory.Text("A number must be between 0 and 100. Please try again.")
+                    RetryPrompt = MessageFactory.Text("A number must be between 0 and 100. Please try again."),
                 },
                 cancellationToken);
         }
@@ -59,7 +59,7 @@
                 new PromptOptions
                 {
                     Prompt = MessageFactory.Text("What's the second number?"),
-                    RetryPrompt = MessageFactory.Text("A number must be between 0 and 100. Please try again.")
+                    RetryPrompt = MessageFactory.Text("A number must be between 0 and 100. Please try again."),
                 },
                 cancellationToken);
         }

@@ -38,7 +38,7 @@
 
             var attachment = new Attachment
             {
-                Content = JObject.FromObject(card)
+                Content = JObject.FromObject(card),
             };
 
             message.Attachments = new List<Attachment> { attachment };
