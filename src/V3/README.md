@@ -202,12 +202,12 @@ protected override void RegisterAdditionalTypes(ContainerBuilder builder)
 }
 ```
 
-If you need your custom registration, you can use Method RegisterDialog. Example:
+If you need to register the dialog in a customized way, you can use RegisterDialog method from base class. Example:
 ```cs
 this.RegisterDialog((x) =>
-            {
-                var dialog = new WithInitDialog();
-                dialog.Init();
-                return dialog;
-            });
+{
+    var dialog = new WithInitDialog();
+    dialog.Init();
+    return dialog;
+});
 ```
