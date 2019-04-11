@@ -201,3 +201,13 @@ protected override void RegisterAdditionalTypes(ContainerBuilder builder)
     builder.RegisterType<EchoService>().As<IEchoService>();
 }
 ```
+
+If you need your custom registration, you can use Method RegisterDialog. Example:
+```cs
+this.RegisterDialog((x) =>
+            {
+                var dialog = new WithInitDialog();
+                dialog.Init();
+                return dialog;
+            });
+```
