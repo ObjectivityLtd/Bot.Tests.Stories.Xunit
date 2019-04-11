@@ -1,5 +1,6 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit
 {
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
     using Autofac;
@@ -14,6 +15,8 @@
     public abstract class DialogUnitTestBase<TDialog> : DialogTestBase, IStoryPlayer<IMessageActivity>
         where TDialog : IDialog<object>
     {
+        private Func<IComponentContext, TDialog> registerDialogInstanceFunc;
+
         protected ChannelAccount From { get; set; }
 
         public async Task Play(
@@ -30,13 +33,18 @@
         {
         }
 
+        protected void RegisterDialog(Func<IComponentContext, TDialog> regFunc)
+        {
+            this.registerDialogInstanceFunc = regFunc;
+        }
+
         private ITestContainerBuilder GetTestContainerBuilder()
         {
             var builder = new TestContainerBuilder
             {
                 AdditionalTypesRegistration = containerBuilder =>
                 {
-                    UnitTestBaseRegistrator.RegisterTestComponents<TDialog>(containerBuilder, this.From);
+                    UnitTestBaseRegistrator.RegisterTestComponents(containerBuilder, this.From, this.registerDialogInstanceFunc);
 
                     this.RegisterAdditionalTypes(containerBuilder);
                 },

@@ -24,16 +24,22 @@
     {
         private readonly List<IntentUtterance<TDialog>> intentUtterances = new List<IntentUtterance<TDialog>>();
 
+        private Func<IComponentContext, TDialog> registerDialogInstanceFunc;
+
         protected ChannelAccount From { get; set; }
 
-        public async Task Play(
-            IStory<IMessageActivity> story,
-            CancellationToken cancellationToken = default(CancellationToken))
+        public async Task Play(IStory<IMessageActivity> story, CancellationToken cancellationToken = default(CancellationToken))
         {
             var builder = this.GetTestContainerBuilder();
             var player = new UnitTestStoryPlayer(builder);
 
             await player.Play(story, cancellationToken);
+        }
+
+        [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Unused methods are planned to be used outside the framework")]
+        protected void RegisterDialog(Func<IComponentContext, TDialog> regFunc)
+        {
+            this.registerDialogInstanceFunc = regFunc;
         }
 
         protected virtual void RegisterAdditionalTypes(ContainerBuilder builder)
@@ -68,7 +74,7 @@
                         .As<ILuisService>()
                         .SingleInstance();
 
-                    UnitTestBaseRegistrator.RegisterTestComponents<TDialog>(containerBuilder, this.From);
+                    UnitTestBaseRegistrator.RegisterTestComponents(containerBuilder, this.From, this.registerDialogInstanceFunc);
 
                     this.RegisterAdditionalTypes(containerBuilder);
                 },
