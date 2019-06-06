@@ -10,14 +10,17 @@
     {
         private readonly DialogSet dialogs;
         private readonly ConversationState conversationState;
+        private readonly object options;
 
         public DummyDialogBot(
             Dialog dialog,
             WrappedDialogResult result,
-            ConversationState conversationState)
+            ConversationState conversationState,
+            object options = null)
         {
             this.conversationState = conversationState;
 
+            this.options = options;
             this.dialogs = new DialogSet(conversationState.CreateProperty<DialogState>("dummyDialogStateAccessor"));
             this.dialogs.Add(new DialogProxy(dialog, result));
         }
@@ -29,7 +32,7 @@
 
             if (!dc.Context.Responded && results.Status == DialogTurnStatus.Empty && dc.ActiveDialog == null)
             {
-                await dc.BeginDialogAsync(nameof(DialogProxy), null, cancellationToken);
+                await dc.BeginDialogAsync(nameof(DialogProxy), options: this.options, cancellationToken: cancellationToken);
             }
 
             await this.conversationState.SaveChangesAsync(turnContext, false, cancellationToken);
