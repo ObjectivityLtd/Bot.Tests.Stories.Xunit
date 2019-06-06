@@ -7,7 +7,7 @@
     using Microsoft.Bot.Builder.Dialogs;
 
     /// <summary>
-    /// Dialog proxy to track dialog result and update wrapped dialog result
+    /// Dialog proxy to track dialog result and update wrapped dialog result.
     /// </summary>
     public class DialogProxy : Dialog
     {
@@ -28,7 +28,7 @@
             object options = null,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.CaptureResult(await this.baseDialog.BeginDialogAsync(dc, cancellationToken: cancellationToken));
+            return this.CaptureResult(await this.baseDialog.BeginDialogAsync(dc, options: options, cancellationToken: cancellationToken));
         }
 
         public override async Task<DialogTurnResult> ContinueDialogAsync(

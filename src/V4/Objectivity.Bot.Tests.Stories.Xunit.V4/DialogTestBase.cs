@@ -6,6 +6,7 @@
     using Microsoft.Bot.Builder.Dialogs;
     using Microsoft.Bot.Schema;
     using Microsoft.Extensions.DependencyInjection;
+    using Objectivity.Bot.Tests.Stories.Dialogs;
     using Recorder;
     using StoryModel;
     using StoryPerformer;
@@ -23,6 +24,11 @@
         {
             this.testPlayer = new TestPlayer(this.From);
         }
+
+        /// <summary>
+        /// Gets or sets dialog options.
+        /// </summary>
+        public object Options { get; protected set; }
 
         /// <summary>
         /// Gets or sets from channel account.
@@ -74,7 +80,12 @@
         /// <param name="services">Services collection.</param>
         private void RegisterDummyBot(IServiceCollection services)
         {
-            services.AddScoped<IBot, DummyDialogBot>();
+            services.AddScoped<IBot, DummyDialogBot>(
+                container => new DummyDialogBot(
+                    dialog: container.GetService<Dialog>(),
+                    result: container.GetService<WrappedDialogResult>(),
+                    conversationState: container.GetService<ConversationState>(),
+                    options: this.Options));
             services.AddScoped(sp => new ConversationState(this.DataStore));
             services.AddScoped(sp => new UserState(this.DataStore));
         }
