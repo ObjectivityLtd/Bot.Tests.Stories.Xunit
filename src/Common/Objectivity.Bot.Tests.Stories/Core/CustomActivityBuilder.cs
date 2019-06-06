@@ -4,16 +4,16 @@
 
     public class CustomActivityBuilder<T> : IActivityBuilder<T>
     {
-        private readonly T _activity;
+        private readonly T activity;
 
         public CustomActivityBuilder(T activity)
         {
-            this._activity = activity;
+            this.activity = activity;
         }
 
         public T Build(IStoryFrame<T> frame)
         {
-            return this._activity;
+            return this.activity;
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Recorder
 {
     using System.Diagnostics.CodeAnalysis;
-    using Objectivity.Bot.Tests.Stories.Core;
 
     [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Unused methods are planned to be used outside the framework")]
     public interface IUserRecorder<T> : IBaseActorRecorder<T>
