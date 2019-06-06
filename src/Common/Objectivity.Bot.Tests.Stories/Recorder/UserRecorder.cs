@@ -1,5 +1,6 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Recorder
 {
+    using Objectivity.Bot.Tests.Stories.Core;
     using StoryModel;
 
     internal class UserRecorder<T> : IUserRecorder<T>
@@ -9,6 +10,18 @@
         public UserRecorder(StoryRecorderBase<T> storyRecorder)
         {
             this.storyRecorder = storyRecorder;
+        }
+
+        public IStoryRecorder<T> SendsActivity(T activity)
+        {
+            this.storyRecorder.Story.AddStoryFrame(
+                new UserStoryFrame<T>
+                {
+                    Actor = Actor.User,
+                    ComparisonType = ComparisonType.None,
+                    ActivityBuilder = new CustomActivityBuilder<T>(activity),
+                });
+            return this.storyRecorder;
         }
 
         public IStoryRecorder<T> PicksOption(int optionIndex)
