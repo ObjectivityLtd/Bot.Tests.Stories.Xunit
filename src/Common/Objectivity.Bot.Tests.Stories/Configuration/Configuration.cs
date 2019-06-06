@@ -14,6 +14,8 @@
 
         public string ChannelId { get; set; } = "Test";
 
+        public string ConversationId { get; set; }
+
         public List<Action<ServiceCollection>> Registrations { get; } = new List<Action<ServiceCollection>>();
 
         protected StoryRecorderBase<T> StoryRecorder { get; }
@@ -27,6 +29,12 @@
         public IStoryRecorder<T> UseChannel(string channelId)
         {
             this.ChannelId = channelId;
+            return this.StoryRecorder;
+        }
+
+        public IStoryRecorder<T> WithConversationId(string conversationId)
+        {
+            this.ConversationId = conversationId;
             return this.StoryRecorder;
         }
     }
