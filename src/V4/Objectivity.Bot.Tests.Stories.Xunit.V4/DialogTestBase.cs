@@ -59,7 +59,7 @@
             services.AddScoped<Dialog, TDialog>();
             services.AddScoped(sp => story.Configuration);
 
-            this.testPlayer.ConfigureServices(services);
+            this.testPlayer.ConfigureServices(services, story);
             this.ConfigureServices(services);
             story.Configuration.Registrations.ForEach(action => action?.Invoke(services));
 

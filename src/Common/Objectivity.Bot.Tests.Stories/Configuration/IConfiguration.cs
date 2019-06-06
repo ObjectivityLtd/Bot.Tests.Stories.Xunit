@@ -6,6 +6,8 @@
 
     public interface IConfiguration
     {
+        string ConversationId { get; set; }
+
         string ChannelId { get; set; }
 
         List<Action<ServiceCollection>> Registrations { get; }

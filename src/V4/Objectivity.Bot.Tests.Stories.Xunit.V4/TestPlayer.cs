@@ -27,12 +27,12 @@
             await player.Play(story);
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IStory<IMessageActivity> story)
         {
             services.AddScoped<StoryAsserts>();
             services.AddScoped(x => new Queue<IMessageActivity>());
             services.AddScoped<IStoryPerformer<IMessageActivity>, WrappedStoryPerformer>();
-            services.AddScoped<IConversationService, ConversationService>();
+            services.AddScoped<IConversationService>(x => new ConversationService(story.Configuration));
             services.AddScoped(x => this.From);
             services.AddScoped<WrappedDialogResult>();
             services.AddScoped<FinishStepAsserts>();
