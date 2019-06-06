@@ -1,10 +1,12 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.V4.Extensions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Microsoft.Bot.Schema;
     using Recorder;
 
+    [SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Unused members are planned to be used outside the framework")]
     public static class BotStoryRecorderExtensions
     {
         /// <summary>
@@ -39,24 +41,20 @@
         /// </summary>
         /// <param name="recorder">Bot recorder.</param>
         /// <param name="name">Event name.</param>
-        /// <typeparam name="T">Value type.</typeparam>
         /// <returns>Story recorder.</returns>
         public static IStoryRecorder<IMessageActivity> SendsEvent(
             this IBotRecorder<IMessageActivity> recorder,
             string name)
         {
-            return recorder.SendsActivity(activity =>
-            {
-                return activity != null
-                    && activity.Type == ActivityTypes.Event
-                    && activity.AsEventActivity()?.Name == name;
-            });
+            return recorder.SendsActivity(activity => activity != null
+                                                      && activity.Type == ActivityTypes.Event
+                                                      && activity.AsEventActivity()?.Name == name);
         }
 
         /// <summary>
         /// Verifies if bot sent an event.
         /// <remarks>
-        /// Assertion is based on activity type and name.
+        /// Assertion is based on activity type, name and value predicate.
         /// </remarks>
         /// </summary>
         /// <param name="recorder">Bot recorder.</param>
@@ -69,13 +67,10 @@
             string name,
             Func<T, bool> valuePredicate)
         {
-            return recorder.SendsActivity(activity =>
-            {
-                return activity != null
-                    && activity.Type == ActivityTypes.Event
-                    && activity.AsEventActivity()?.Name == name
-                    && valuePredicate((T)activity.AsEventActivity()?.Value);
-            });
+            return recorder.SendsActivity(activity => activity != null
+                                                      && activity.Type == ActivityTypes.Event
+                                                      && activity.AsEventActivity()?.Name == name
+                                                      && valuePredicate((T)activity.AsEventActivity()?.Value));
         }
     }
 }
