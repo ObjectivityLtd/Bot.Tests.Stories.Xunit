@@ -121,6 +121,57 @@ public class PromptTests : BotTestBase<DemoBot>
 }
 ```
 
+### Bot with events
+
+You can use specialized method for bot with events:
+
+```cs
+public class EventTests : BotTestBase<DemoBot>
+{
+    [Fact]
+    public async Task EventAuthentication_BotSendsRequestsTokenEvent()
+    {
+        var story = this.Record
+            .Bot.SendsEvent("tokens/request")
+            .Rewind();
+
+        await this.Play(story);
+    }
+}
+```
+
+### Custom user activity
+
+You can use specialized method for sending any activity to the bot:
+
+```cs
+public class EventTests : BotTestBase<DemoBot>
+{
+    [Fact]
+    public async Task EventAuthentication_UserSendsTokenResponseEvent()
+    {
+        var conversationId = Guid.NewGuid().ToString();
+        var story = this.Record
+            .Configuration.WithConversationId(conversationId)
+            .User.SendsActivity(
+                new Activity
+                {
+                    Type = ActivityTypes.Event,
+                    Name = "tokens/response",
+                    ChannelId = "Test",
+                    Conversation = new ConversationAccount { Id = conversationId },
+                    From = new ChannelAccount { Id = ChannelId.User },
+                    Recipient = new ChannelAccount { Id = ChannelId.Bot },
+                })
+            .Rewind();
+
+        await this.Play(story);
+    }
+}
+```
+
+> **IMPORTANT:** To keep context in conversation flow you should keep the same `conversationId` for each activity that is sent to the dialog. See how this is achieved by `.Configuration.WithConversationId(conversationId)` in example above.
+
 ## Testing dialogs
 
 To develop a tests for a dialog, create new test class inheriting from `Objectivity.Bot.Tests.Stories.Xunit.V4.DialogTestBase<T>` class, providing your dialog type as generic parameter. Then for each test please go through the following steps:
