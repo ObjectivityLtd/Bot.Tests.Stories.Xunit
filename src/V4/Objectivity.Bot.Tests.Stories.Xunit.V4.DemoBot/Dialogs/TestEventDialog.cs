@@ -29,15 +29,16 @@
         protected async Task<bool> TokenResponseValidatorAsync(PromptValidatorContext<Activity> pc, CancellationToken cancellationToken)
         {
             var activity = pc.Recognized.Value;
+            var isAuthorized = activity != null && activity.Type == ActivityTypes.Event;
 
-            if (activity == null || activity.Type != ActivityTypes.Event)
+            if (!isAuthorized)
             {
-                await pc.Context.SendActivityAsync("You're unauthorized", cancellationToken: cancellationToken);
-
-                return false;
+                await pc.Context.SendActivityAsync(
+                    textReplyToSend: "You're unauthorized",
+                    cancellationToken: cancellationToken);
             }
 
-            return true;
+            return isAuthorized;
         }
 
         private async Task<DialogTurnResult> RequestAuthorizationAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)

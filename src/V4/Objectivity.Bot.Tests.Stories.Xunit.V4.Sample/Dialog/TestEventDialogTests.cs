@@ -3,6 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using DemoBot.Dialogs;
+    using DemoBot.Dialogs.Prompts;
     using global::Xunit;
     using Microsoft.Bot.Schema;
     using Objectivity.Bot.Tests.Stories.Core;
@@ -14,7 +15,7 @@
         public async Task GivenDialogStarts_PlayStoryIsCalled_MustReturnAuthorizationRequestEvent()
         {
             var story = this.Record
-                .Bot.SendsEvent("tokens/request")
+                .Bot.SendsEvent(TestAuthPrompt.AuthRequestEventName)
                 .Rewind();
 
             await this.Play(story);
@@ -29,11 +30,11 @@
             var story = this.Record
                 .Configuration.UseChannel(channelId)
                 .Configuration.WithConversationId(conversationId)
-                .Bot.SendsEvent("tokens/request")
+                .Bot.SendsEvent(TestAuthPrompt.AuthRequestEventName)
                 .User.SendsActivity(new Activity
                 {
                     Type = ActivityTypes.Event,
-                    Name = "tokens/response",
+                    Name = TestAuthPrompt.AuthResponseEventName,
                     ChannelId = channelId,
                     Conversation = new ConversationAccount { Id = conversationId },
                     From = new ChannelAccount { Id = ChannelId.User },
@@ -49,7 +50,7 @@
         public async Task GivenAuthenticationResponseWasNotSent_PlayStoryIsCalled_MustReturnAuthorizationDeniedMessage()
         {
             var story = this.Record
-                .Bot.SendsEvent("tokens/request")
+                .Bot.SendsEvent(TestAuthPrompt.AuthRequestEventName)
                 .User.Says("Show info")
                 .Bot.Says("You're unauthorized")
                 .Rewind();
