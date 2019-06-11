@@ -33,7 +33,7 @@
                 if (ev.Name == AuthResponseEventName)
                 {
                     result.Succeeded = true;
-                    result.Value = turnContext.Activity;
+                    result.Value = activity;
                 }
             }
 

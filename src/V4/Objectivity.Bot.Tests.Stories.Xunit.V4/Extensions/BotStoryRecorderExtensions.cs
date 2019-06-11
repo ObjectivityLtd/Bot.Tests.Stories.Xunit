@@ -36,7 +36,7 @@
         /// <summary>
         /// Verifies if bot sent an event.
         /// <remarks>
-        /// Assertion is based on activity type and name.
+        /// Assertion is based on activity type and name. Name verification is case sensitive.
         /// </remarks>
         /// </summary>
         /// <param name="recorder">Bot recorder.</param>
@@ -54,23 +54,19 @@
         /// <summary>
         /// Verifies if bot sent an event.
         /// <remarks>
-        /// Assertion is based on activity type, name and value predicate.
+        /// Assertion is based on event activity predicate.
         /// </remarks>
         /// </summary>
         /// <param name="recorder">Bot recorder.</param>
-        /// <param name="name">Event name.</param>
-        /// <param name="valuePredicate">Predicate used for event value assertion.</param>
-        /// <typeparam name="T">Value type.</typeparam>
+        /// <param name="eventPredicate">Predicate used for event assertion.</param>
         /// <returns>Story recorder.</returns>
-        public static IStoryRecorder<IMessageActivity> SendsEvent<T>(
+        public static IStoryRecorder<IMessageActivity> SendsEvent(
             this IBotRecorder<IMessageActivity> recorder,
-            string name,
-            Func<T, bool> valuePredicate)
+            Func<IEventActivity, bool> eventPredicate)
         {
             return recorder.SendsActivity(activity => activity != null
                                                       && activity.Type == ActivityTypes.Event
-                                                      && activity.AsEventActivity()?.Name == name
-                                                      && valuePredicate((T)activity.AsEventActivity()?.Value));
+                                                      && eventPredicate(activity.AsEventActivity()));
         }
     }
 }
