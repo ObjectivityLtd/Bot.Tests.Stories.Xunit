@@ -1,6 +1,7 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.V4
 {
     using System.Threading.Tasks;
+    using Core;
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Schema;
     using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +22,11 @@
         {
             this.testPlayer = new TestPlayer(this.From);
         }
+
+        /// <summary>
+        /// Gets bot adapter configuration.
+        /// </summary>
+        public BotAdapterConfiguration BotAdapterConfiguration { get; } = new BotAdapterConfiguration();
 
         /// <summary>
         /// Gets or sets from channel account.
@@ -47,6 +53,8 @@
             this.testPlayer.ConfigureServices(services, story);
             this.ConfigureServices(services);
             story.Configuration.Registrations.ForEach(action => action?.Invoke(services));
+
+            services.AddScoped(x => this.BotAdapterConfiguration);
 
             await this.testPlayer.Play(story, this.From, services);
         }
