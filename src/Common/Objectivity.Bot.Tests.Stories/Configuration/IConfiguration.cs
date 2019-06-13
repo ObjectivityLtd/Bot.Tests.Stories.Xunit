@@ -6,6 +6,8 @@
 
     public interface IConfiguration
     {
+        string[] ConversationUpdateAddedMembers { get; set; }
+
         string ConversationId { get; set; }
 
         string ChannelId { get; set; }

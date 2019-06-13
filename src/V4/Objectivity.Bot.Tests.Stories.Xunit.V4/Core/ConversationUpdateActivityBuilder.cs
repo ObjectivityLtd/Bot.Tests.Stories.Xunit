@@ -1,7 +1,7 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.V4.Core
 {
     using System;
-    using System.Collections.Generic;
+    using System.Linq;
     using Microsoft.Bot.Schema;
     using Stories.Configuration;
     using Stories.Core;
@@ -29,10 +29,9 @@
                 ChannelId = this.configuration.ChannelId,
                 Attachments = Array.Empty<Attachment>(),
                 Entities = Array.Empty<Entity>(),
-                MembersAdded = new List<ChannelAccount>
-                {
-                    new ChannelAccount(ChannelId.User),
-                },
+                MembersAdded = this.configuration.ConversationUpdateAddedMembers?
+                    .Select(x => new ChannelAccount(x))
+                    .ToList(),
             };
         }
     }
