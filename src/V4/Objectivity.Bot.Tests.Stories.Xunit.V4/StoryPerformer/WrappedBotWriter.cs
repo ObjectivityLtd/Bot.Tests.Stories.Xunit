@@ -18,9 +18,15 @@
         private readonly IServiceProvider scopeContext;
         private readonly IConversationService conversationService;
         private readonly IConfiguration configuration;
+        private readonly BotAdapterConfiguration botAdapterConfiguration;
 
-        public WrappedBotWriter(IServiceProvider scopeContext, IConversationService conversationService, IConfiguration configuration)
+        public WrappedBotWriter(
+            IServiceProvider scopeContext,
+            IConversationService conversationService,
+            IConfiguration configuration,
+            BotAdapterConfiguration botAdapterConfiguration)
         {
+            this.botAdapterConfiguration = botAdapterConfiguration;
             this.scopeContext = scopeContext;
             this.conversationService = conversationService;
             this.configuration = configuration;
@@ -31,11 +37,28 @@
             try
             {
                 var bot = this.scopeContext.GetService<IBot>();
-                var adapter = new TestAdapter();
+                var adapter = new TestAdapter(new ConversationReference(
+                    messageActivity.Id,
+                    messageActivity.From,
+                    messageActivity.Recipient,
+                    messageActivity.Conversation,
+                    messageActivity.ChannelId,
+                    messageActivity.ServiceUrl));
+
                 var context = new TurnContext(adapter, messageActivity as Activity);
                 var queue = this.scopeContext.GetService<Queue<IMessageActivity>>();
+                var middlewareList = this.scopeContext.GetServices<IMiddleware>();
 
-                await bot.OnTurnAsync(context);
+                this.ApplyAdapterConfiguration(adapter);
+
+                foreach (var middleware in middlewareList)
+                {
+                    adapter.Use(middleware);
+                }
+
+                await adapter.ProcessActivityAsync(
+                    context.Activity,
+                    (turnContext, cancellationToken) => bot.OnTurnAsync(turnContext, cancellationToken));
 
                 while (adapter.ActiveQueue.Count > 0)
                 {
@@ -57,6 +80,19 @@
             var activityBuilder = frame.ActivityBuilder ?? new MessageActivityBuilder(this.conversationService, this.configuration);
 
             return activityBuilder.Build(frame);
+        }
+
+        private void ApplyAdapterConfiguration(TestAdapter adapter)
+        {
+            foreach (var userToken in this.botAdapterConfiguration.UserAccessTokens)
+            {
+                adapter.AddUserToken(
+                    userToken.ConnectionName,
+                    userToken.ChannelId,
+                    userToken.UserId,
+                    userToken.Token,
+                    userToken.MagicCode);
+            }
         }
     }
 }

@@ -88,6 +88,7 @@
                     options: this.Options));
             services.AddScoped(sp => new ConversationState(this.DataStore));
             services.AddScoped(sp => new UserState(this.DataStore));
+            services.AddScoped(sp => new BotAdapterConfiguration());
         }
     }
 }
