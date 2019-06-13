@@ -71,6 +71,26 @@ public class ChannelConfigurationTests: BotTestBase<DemoBot>
 }
 ```
 
+### Testing members joined conversation
+
+You can use specialized method for setting conversation update member. 
+
+```cs
+public class UserWelcomeMessageTests: BotTestBase<DemoBot>
+{
+    [Fact]
+    public async Task UserJoinedConversation_PlayStoryIsCalled_MustShowWelcomeMessage()
+    {
+        var story = this.Record
+            .Configuration.SetConversationUpdateMembers(ChannelId.User)
+            .Bot.Says("Welcome to demo bot")
+            .Rewind();
+
+        await this.Play(story);
+    }
+}
+```
+
 ### Testing with mocks
 
 You can use specialized method for setting channel. 
