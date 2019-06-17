@@ -160,6 +160,29 @@ public class EventTests : BotTestBase<DemoBot>
 }
 ```
 
+### Middleware
+
+You can register middleware that will be executed on each turn:
+
+```cs
+public class MiddlewareTests : BotTestBase<DemoBot>
+{
+    [Fact]
+    public async Task GreetingMiddlewareRegistered_BotResponsWithGreetingMessage()
+    {
+        var story = this.Record
+            .Configuration.RegisterService(
+                services => services.AddScoped<IMiddleware>(factory => new GreetingMiddleware()))
+            .Bot.Says("Welcome from Greeting middleware")
+            .Rewind();
+
+        await this.Play(story);
+    }
+}
+```
+
+> **IMPORTANT:** Middleware must be registered as IMiddleware interface.
+
 ### Custom user activity
 
 You can use specialized method for sending any activity to the bot:
