@@ -11,7 +11,7 @@
         public async Task BotJoinedConversation_PlayStoryIsCalled_MustNotShowWelcomeMessage()
         {
             var story = this.Record
-                .Configuration.SetConversationUpdateMembers(ChannelId.Bot)
+                .Configuration.WithConversationUpdateMember(ChannelId.Bot)
                 .Rewind();
 
             await this.Play(story);
@@ -21,7 +21,7 @@
         public async Task UserJoinedConversation_PlayStoryIsCalled_MustShowWelcomeMessage()
         {
             var story = this.Record
-                .Configuration.SetConversationUpdateMembers(ChannelId.User)
+                .Configuration.WithConversationUpdateMember(ChannelId.User)
                 .Bot.Says("Welcome to demo bot")
                 .Rewind();
 

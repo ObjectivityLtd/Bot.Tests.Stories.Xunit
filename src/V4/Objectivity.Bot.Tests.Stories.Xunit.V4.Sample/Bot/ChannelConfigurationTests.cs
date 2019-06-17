@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using global::Xunit;
     using Microsoft.Bot.Connector;
+    using Stories.Core;
 
     public class ChannelConfigurationTests : DemoBotTestBase
     {
@@ -10,6 +11,7 @@
         public async Task ConversationInitiatedWithNoChannel_PlayStoryIsCalled_MustShowDefaultWelcomeMessage()
         {
             var story = this.Record
+                .Configuration.WithConversationUpdateMember(ChannelId.User)
                 .Bot.Says("Welcome to demo bot")
                 .Rewind();
 
@@ -21,6 +23,7 @@
         {
             var story = this.Record
                 .Configuration.UseChannel(Channels.Facebook)
+                .Configuration.WithConversationUpdateMember(ChannelId.User)
                 .Bot.Says("Welcome to demo bot facebook")
                 .Rewind();
 

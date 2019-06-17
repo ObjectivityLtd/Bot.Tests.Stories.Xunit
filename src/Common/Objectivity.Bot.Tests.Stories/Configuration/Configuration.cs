@@ -7,6 +7,8 @@
 
     public class Configuration<T> : IConfiguration, IConfigurationRecorder<T>
     {
+        private readonly List<string> conversationUpdateMembers = new List<string>();
+
         public Configuration(StoryRecorderBase<T> storyRecorder)
         {
             this.StoryRecorder = storyRecorder;
@@ -14,10 +16,7 @@
 
         public string ChannelId { get; set; } = "Test";
 
-        public string[] ConversationUpdateAddedMembers { get; set; } = new[]
-        {
-            Core.ChannelId.User,
-        };
+        public IReadOnlyCollection<string> ConversationUpdateAddedMembers => this.conversationUpdateMembers.AsReadOnly();
 
         public string ConversationId { get; set; }
 
@@ -43,9 +42,9 @@
             return this.StoryRecorder;
         }
 
-        public IStoryRecorder<T> SetConversationUpdateMembers(params string[] userIds)
+        public IStoryRecorder<T> WithConversationUpdateMember(string userId)
         {
-            this.ConversationUpdateAddedMembers = userIds;
+            this.conversationUpdateMembers.Add(userId);
 
             return this.StoryRecorder;
         }

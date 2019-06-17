@@ -11,7 +11,6 @@
         public async Task UserDoesNotHaveToken_PlayStoryIsCalled_BotDidNotFindToken()
         {
             var story = this.Record
-                .Bot.Says("Welcome to demo bot")
                 .User.Says("token test")
                 .Bot.Says($"No tokens found")
                 .Rewind();
@@ -34,7 +33,6 @@
 
             var story = this.Record
                 .Configuration.UseChannel(channelId)
-                .Bot.Says($"Welcome to demo bot {channelId}")
                 .User.Says("token test")
                 .Bot.Says($"Token for connection {connectionName} found")
                 .Rewind();
