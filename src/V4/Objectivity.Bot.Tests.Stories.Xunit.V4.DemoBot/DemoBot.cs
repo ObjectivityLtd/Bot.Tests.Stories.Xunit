@@ -1,6 +1,7 @@
 ﻿namespace Objectivity.Bot.Tests.Stories.Xunit.V4.DemoBot
 {
     using System;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using Dialogs;
@@ -65,6 +66,9 @@
                     case "room test":
                         await this.HandleDialog(nameof(TestRoomDialog), turnContext, cancellationToken);
                         break;
+                    case "token test":
+                        await this.ShowTokenStatus(turnContext, cancellationToken);
+                        break;
                     default:
                         var dc = await this.dialogs.CreateContextAsync(turnContext, cancellationToken);
                         await dc.ContinueDialogAsync(cancellationToken);
@@ -72,6 +76,29 @@
                 }
 
                 await this.demoDialogStateAccessor.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
+            }
+        }
+
+        private async Task ShowTokenStatus(ITurnContext turnContext, CancellationToken cancellationToken)
+        {
+            if (turnContext.Adapter is IUserTokenProvider tokenProvider)
+            {
+                var status = await tokenProvider.GetTokenStatusAsync(
+                    turnContext,
+                    turnContext.Activity.From.Id,
+                    cancellationToken: cancellationToken);
+                var tokenStatus = status?.FirstOrDefault();
+
+                if (tokenStatus?.HasToken != null && tokenStatus.HasToken.Value)
+                {
+                    await turnContext.SendActivityAsync(
+                        $"Token for connection {tokenStatus.ConnectionName} found",
+                        cancellationToken: cancellationToken);
+                }
+                else
+                {
+                    await turnContext.SendActivityAsync("No tokens found", cancellationToken: cancellationToken);
+                }
             }
         }
 

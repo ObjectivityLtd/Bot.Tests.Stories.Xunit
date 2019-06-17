@@ -183,6 +183,34 @@ public class MiddlewareTests : BotTestBase<DemoBot>
 
 > **IMPORTANT:** Middleware must be registered as IMiddleware interface.
 
+### Bot adapter configuration
+You can mock user access tokens by using `BotAdapterConfiguration` property in `BotTestBase<T>` base class:
+
+```cs
+public class AccessTokenTests : BotTestBase<DemoBot>
+{
+    [Fact]
+    public async Task UserHasToken_PlayStoryIsCalled_BotFoundToken()
+    {
+        const string channelId = "testChannel";
+
+        this.BotAdapterConfiguration.UserAccessTokens.Add(new UserAccessTokenConfiguration
+        {
+            UserId = ChannelId.User,
+            ChannelId = channelId,
+        });
+
+        var story = this.Record
+            .Configuration.UseChannel(channelId)
+            .User.Says("Who am I")
+            .Bot.Says($"You are {ChannelId.User}")
+            .Rewind();
+
+        await this.Play(story);
+    }
+}
+```
+
 ### Custom user activity
 
 You can use specialized method for sending any activity to the bot:
