@@ -4,7 +4,7 @@
 
     public class BotAdapterConfiguration
     {
-        public IList<(string ConnectionName, string ChannelId, string UserId, string Token, string MagicCode)> UserAccessTokens { get; }
-            = new List<(string ConnectionName, string ChannelId, string UserId, string Token, string MagicCode)>();
+        public IList<UserAccessTokenConfiguration> UserAccessTokens { get; }
+            = new List<UserAccessTokenConfiguration>();
     }
 }
