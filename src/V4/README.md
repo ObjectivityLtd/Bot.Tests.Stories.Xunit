@@ -82,7 +82,7 @@ public class UserWelcomeMessageTests: BotTestBase<DemoBot>
     public async Task UserJoinedConversation_PlayStoryIsCalled_MustShowWelcomeMessage()
     {
         var story = this.Record
-            .Configuration.SetConversationUpdateMembers(ChannelId.User)
+            .Configuration.WithConversationUpdateMember(ChannelId.User)
             .Bot.Says("Welcome to demo bot")
             .Rewind();
 

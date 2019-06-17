@@ -15,7 +15,6 @@
             string expectedBotReply)
         {
             var story = this.Record
-                .Bot.Says("Welcome to demo bot")
                 .User.Says("hello")
                 .Bot.Says("What's your name?")
                 .User.Says("John")
@@ -31,7 +30,6 @@
         public async Task InvalidNumberPassed_PlayStoryIsCalled_MustRepromptForAge()
         {
             var story = this.Record
-                .Bot.Says("Welcome to demo bot")
                 .User.Says("hello")
                 .Bot.Says("What's your name?")
                 .User.Says("John")

@@ -6,7 +6,7 @@
 
     public interface IConfiguration
     {
-        string[] ConversationUpdateAddedMembers { get; set; }
+        IReadOnlyCollection<string> ConversationUpdateAddedMembers { get; }
 
         string ConversationId { get; set; }
 

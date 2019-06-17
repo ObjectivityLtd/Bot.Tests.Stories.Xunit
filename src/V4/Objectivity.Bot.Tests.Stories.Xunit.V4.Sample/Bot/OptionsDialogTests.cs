@@ -9,7 +9,6 @@
         public async Task SingleFruitStory_PlayStoryIsCalled_DialogFlowIsCorrect()
         {
             var story = this.Record
-                .Bot.Says("Welcome to demo bot")
                 .User.Says("cards test")
                 .Bot.ListsOptions("Which fruit you take?", new[] { "Banana", "Apple", "Orange" })
                 .User.Says("Apple")

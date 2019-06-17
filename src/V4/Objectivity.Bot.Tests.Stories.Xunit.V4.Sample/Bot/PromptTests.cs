@@ -10,7 +10,6 @@
         public async Task ChoicePrompt_SelectedValidOption()
         {
             var story = this.Record
-                .Bot.Says("Welcome to demo bot")
                 .User.Says("choice test")
                 .Bot.GivesChoice("Please choose your favorite color.", new[] { "Red", "Green", "Blue" })
                 .User.Says("Red")
@@ -26,7 +25,6 @@
         public async Task ChoicePrompt_SelectedInvalidColor_ValidationMessageIsReturned()
         {
             var story = this.Record
-                .Bot.Says("Welcome to demo bot")
                 .User.Says("choice test")
                 .Bot.GivesChoice("Please choose your favorite color.", new[] { "Red", "Green", "Blue" })
                 .User.Says("Orange")
@@ -40,7 +38,6 @@
         public async Task ChoicePrompt_SelectedInvalidFruit_ValidationMessageIsReturned()
         {
             var story = this.Record
-                .Bot.Says("Welcome to demo bot")
                 .User.Says("choice test")
                 .Bot.GivesChoice("Please choose your favorite color.", new[] { "Red", "Green", "Blue" })
                 .User.Says("Red")

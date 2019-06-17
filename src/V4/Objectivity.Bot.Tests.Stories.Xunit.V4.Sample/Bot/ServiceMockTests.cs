@@ -17,7 +17,6 @@
 
             var story = this.Record
                 .Configuration.RegisterService(services => services.AddScoped(sp => roomServiceMock.Object))
-                .Bot.Says("Welcome to demo bot")
                 .User.Says("room test")
                 .Bot.Says("What's the room number?")
                 .User.Says("1.55")
