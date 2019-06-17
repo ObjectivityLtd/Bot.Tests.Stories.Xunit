@@ -24,12 +24,13 @@
             const string channelId = "testChannel";
             const string connectionName = "testConnection";
 
-            this.BotAdapterConfiguration.UserAccessTokens.Add(new UserAccessTokenConfiguration
-            {
-                UserId = ChannelId.User,
-                ConnectionName = connectionName,
-                ChannelId = channelId,
-            });
+            this.BotAdapterConfiguration.WithUserAccessTokenConfiguration(
+                new UserAccessTokenConfiguration
+                {
+                    UserId = ChannelId.User,
+                    ConnectionName = connectionName,
+                    ChannelId = channelId,
+                });
 
             var story = this.Record
                 .Configuration.UseChannel(channelId)

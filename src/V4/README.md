@@ -184,7 +184,7 @@ public class MiddlewareTests : BotTestBase<DemoBot>
 > **IMPORTANT:** Middleware must be registered as IMiddleware interface.
 
 ### Bot adapter configuration
-You can mock user access tokens by using `BotAdapterConfiguration` property in `BotTestBase<T>` base class:
+You can mock user access tokens by using `BotAdapterConfiguration` property in `BotTestBase<T>` or `DialogTestBase<T>` base classes:
 
 ```cs
 public class AccessTokenTests : BotTestBase<DemoBot>
@@ -194,11 +194,12 @@ public class AccessTokenTests : BotTestBase<DemoBot>
     {
         const string channelId = "testChannel";
 
-        this.BotAdapterConfiguration.UserAccessTokens.Add(new UserAccessTokenConfiguration
-        {
-            UserId = ChannelId.User,
-            ChannelId = channelId,
-        });
+        this.BotAdapterConfiguration.WithUserAccessTokenConfiguration(
+            new UserAccessTokenConfiguration
+            {
+                UserId = ChannelId.User,
+                ChannelId = channelId,
+            });
 
         var story = this.Record
             .Configuration.UseChannel(channelId)

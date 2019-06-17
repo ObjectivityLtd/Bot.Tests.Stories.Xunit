@@ -18,13 +18,13 @@
         private readonly IServiceProvider scopeContext;
         private readonly IConversationService conversationService;
         private readonly IConfiguration configuration;
-        private readonly BotAdapterConfiguration botAdapterConfiguration;
+        private readonly IBotAdapterConfiguration botAdapterConfiguration;
 
         public WrappedBotWriter(
             IServiceProvider scopeContext,
             IConversationService conversationService,
             IConfiguration configuration,
-            BotAdapterConfiguration botAdapterConfiguration)
+            IBotAdapterConfiguration botAdapterConfiguration)
         {
             this.botAdapterConfiguration = botAdapterConfiguration;
             this.scopeContext = scopeContext;
