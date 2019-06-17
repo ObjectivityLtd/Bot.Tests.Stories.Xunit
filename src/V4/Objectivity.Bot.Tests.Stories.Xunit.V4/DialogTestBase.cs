@@ -15,7 +15,7 @@
     /// Base class for dialog test.
     /// </summary>
     /// <typeparam name="TDialog">Dialog type.</typeparam>
-    public abstract class DialogTestBase<TDialog>
+    public abstract class DialogTestBase<TDialog> : TestBase
         where TDialog : Dialog
     {
         private readonly TestPlayer testPlayer;
@@ -62,6 +62,8 @@
             this.testPlayer.ConfigureServices(services, story);
             this.ConfigureServices(services);
             story.Configuration.Registrations.ForEach(action => action?.Invoke(services));
+
+            services.AddScoped(x => this.BotAdapterConfiguration);
 
             await this.testPlayer.Play(story, this.From, services);
         }

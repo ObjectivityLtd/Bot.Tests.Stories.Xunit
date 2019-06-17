@@ -13,7 +13,7 @@
     /// Base class for bot test.
     /// </summary>
     /// <typeparam name="TBot">Bot type.</typeparam>
-    public abstract class BotTestBase<TBot>
+    public abstract class BotTestBase<TBot> : TestBase
         where TBot : class, IBot
     {
         private readonly TestPlayer testPlayer;
@@ -22,11 +22,6 @@
         {
             this.testPlayer = new TestPlayer(this.From);
         }
-
-        /// <summary>
-        /// Gets bot adapter configuration.
-        /// </summary>
-        public BotAdapterConfiguration BotAdapterConfiguration { get; } = new BotAdapterConfiguration();
 
         /// <summary>
         /// Gets or sets from channel account.
