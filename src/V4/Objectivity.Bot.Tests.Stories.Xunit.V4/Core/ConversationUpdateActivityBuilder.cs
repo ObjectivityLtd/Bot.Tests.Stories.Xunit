@@ -29,7 +29,7 @@
                 ChannelId = this.configuration.ChannelId,
                 Attachments = Array.Empty<Attachment>(),
                 Entities = Array.Empty<Entity>(),
-                MembersAdded = this.configuration.ConversationUpdateAddedMembers?
+                MembersAdded = this.configuration.ConversationUpdateAddedMembers
                     .Select(x => new ChannelAccount(x))
                     .ToList(),
             };
